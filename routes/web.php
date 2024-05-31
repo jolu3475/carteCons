@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\beginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [beginController::class, 'index'])->name('index');
+
+Route::get('/form', [beginController::class, 'form'])->name('index');
