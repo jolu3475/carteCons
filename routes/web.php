@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [beginController::class, 'index'])->name('index');
 
+/* Route::prefix('/form') */
 Route::get('/form', [beginController::class, 'form'])->name('index');

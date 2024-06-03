@@ -13,7 +13,7 @@ class beginController extends Controller
 
     public function form(): View
     {
-        return View('form.form');
+        return View('login.form');
     }
 
 }

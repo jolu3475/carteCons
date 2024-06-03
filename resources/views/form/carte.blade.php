@@ -6,13 +6,12 @@
 
     <p class="h1 ti"><strong>Formulaire Carte consulaire</strong></p>
     <blockquote class="blockquote">
-        <p>Note: tout les champs suivi par une étoile (<span class="red">*</span>) sont obligatoire</p>
+        <p><span class="badge bg-secondary">Note</span> tout les champs suivi par une étoile (<span class="red">*</span>) sont obligatoire</p>
     </blockquote>
 
 @endsection
 
 @section('content')
-
 
     <div class="row mb-3">
         <label for="inputName" class="col-sm-2 col-form-label">Nom<span class="red">*</span></label>
