@@ -13,18 +13,18 @@
 <body>
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-2 lo">
 
-            <div class="col">
-                <img src="..." class="img-thumbnail" alt="...">
+            <div class="col-auto">
+                <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail align-items-center" alt="...">
             </div>
 
-            <div class="col">
-                <img src="..." class="img-thumbnail" alt="...">
+            <div class="col-auto">
+                <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail align-items-end" alt="...">
             </div>
 
-            <div class="col">
-                <img src="..." class="img-thumbnail" alt="...">
+            <div class=" col-auto">
+                <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail" alt="...">
             </div>
 
         </div>
@@ -43,7 +43,7 @@
                 @yield('content')
 
 
-                <button type="submit" class="btn btn-primary">@yield('btn')</button>
+                <button type="submit" class="btn btn-success">@yield('btn')</button>
 
             </form>
         </div>

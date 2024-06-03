@@ -4,7 +4,7 @@
 
 @section('head')
 
-    <p class="h1 ti"><strong>Formulaire de connexion</strong></p>
+    <p class="h1 ti"><strong>Se connecter</strong></p>
 
 @endsection
 

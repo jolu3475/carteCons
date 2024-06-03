@@ -54,6 +54,70 @@
         </div>
     </div>
 
+    <div class="row mb-3">
+        <label for="inputProf" class="col-sm-2 col-form-label">Profession<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputProf" placeholder="Votre Profession">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEnf" class="col-sm-2 col-form-label">Nombre d'enfants</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEnf" placeholder="Votre Profession">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputAdr" class="col-sm-2 col-form-label">Adresse actuelle<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputAdr" placeholder="Votre Profession">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputPa" class="col-sm-2 col-form-label">Pays actuelle<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputPa" placeholder="Votre Pays actuelle">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputTel" class="col-sm-2 col-form-label">Téléphone<span class="red">*</span></label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputTel" placeholder="Votre Numéro de téléphone">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputMail" class="col-sm-2 col-form-label">Adresse E-mail<span class="red">*</span></label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" id="inputMail" placeholder="Votre Adresse e-mail valide">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputPass" class="col-sm-2 col-form-label">Numéro passeport<span class="red">*</span></label>
+        <div class="col-sm-3">
+            <input type="email" class="form-control" id="inputPass" placeholder="Votre Numéro de passport">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputExpPass" class="col-sm-2 col-form-label">Date d'expiration passport<span
+                class="red">*</span></label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" id="inputExpPass">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputDateArr" class="col-sm-2 col-form-label">Date d'arrivée à l'étranger<span
+                class="red">*</span></label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" id="inputDateArr">
+        </div>
+    </div>
+
 @endsection
 
 @section('btn', 'Envoyer')
