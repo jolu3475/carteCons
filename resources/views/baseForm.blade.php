@@ -7,6 +7,7 @@
     <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
     <script src={{ asset('bootstrap/js/bootstrap.js') }}></script>
     <link rel="stylesheet" href={{ asset('css/app.css') }}>
+    <link rel="stylesheet" href={{ asset('bootstrap/css/the') }}>
 
 </head>
 
@@ -17,11 +18,11 @@
 
             <div class="col-auto">
                 <div class="row">
-                    <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail align-items-center" alt="...">
+                    <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail" alt="...">
                 </div>
-                {{-- <div class="row">
-                    <p class="h1">Ministère des Affaires Etrangères</p>
-                </div> --}}
+                <div class="row mt-2">
+                    <p><strong>Ministère des Affaires Etrangères</strong></p>
+                </div>
             </div>
 
         </div>
@@ -48,11 +49,18 @@
         </div>
     </div>
 
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
-        </div>
-    </footer>
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
+        </footer>
+    </div>
 
 </body>
 

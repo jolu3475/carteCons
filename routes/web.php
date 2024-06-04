@@ -16,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [beginController::class, 'index'])->name('index');
 
-/* Route::prefix('/form') */
-Route::get('/form', [beginController::class, 'form'])->name('index');
+Route::prefix('/form')->name('form.')->controller(beginController::class)->group(function () {
+    Route::get('/', 'form')->name('index');
+    Route::post('/', 'submit')->name('submit');
+
+    Route::get('/edit/{slug}', 'edit')->name('edit')->where('slug', '[a-z0-9\-]+');
+    Route::post('/update/{slug}', 'update')->name('update')->where('slug', '[a-z0-9\-]+');
+});

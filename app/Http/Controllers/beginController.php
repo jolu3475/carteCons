@@ -16,4 +16,19 @@ class beginController extends Controller
         return View('login.form');
     }
 
+    public function submit()
+    {
+        return redirect()->route('index');
+    }
+
+    public function edit($slug): View
+    {
+        return View('form.edit', ['slug' => $slug]);
+    }
+
+    public function update($slug)
+    {
+        return redirect()->route('form.index');
+    }
+
 }
