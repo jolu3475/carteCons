@@ -20,6 +20,8 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
     Route::get('/', 'form')->name('index');
     Route::post('/', 'submit')->name('submit');
 
+    Route::get('/format', 'format')->name('format');
+
     Route::get('/edit/{slug}', 'edit')->name('edit')->where('slug', '[a-z0-9\-]+');
     Route::post('/update/{slug}', 'update')->name('update')->where('slug', '[a-z0-9\-]+');
 });

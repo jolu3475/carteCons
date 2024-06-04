@@ -21,6 +21,11 @@ class beginController extends Controller
         return redirect()->route('index');
     }
 
+    public function format(): View
+    {
+        return View('form.format');
+    }
+
     public function edit($slug): View
     {
         return View('form.edit', ['slug' => $slug]);

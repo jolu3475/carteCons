@@ -31,7 +31,7 @@
     <ul class="nav h-25 mt-3 mb-3 nave"></ul>
 
     <div class="container">
-        <div class="shadow p-3 mb-5 bg-body rounded form">
+        <div class="shadow p-5 mb-5 bg-body rounded form">
             <form>
 
                 <div class="row ">
@@ -42,24 +42,23 @@
 
                 @yield('content')
 
-
-                <button type="submit" class="btn btn-success">@yield('btn')</button>
-
             </form>
         </div>
     </div>
 
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-            </ul>
-            <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
-        </footer>
+    <div>
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                </ul>
+                <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
+            </footer>
+        </div>
     </div>
 
 </body>
