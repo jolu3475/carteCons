@@ -1,0 +1,36 @@
+/* all the page */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Beetween the logo and the form */
+
+.nave{
+    width: 100%;
+    background-color: #4f5867;
+    padding: 25px;
+}
+
+/* the logo of the page */
+
+.lo{
+    justify-content: space-around;
+}
+
+/* the form */
+
+/* Head of the form */
+
+.ti{
+    size: 50px;
+}
+
+/* The stars */
+
+.red {
+    color: red;
+}
