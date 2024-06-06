@@ -11,11 +11,6 @@ class beginController extends Controller
         return View('form.carte');
     }
 
-    public function form(): View
-    {
-        return View('login.form');
-    }
-
     public function submit()
     {
         return redirect()->route('index');

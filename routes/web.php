@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\beginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\beginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,10 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
 
     Route::get('/edit/{slug}', 'edit')->name('edit')->where('slug', '[a-z0-9\-]+');
     Route::post('/update/{slug}', 'update')->name('update')->where('slug', '[a-z0-9\-]+');
+});
+
+Route::prefix('/login')->name('login.')->controller(AuthController::class)->group(function () {
+    Route::get('/', 'login')->name('form');
+    Route::post('/', 'doLogin')->name('submit');
+    Route::get('/logout', 'logout')->name('logout');
 });

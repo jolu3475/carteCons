@@ -17,5 +17,3 @@
     @include('form.carteCons')
 
 @endsection
-
-@section('btn', 'Editer')

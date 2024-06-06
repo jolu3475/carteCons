@@ -78,6 +78,15 @@
     <div class="col-sm-5">
         <input type="email" class="form-control" id="inputMail" placeholder="Votre Adresse e-mail valide">
     </div>
+    <button name="bi" class="col-sm-1 btn btn-primary" onclick="showInputForm(event)">Verifer</button>
+    <div id="dynamicInputForm" style="display:none;">
+        <div class="row mb-3">
+            <label for="inputNewField" class="col-sm-2 col-form-label">New Field</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputNewField" placeholder="Enter something">
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row mb-3">
@@ -113,15 +122,15 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src={{ asset('image/person.svg') }} class="img-fluid rounded-start m-2" style="width: 431px;"
-                        alt="...">
+                    <img src={{ asset('image/person.svg') }} class="img-fluid rounded-start m-2"
+                        style="width:555px; height:431px" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title"><span class="badge bg-primary">Note</span></h5>
                         <p class="card-text">
                             @php
-                                echo 'Dimensions: 431px X 555px<br/>Résolution: 300dpi<br/> Format:.jpg Taille <50Ko';
+                                echo 'Dimensions: 431px X 555px<br/>Résolution: 300dpi<br/> Format:.jpg Taille < 50Ko';
                             @endphp
                         </p>
                         <a href={{ route('form.format') }} target="_blank"> VOIR LES EXIGENCES SUR LA PHOTO</a>
@@ -133,3 +142,13 @@
 </div>
 
 <button type="submit" class="btn btn-success">Envoyer</button>
+
+<script>
+    function showInputForm(event) {
+        // Prevent the default action (form submission)
+        event.preventDefault();
+
+        // Find the dynamic input form and change its display property to block
+        $('#dynamicInputForm').css('display', 'block');
+    }
+</script>

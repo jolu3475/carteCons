@@ -8,6 +8,7 @@
     <script src={{ asset('bootstrap/js/bootstrap.js') }}></script>
     <link rel="stylesheet" href={{ asset('css/app.css') }}>
     <link rel="stylesheet" href={{ asset('bootstrap/css/the') }}>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -56,7 +57,7 @@
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
                 </ul>
-                <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
+                <p class="text-center text-body-secondary">&copy; 2024 Ministère des Affaires Etrangère, Inc</p>
             </footer>
         </div>
     </div>
