@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * @mixin IdeHelperSession
+ * @mixin IdeHelperNotification
  */
-class Session extends Model
+class Notification extends Model
 {
     use HasFactory;
 
-    public function user(): BelongsTo
+    public function carte(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'userid');
+        return $this->belongsTo(Carte::class, 'carteId');
     }
-
 }
