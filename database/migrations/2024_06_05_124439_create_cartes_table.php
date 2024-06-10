@@ -12,7 +12,9 @@ return new class () extends Migration {
     {
         Schema::create('cartes', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('captchaId')->unsigned();
             $table->bigInteger('regularId')->unsigned();
+            $table->string('numero')->unique();
             $table->date('dateRemise');
             $table->date('dateExpiration');
             $table->timestamps();
