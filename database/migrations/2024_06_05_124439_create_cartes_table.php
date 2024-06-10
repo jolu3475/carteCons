@@ -20,6 +20,7 @@ return new class () extends Migration {
             $table->timestamps();
 
             $table->foreign('regularId')->references('id')->on('regulars');
+            $table->foreign('captchaId')->references('id')->on('captchas');
 
         });
     }
