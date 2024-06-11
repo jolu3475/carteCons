@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BackController;
 use App\Http\Controllers\beginController;
 
 /*
@@ -31,4 +32,8 @@ Route::prefix('/login')->name('login.')->controller(AuthController::class)->grou
     Route::get('/', 'login')->name('form');
     Route::post('/', 'doLogin')->name('submit');
     Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::prefix('/back')->name('back.')->controller(BackController::class)->group( function() {
+    Route::get('/', 'index')->name('index');
 });
