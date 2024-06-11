@@ -19,7 +19,7 @@
         </div>
     </div>
     <p class="p-5 h1">Mon Tableau de Bord</p>
-    <div class=" rounded-3 p-4 shadow-lg" style="background-color:#d5dadd">
+    <div class=" rounded-3 p-4 shadow" style="background-color:#d5dadd">
 
         <div class="container">
 
