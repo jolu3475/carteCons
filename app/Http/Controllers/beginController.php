@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Http\Requests\carteRequest;
 
 class beginController extends Controller
 {
@@ -11,9 +12,9 @@ class beginController extends Controller
         return View('form.carte');
     }
 
-    public function submit()
+    public function submit( carteRequest $request)
     {
-        return redirect()->route('index');
+        dd($request->validated());
     }
 
     public function format(): View
