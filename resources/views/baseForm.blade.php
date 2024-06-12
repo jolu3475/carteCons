@@ -21,8 +21,14 @@
                 <div class="row">
                     <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail" alt="...">
                 </div>
+            </div>
+
+        </div>
+        <div class="row mt-2 lo">
+
+            <div class="col-auto">
                 <div class="row mt-2">
-                    <p><strong>Ministère des Affaires Etrangères</strong></p>
+                    <p class='h1'><strong>Ministère des Affaires Etrangères</strong></p>
                 </div>
             </div>
 

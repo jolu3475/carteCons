@@ -40,6 +40,10 @@
             <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail align-items-center" alt="...">
             <h1 class="h3 mt-3 mb-3 fw-normal">Veuillez-vous connecter</h1>
 
+            @error('loginFailed')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
 
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"

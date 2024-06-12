@@ -29,11 +29,13 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
 });
 
 Route::prefix('/login')->name('login.')->controller(AuthController::class)->group(function () {
-    Route::get('/', 'login')->name('form');
+    Route::get('/', 'login')->name('index')->middleware(['guest']);
     Route::post('/', 'doLogin')->name('submit');
-    Route::get('/logout', 'logout')->name('logout');
+    Route::delete('/logout', 'logout')->name('logout')->middleware(['auth']);
 });
 
-Route::prefix('/back')->name('back.')->controller(BackController::class)->group( function() {
+Route::prefix('/back')->name('back.')->controller(BackController::class)->middleware(['auth'])->group( function() {
     Route::get('/', 'index')->name('index');
+    Route::get('/userProfile', 'userProfile')->name('profile');
+    Route::get('/userManag', 'userManag')->name('user');
 });

@@ -121,9 +121,9 @@
     <div class="row">
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
-                <div class="col-md-4">
-                    <img src={{ asset('image/person.svg') }} class="img-fluid rounded-start m-2"
-                        style="width:555px; height:431px" alt="...">
+                <div class="col-md-4 ratio ratio-1x1">
+                    <img src={{ asset('image/person.svg') }} class="img-fluid rounded-start m-2" style="width:555px"
+                        alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

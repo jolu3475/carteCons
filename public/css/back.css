@@ -55,3 +55,9 @@ body, html {
         flex-basis: 100%;
     }
 }
+
+/* navebar */
+.nave{
+    height: 75px!important;
+    padding: 20px;
+}

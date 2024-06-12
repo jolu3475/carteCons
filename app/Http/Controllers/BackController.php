@@ -12,4 +12,14 @@ class BackController extends Controller
     {
         return view('back.index');
     }
+
+    public function userProfile(): View
+    {
+        return view('back.profile');
+    }
+
+    public function userManag(): View
+    {
+        return view('back.user');
+    }
 }

@@ -1,14 +1,19 @@
 @extends('backOfiice')
 
 
-@section('title', 'User')
+@section('title', 'Dashboard')
+
+@section('css')
+    {{-- css pour datatables --}}
+    <link href="{{ asset('datatable/css/dataTables.bootstrap5.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('datatable/css/buttons.bootstrap5.css') }}" type="text/css" rel="stylesheet">
+@endsection
 
 
 @section('content')
-    <p class="p-5 h1 ">Tableau de bord </p>
+    <p class="p-5 h1 ">Graphique de donnée</p>
 
     <div class=" rounded-3 p-4 shadow" style="background-color:#d5dadd">
-
         <div class="container">
 
             <div class="card">
@@ -18,6 +23,7 @@
             </div>
         </div>
     </div>
+
     <p class="p-5 h1">Mon Tableau de Bord</p>
     <div class=" rounded-3 p-4 shadow" style="background-color:#d5dadd">
 
