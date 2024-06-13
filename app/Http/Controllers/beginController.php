@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Regular;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\carteRequest;
 
 class beginController extends Controller
@@ -11,7 +12,9 @@ class beginController extends Controller
 
     public function index(): View
     {
-        return View('form.carte');
+        $pays = DB::table('pays')->pluck('nom', 'code');
+        $indicatifs = DB::table('pays')->pluck('indicatif', 'code');
+        return View('form.carte', compact('pays', 'indicatifs'));
     }
 
     public function submit( carteRequest $request)

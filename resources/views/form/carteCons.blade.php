@@ -90,8 +90,11 @@
 <div class="row mb-3">
     <label for="inputPa" class="col-sm-2 col-form-label">Pays actuelle<span class="red">*</span></label>
     <div class="col-sm-2">
-        <input type="text" class="form-control" id="inputPa" placeholder="Votre Pays actuelle" name="pays"
-            value={{ old('pays') }}>
+        <select id="country" name="country">
+            @foreach ($pays as $code => $name)
+                <option value="{{ $code }}">{{ $name }}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 @error('pays')
@@ -101,6 +104,7 @@
 <div class="row mb-3">
     <label for="inputTel" class="col-sm-2 col-form-label">Téléphone<span class="red">*</span></label>
     <div class="col-sm-5">
+        <input type="text" id="indicatif" name="indicatif">
         <input type="text" class="form-control" id="inputTel" placeholder="Votre Numéro de téléphone" name="tel"
             value={{ old('tel') }}>
     </div>
@@ -201,6 +205,10 @@
 <button type="submit" class="btn btn-success">Envoyer</button>
 
 <script>
+    var indicatifs = @json($indicatifs); // Convertit le tableau PHP en objet JavaScript
+</script>
+
+<script>
     function showInputForm(event) {
         // Prevent the default action (form submission)
         event.preventDefault();
@@ -208,4 +216,12 @@
         // Find the dynamic input form and change its display property to block
         $('#dynamicInputForm').css('display', 'block');
     }
+    $(document).ready(function() {
+        $('#country').change(function() {
+            var selectedCountryCode = $(this).val();
+            var selectedCountryIndicatif = indicatifs[
+                selectedCountryCode]; // Accède à l'indicatif via l'objet JavaScript
+            $('#indicatif').val(selectedCountryIndicatif);
+        });
+    });
 </script>
