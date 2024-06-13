@@ -13,6 +13,12 @@ class Session extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'userid',
+        'ip_address',
+        'user_agent'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'userid');

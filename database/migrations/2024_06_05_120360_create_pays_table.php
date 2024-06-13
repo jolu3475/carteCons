@@ -13,7 +13,7 @@ return new class () extends Migration {
     {
         Schema::create('pays', function (Blueprint $table) {
             $table->string('code')->primary();
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->string('indicatif');
             $table->timestamps();
         });

@@ -33,7 +33,7 @@
 <body class="text-center">
 
     <main class="form-signin shadow p-3 bg-body rounded form">
-        <form class="{{ route('login.submit') }}" method="POST">
+        <form method="POST">
 
             @csrf
 

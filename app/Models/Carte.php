@@ -14,6 +14,14 @@ class Carte extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'captchaId',
+        'regularId',
+        'numero',
+        'dateRemise',
+        'dateExpiration'
+    ];
+
     public function captcha(): BelongsTo
     {
         return $this->belongsTo(Captcha::class, 'captchaId');

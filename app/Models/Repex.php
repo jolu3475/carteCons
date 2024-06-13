@@ -15,6 +15,13 @@ class Repex extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'codePays',
+        'label',
+        'adr',
+        'email'
+    ];
+
     public function pays(): BelongsTo
     {
         return $this->belongsTo(Pays::class, 'codePays', 'code');

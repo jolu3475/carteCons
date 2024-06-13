@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 
 class carteRequest extends FormRequest
@@ -24,19 +26,19 @@ class carteRequest extends FormRequest
         return [
             'nom' => ['required', 'string'],
             'prenom' => ['required', 'string'],
-            'dateNaiss' => ['required', 'date'],
-            'lieuNaiss' => ['required', 'string'],
+            'dateNais' => ['required', 'date'],
+            'lieuNais' => ['required', 'string'],
             'sitMat' => ['required', 'string'],
-            'prof' => ['required', 'string'],
-            'nbEnf' => ['required', 'integer'],
+            'proffession' => ['required', 'string'],
+            'nbEnf' => ['integer'],
             'adr' => ['required', 'string'],
             'pays' => ['required', 'string'],
-            'numTel' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
+            'tel' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
             'email' => ['required', 'email'],
             'numPass' => ['required', 'string'],
-            'dateExp' => ['required', 'date'],
-            'dateArr' => ['required', 'date'],
-            'img' => ['required', 'image', 'mimes:jpg,jpeg', 'max:50000'],
+            'expPass' => ['required', 'date'],
+            'arrExt' => ['required', 'date'],
+           /*  'img' => ['required', 'image',  'mimes:jpg,jpeg' ], */
         ];
     }
 

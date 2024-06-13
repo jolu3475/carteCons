@@ -13,6 +13,12 @@ class Notification extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'carteId',
+        'message',
+        'vu'
+    ];
+
     public function carte(): BelongsTo
     {
         return $this->belongsTo(Carte::class, 'carteId');

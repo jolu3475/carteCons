@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Regular;
 use Illuminate\View\View;
 use App\Http\Requests\carteRequest;
 
 class beginController extends Controller
 {
+
     public function index(): View
     {
         return View('form.carte');
@@ -14,7 +16,11 @@ class beginController extends Controller
 
     public function submit( carteRequest $request)
     {
-        dd($request->validated());
+        $slug = $request->input('slug');
+        $data = $request->validated();
+        $data['slug'] = $slug; // Explicitly set the slug
+        Regular::create($data);
+        return redirect()->route('form.index');
     }
 
     public function format(): View

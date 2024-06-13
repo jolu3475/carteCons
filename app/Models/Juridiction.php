@@ -13,6 +13,11 @@ class Juridiction extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'repexId',
+        'codePays'
+    ];
+
     public function repex(): BelongsTo
     {
         return $this->belongsTo(Repex::class, 'repexId');

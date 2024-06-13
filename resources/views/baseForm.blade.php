@@ -39,7 +39,8 @@
 
     <div class="container">
         <div class="shadow p-5 mb-5 bg-body rounded form">
-            <form>
+            <form method="POST" action={{ route('form.submit') }}>
+                @csrf
 
                 <div class="row ">
 

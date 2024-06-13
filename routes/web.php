@@ -19,7 +19,7 @@ use App\Http\Controllers\beginController;
 Route::get('/', [beginController::class, 'index'])->name('index');
 
 Route::prefix('/form')->name('form.')->controller(beginController::class)->group(function () {
-    Route::get('/', 'form')->name('index');
+    Route::get('/', 'index')->name('index');
     Route::post('/', 'submit')->name('submit');
 
     Route::get('/format', 'format')->name('format');
