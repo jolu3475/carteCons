@@ -69,7 +69,8 @@
 <div class="row mb-3">
     <label for="inputEnf" class="col-sm-2 col-form-label">Nombre d'enfants</label>
     <div class="col-sm-2">
-        <input type="number" class="form-control" id="inputEnf" name="ndEnf" value={{ old('ndEnf') }}>
+        <input type="number" class="form-control" id="inputEnf" name="ndEnf" value={{ old('ndEnf', 0) }}
+            min="0">
     </div>
 </div>
 @error('ndEnf')
