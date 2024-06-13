@@ -105,11 +105,14 @@
 <div class="row mb-3">
     <label for="inputTel" class="col-sm-2 col-form-label">Téléphone<span class="red">*</span></label>
     <div class="col-sm-5">
-        <div class="input-group mb-3">
-            <span class="input-group-text col-sm-2" id="basic-addon1"><input style="width: 100%" type="text"
-                    id="indicatif" name="indicatif"></span>
-            <input type="text" class="form-control" id="inputTel" placeholder="Votre Numéro de téléphone"
-                name="tel" value={{ old('tel') }}>
+        <div class="input-group mb-3 row">
+            <select class="form-select col-sm-2" id="indicatif" name="indicatif">
+                @foreach ($indicatifs as $indicatif)
+                    <option value="{{ $indicatif }}">{{ $indicatif }}</option>
+                @endforeach
+            </select>
+            <input type="text" class="form-control" placeholder="Votre Numéro de téléphone" name="tel"
+                value="{{ old('tel') }}">
         </div>
     </div>
 </div>
