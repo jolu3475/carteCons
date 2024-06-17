@@ -22,6 +22,12 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
     Route::get('/', 'index')->name('index');
     Route::post('/', 'submit')->name('submit');
 
+    Route::get('/ins', 'insImg')->name('image');
+    Route::post('/ins', 'verifImg')->name('img');
+
+    Route::post('/verifyMail', 'verifyMail')->name('verifyMail');
+    Route::post('/verifyNumber', 'verifyNumber')->name('verifyNumber');
+
     Route::get('/format', 'format')->name('format');
 
     Route::get('/edit/{slug}', 'edit')->name('edit')->where('slug', '[a-z0-9\-]+');

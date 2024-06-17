@@ -34,11 +34,9 @@ class carteRequest extends FormRequest
             'adr' => ['required', 'string'],
             'pays' => ['required', 'string'],
             'tel' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-            'email' => ['required', 'email'],
             'numPass' => ['required', 'string'],
             'expPass' => ['required', 'date'],
             'arrExt' => ['required', 'date'],
-           /*  'img' => ['required', 'image',  'mimes:jpg,jpeg' ], */
         ];
     }
 

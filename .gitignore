@@ -18,3 +18,5 @@ yarn-error.log
 /.vscode
 /.fleet
 /public/fontawesome-free-6.5.2-web
+/public/bootstrap
+/public/datatable
