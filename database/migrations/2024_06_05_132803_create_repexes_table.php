@@ -14,7 +14,7 @@ return new class () extends Migration {
         Schema::create('repexes', function (Blueprint $table) {
             $table->id();
             $table->string('codePays');
-            $table->string('label');
+            $table->string('label')->uniaue();
             $table->string('adr');
             $table->string('email');
             $table->timestamps();

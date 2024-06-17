@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-bs-theme="dark">
 
 <head>
 
@@ -7,12 +7,13 @@
     <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
     <script src={{ asset('bootstrap/js/bootstrap.js') }}></script>
     <link rel="stylesheet" href={{ asset('css/app.css') }}>
-    <link rel="stylesheet" href={{ asset('bootstrap/css/the') }}>
+    <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href={{ asset('fontawesome-free-6.5.2-web/css/all.css') }}>
 
 </head>
 
-<body>
+<body class='class="d-flex flex-column h-100"'>
 
     <div class="container">
         <div class="row mt-2 lo">
@@ -21,33 +22,50 @@
                 <div class="row">
                     <img src={{ asset('image/logo-mae.png') }} class="img-thumbnail" alt="...">
                 </div>
+            </div>
+
+        </div>
+        <div class="row mt-2 lo">
+
+            <div class="col-auto">
                 <div class="row mt-2">
-                    <p><strong>Ministère des Affaires Etrangères</strong></p>
+                    <p class='h1'><strong>Ministère des Affaires Etrangères</strong></p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <ul class="nav h-25 mt-3 mb-3 nave"></ul>
+    <ul class="nav h-25 mt-3 mb-3 nave"> </ul>
 
     <div class="container">
         <div class="shadow p-5 mb-5 bg-body rounded form">
-            <form>
+            <form method="POST" @yield('action')>
+                @csrf
 
-                <div class="row ">
+                <div class="row border-bottom">
 
-                    @yield('head')
+                    <p class="h1 ti"><strong>Formulaire Carte consulaire</strong></p>
+                    <blockquote class="blockquote">
+                        <p>@yield('note')</p>
+                        <p><span class="badge bg-primary">Note</span> tout les champs suivi
+                            par une étoile (<span class="red">*</span>)
+                            sont obligatoire</p>
+                    </blockquote>
 
                 </div>
 
-                @yield('content')
+                <div class="mt-3">
+                    @yield('content')
+                </div>
 
             </form>
         </div>
     </div>
 
-    <div>
+
+
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
         <div class="container">
             <footer class="py-3 my-4">
                 <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -60,7 +78,7 @@
                 <p class="text-center text-body-secondary">&copy; 2024 Ministère des Affaires Etrangère, Inc</p>
             </footer>
         </div>
-    </div>
+    </footer>
 
 </body>
 

@@ -14,6 +14,25 @@ class Regular extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'codePays',
+        'nom',
+        'prenom',
+        'email',
+        'dateNais',
+        'lieuNais',
+        'sitMat',
+        'proffession',
+        'nbEnf',
+        'adr',
+        'tel',
+        'numPass',
+        'expPass',
+        'arrExt',
+        'img',
+        'slug'
+    ];
+
     public function pays(): BelongsTo
     {
         return $this->belongsTo(Pays::class, 'codePays', 'code');

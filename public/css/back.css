@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+.container-fluid {
+    display: flex;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #f4f5f7;
+    overflow-y: auto;
+}
+
+/* Styles supplémentaires pour le sidebar */
+.sidebar.nav > li > a {
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sidebar.nav > li > a:hover,
+.sidebar.nav > li.active > a {
+    color: white;
+}
+
+/* Réactivité */
+@media (max-width: 992px) {
+   .sidebar {
+        flex-basis: 100%;
+        height: auto;
+    }
+
+   .main-content {
+        flex-basis: 100%;
+    }
+}
+
+/* navebar */
+.nave{
+    height: 75px!important;
+    padding: 20px;
+}

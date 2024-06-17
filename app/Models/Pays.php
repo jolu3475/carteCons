@@ -13,6 +13,12 @@ class Pays extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'code',
+        'nom',
+        'indicatif'
+    ];
+
     public function juridictions(): HasOne
     {
         return $this->hasOne(Juridiction::class, 'codePays', 'code');

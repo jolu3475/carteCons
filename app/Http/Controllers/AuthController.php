@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -11,14 +13,23 @@ class AuthController extends Controller
         return view('login.form');
     }
 
-    public function doLogin()
+    public function doLogin(LoginRequest $request)
     {
-        return redirect()->route('index');
+        $user = $request->validated();
+
+        if (Auth::attempt($user)){
+            $request->session()->regenerate();
+            return redirect()->route('back.index');
+        }
+
+        return to_route('login.form')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
+        /* return redirect()->route('index'); */
     }
 
     public function logout()
     {
-        // Logout the user
+        Auth::logout();
+        return to_route('index');
     }
 
 }

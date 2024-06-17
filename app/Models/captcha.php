@@ -13,6 +13,11 @@ class captcha extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'captcha',
+        'ip_address'
+    ];
+
     public function carte(): HasOne
     {
         return $this->hasOne(Carte::class, 'captchaId');
