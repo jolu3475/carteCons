@@ -24,7 +24,8 @@
                     <img src='/storage/{{ session('image') }}' class="img-fluid rounded m-2" style="width: 555px"
                         alt="Votre photo">
                 @else
-                    <img src={{ asset('image/person.gif') }} class="img-fluid rounded m-2" style="width: 555px" alt="...">
+                    <img src={{ asset('image/person.gif') }} class="img-fluid rounded m-2" style="width: 555px"
+                        alt="Exemple photo">
                 @endsession
             </div>
             <div class="col-md-8">
@@ -51,6 +52,18 @@
             {{ ' ' . $message }}
         </div>
     @enderror
+    <div class="row">
 
-    <button class="btn btn-primary" type='submit' name='suivant'>Suivant</button>
+        <div class="col">
+            <a class="btn btn-primary" href={{ route('form.index', ['retour' => true]) }} name='precedent'>Précédent</a>
+        </div>
+
+        <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+            @session('image')
+                <button class="btn btn-primary" type='submit' name='suivant'>Suivant</button>
+            @else
+                <button class="btn disabled" disabled type='submit' name='suivant'>Suivant</button>
+            @endsession
+        </div>
+    </div>
 @endsection

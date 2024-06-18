@@ -23,7 +23,7 @@ class photoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['required', 'image', 'mimes:jpeg,jpg', 'max:2048', Rule::dimensions([431,555])],
+            'image' => ['required', 'image', 'mimes:jpeg,jpg', 'max:60000', Rule::dimensions()->minwidth(431)->minHeight(555)->maxWidth(431)->maxHeight(555)],
         ];
     }
 }

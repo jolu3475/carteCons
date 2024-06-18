@@ -15,7 +15,7 @@
         <label for="inputName" class="col-sm-2 col-form-label">Nom<span class="red">*</span></label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputName" placeholder="Votre Nom" name="nom"
-                value={{ old('nom') }}>
+                value={{ old('nom', session('nom')) }}>
         </div>
     </div>
     @error('nom')
@@ -29,7 +29,7 @@
         <label for="inputPrenom" class="col-sm-2 col-form-label">Prénom<span class="red">*</span></label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputPrenom" placeholder="Votre Prénom" name="prenom"
-                value={{ old('prenom') }}>
+                value={{ old('prenom', session('prenom')) }}>
         </div>
     </div>
     @error('prenom')
@@ -42,7 +42,8 @@
     <div class="row mb-3">
         <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance<span class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="inputDate" name="dateNais" value={{ old('dateNais') }}>
+            <input type="date" class="form-control" id="inputDate" name="dateNais" max="{{ today()->toDateString() }}"
+                value={{ old('dateNais', session('dateNais')) }}>
         </div>
     </div>
     @error('dateNais')
@@ -55,7 +56,8 @@
     <div class="row mb-3">
         <label for="inputLieu" class="col-sm-2 col-form-label">Lieu de naissance<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputLieu" name="lieuNais" value={{ old('lieuNais') }}>
+            <input type="text" class="form-control" id="inputLieu" name="lieuNais"
+                value={{ old('lieuNais', session('lieuNais')) }}>
         </div>
     </div>
     @error('lieuNais')
@@ -87,7 +89,7 @@
         <label for="inputProf" class="col-sm-2 col-form-label">Profession<span class="red">*</span></label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputProf" placeholder="Votre Profession" name="proffession"
-                value={{ old('proffession') }}>
+                value={{ old('proffession', session('proffession')) }}>
         </div>
     </div>
     @error('proffession')
@@ -100,8 +102,8 @@
     <div class="row mb-3">
         <label for="inputEnf" class="col-sm-2 col-form-label">Nombre d'enfants</label>
         <div class="col-sm-2">
-            <input type="number" class="form-control" id="inputEnf" name="ndEnf" value={{ old('ndEnf', 0) }}
-                min="0">
+            <input type="number" class="form-control" id="inputEnf" name="nbEnf"
+                value={{ old('nbEnf', session('nbEnf')) }} min="0">
         </div>
     </div>
     @error('ndEnf')
@@ -115,7 +117,7 @@
         <label for="inputAdr" class="col-sm-2 col-form-label">Adresse actuelle<span class="red">*</span></label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputAdr" placeholder="Votre adresse actuelle" name="adr"
-                value={{ old('adr') }}>
+                value={{ old('adr', session('adr')) }}>
         </div>
     </div>
     @error('adr')
@@ -128,7 +130,7 @@
     <div class="row mb-3">
         <label for="inputPa" class="col-sm-2 col-form-label">Pays actuelle<span class="red">*</span></label>
         <div class="col-sm-2">
-            <select id="country" class='form-select' name="pays">
+            <select id="country" class='form-select' name="pays" value={{ old('pays', session('pays')) }}>
                 @foreach ($pays as $code => $name)
                     <option value="{{ $code }}">{{ $name }}</option>
                 @endforeach
@@ -151,8 +153,8 @@
                         <option value="{{ $indicatif }}">{{ $indicatif }}</option>
                     @endforeach
                 </select>
-                <input type="text" class="form-control" placeholder="Votre Numéro de téléphone" name="tel"
-                    value="{{ old('tel') }}">
+                <input type="tel" class="form-control" placeholder="Votre Numéro de téléphone" name="tel"
+                    pattern="^[0-9]+$" value="{{ old('tel', session('tel')) }}">
             </div>
         </div>
     </div>
@@ -167,7 +169,8 @@
         <label for="inputPass" class="col-sm-2 col-form-label">Numéro passeport<span class="red">*</span></label>
         <div class="col-sm-2">
             <input type="numerique" class="form-control" id="inputPass" placeholder="Votre Numéro passport"
-                name="numPass" value={{ old('numPass') }}>
+                name="numPass" value='{{ strtoupper(old('numPass', session('numPass'))) }}'
+                oninput="this.value = this.value.toUpperCase()">
         </div>
     </div>
     @error('numPass')
@@ -181,7 +184,8 @@
         <label for="inputExpPass" class="col-sm-2 col-form-label">Date d'expiration passport<span
                 class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="inputExpPass" name="expPass" value={{ old('expPass') }}>
+            <input type="date" class="form-control" id="inputExpPass" name="expPass"
+                value={{ old('expPass', session('expPass')) }}>
         </div>
     </div>
     @error('expPass')
@@ -195,7 +199,8 @@
         <label for="inputDateArr" class="col-sm-2 col-form-label">Date d'arrivée à l'étranger<span
                 class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="inputDateArr" name="arrExt" value={{ old('arrExt') }}>
+            <input type="date" class="form-control" id="inputDateArr" name="arrExt"
+                value='{{ old('arrExt', session('arrExt')) }}' max="{{ today()->toDateString() }}">
         </div>
     </div>
     @error('arrExt')
@@ -205,7 +210,9 @@
         </div>
     @enderror
 
-    <button type="submit" class="btn btn-success">Suivant</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-success">Suivant</button>
+    </div>
 
     <script>
         var indicatifs = @json($indicatifs); // Convertit le tableau PHP en objet JavaScript
