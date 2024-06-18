@@ -25,6 +25,8 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
     Route::get('/ins', 'insImg')->name('image');
     Route::post('/ins', 'verifImg')->name('img');
 
+    Route::get('/mail', 'mail')->name('mail');
+    Route::post('/mail', 'submitMail')->name('submitMail');
     Route::post('/verifyMail', 'verifyMail')->name('verifyMail');
     Route::post('/verifyNumber', 'verifyNumber')->name('verifyNumber');
 

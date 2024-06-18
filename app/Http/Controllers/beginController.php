@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Regular;
 use Illuminate\View\View;
+use App\Models\VerifEmail;
 use Illuminate\Http\Request;
 use App\Mail\verificationMail;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\carteRequest;
+use App\Http\Requests\emailRequest;
 use App\Http\Requests\photoRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -63,7 +65,7 @@ class beginController extends Controller
             return redirect()->route('form.image');
         }
         if ($request->has('suivant')){
-            dd('suivant');
+            return redirect()->route('form.mail');
         }
     }
 
@@ -78,9 +80,46 @@ class beginController extends Controller
     }
 
     /* verification de mail */
+
+    public function mail(): View 
+    {
+        return View('form.mail');
+    }
+
+    public function submitMail(emailRequest $request)
+    {
+        dd($request->all());
+        if ($request->has('verifier')){
+
+            if (session('email')=== $request->validated('email')){
+                return redirect()->route('form.mail')->with('warning', 'Vous avez déjà entré cette adresse email.');
+            }
+
+            if(session('email')!==null && session('email')!== $request->validated('email') ){
+                VerifEmail::where('email', session('email'))->delete();
+                session()->forget('email');
+            }
+            $toEmail = $request->validated('email');
+            $contenu = 'Bonjour, ';
+            $numVer = rand(1000, 9999);
+            $subject = 'Verification des votre addresse email';
+
+           /*  dd($toEmail, $contenu, $numVer, $subject); */
+    
+           session(['email'=> $toEmail]);
+            Mail::to($toEmail)->send(new verificationMail($contenu, $subject, $numVer));
+            VerifEmail::create(['email' => $toEmail, 'token' => $numVer]);
+            return redirect()->route('form.mail');
+        }
+        if($request->has('verifMail')){
+            $test = VerifEmail::where('email',session('email'));
+            dd($test);
+        }
+    }
+
     public function verifyMail( Request $request)
     {
-        $toEmail = $request->input('email');
+        $toEmail = $request->validated('email');
         $contenu = 'Bonjour, ';
         $numVer = rand(1000, 9999);
         $subject = 'Verification des votre addresse email';
@@ -93,7 +132,8 @@ class beginController extends Controller
 
     }
 
-    public function verifyNumber(Request $request) {
+    public function verifyNumber(Request $request) 
+    {
         $enteredNumber = $request->input('verificationNumber');
         $storedNumber = session('verification_number', null);
 

@@ -12,9 +12,10 @@
 
 @section('content')
     <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary" id="inputGroupFileAddon03" type="submit" name='verifier'>Verifier</button>
+        <button class="btn btn-outline-secondary" id="inputGroupFileAddon03" type="submit" name='verifier'>Verifier<span
+                class="red">*</span></button>
         <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
-            aria-label="Upload" name="image">
+            aria-label="Envoye" name="image" value{{ old('image', session('image')) }}>
     </div>
 
     <div class="card mb-3" style="max-width: 540px;">

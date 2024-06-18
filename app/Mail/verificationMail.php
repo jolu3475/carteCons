@@ -16,14 +16,16 @@ class verificationMail extends Mailable
 
     public $contenu;
     public $subject;
+    public $numVer;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($contenu, $subject)
+    public function __construct($contenu, $subject, $numVer)
     {
         $this->contenu = $contenu;
         $this->subject = $subject;
+        $this->numVer = $numVer;
     }
 
     /**
