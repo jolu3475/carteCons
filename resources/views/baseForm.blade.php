@@ -4,12 +4,11 @@
 <head>
 
     <title>@yield('title')</title>
-    <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
-    <script src={{ asset('bootstrap/js/bootstrap.js') }}></script>
+    <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.min.css') }}>
+    <script src={{ asset('bootstrap/js/bootstrap.min.js') }}></script>
     <link rel="stylesheet" href={{ asset('css/app.css') }}>
-    <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href={{ asset('fontawesome-free-6.5.2-web/css/all.css') }}>
+    <link rel="stylesheet" href={{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}>
 
 </head>
 

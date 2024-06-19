@@ -15,7 +15,7 @@ body, html {
 }
 
 .sidebar {
-    flex: 0 0 250px;
+    flex: 0 0 200px;
     background-color: #343a40;
     color: white;
     padding: 20px;
@@ -61,3 +61,13 @@ body, html {
     height: 75px!important;
     padding: 20px;
 }
+
+@media (max-width: 992px) {
+    .sidebar {
+         display: none; /* Cache le sidebar par défaut sur les écrans plus petits */
+     }
+
+    .main-content {
+         flex-basis: 100%; /* Ajustez cela selon vos besoins pour le layout */
+     }
+ }

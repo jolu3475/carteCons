@@ -9,7 +9,8 @@
     <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
     <link rel="stylesheet" href={{ asset('css/back.css') }}>
     <script src={{ asset('jquery/jquery-3.7.1.min.js') }}></script>
-    <script src={{ asset('bootstrap/js/bootstrap.js') }}></script>
+    <script src={{ asset('bootstrap/js/bootstrap.min.js') }}></script>
+    <script src={{ asset('bootstrap/js/bootstrap.bundle.min.js') }}></script>
 
     @yield('css')
 
@@ -19,7 +20,7 @@
 
 </head>
 
-<body>
+<body class=" overflow-hidden">
 
     <div class="container-fluid">
 
@@ -40,18 +41,16 @@
                             <a class="nav-link" href={{ route('back.user') }}><i class="fas fa-user-secret"></i> Gestion
                                 d'utilisateur</a>
                         </li>
-                        <li class="nav-item">
-                            <form action={{ route('login.logout') }} method="post">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" class="nav-link"><i class="fas fa-sign-out-alt"></i>
-                                    Logout</button>
-                            </form>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </div>
+
+
+        <button id="sidebarToggle" class="btn btn-primary d-lg-none" type="button">
+            <i class="fas fa-bars"></i>
+        </button>
 
         {{-- main content --}}
 
@@ -88,19 +87,17 @@
                                         <li><a class="dropdown-item" href="#">Action</a></li>
                                         <li><a class="dropdown-item" href="#">Another action</a></li>
                                         <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        <li class="dropdown-item">
+                                            <form action={{ route('login.logout') }} method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="nav-link"><i
+                                                        class="fas fa-sign-out-alt"></i>
+                                                    Logout</button>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </li>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown button
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </div>
                             </ul>
                         </div>
                     </div>
@@ -113,6 +110,20 @@
         </div>
 
     </div>
+
+    <script>
+        $(document).ready(function() {
+            var $sidebar = $('.sidebar');
+            $('#sidebarToggle').click(function(e) {
+                e.preventDefault();
+                if ($sidebar.is(':hidden')) {
+                    $sidebar.show();
+                } else {
+                    $sidebar.hide();
+                }
+            });
+        });
+    </script>
 
 </body>
 
