@@ -56,7 +56,7 @@
     <div class="row mb-3">
         <label for="inputLieu" class="col-sm-2 col-form-label">Lieu de naissance<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputLieu" name="lieuNais"
+            <input type="text" class="form-control" id="inputLieu" name="lieuNais" placeholder="Votre Lieu de naissance"
                 value={{ old('lieuNais', session('lieuNais')) }}>
         </div>
     </div>
