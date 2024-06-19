@@ -71,8 +71,7 @@
         <label id="imputMat" class="col-sm-2 col-form-label">Situation matrimoniale<span class="red">*</span></label>
         <div class="col-sm-2">
             <select class="form-select" id="imputMat" aria-label="Default select example" name='sitMat'>
-                <option selected>Faite votre choix</option>
-                <option value="Célibataire">Célibataire</option>
+                <option value="Célibataire" selected>Célibataire</option>
                 <option value="Divorcé(e)">Divorcé(e)</option>
                 <option value="Marié">Marié</option>
             </select>
