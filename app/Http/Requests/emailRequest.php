@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class photoRequest extends FormRequest
+class emailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +22,8 @@ class photoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['image', 'mimes:jpeg,jpg', 'max:60000', Rule::dimensions()->minwidth(431)->minHeight(555)->maxWidth(431)->maxHeight(555)],
+            'email' => ['email', 'unique:verif_emails,email'],
+            'token' => ['integer', 'min:1000', 'max:9999'],
         ];
     }
 }

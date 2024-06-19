@@ -40,26 +40,30 @@
 
     <div class="container">
         <div class="shadow p-5 mb-5 bg-body rounded form">
+
+            <div class="row border-bottom">
+
+                <p class="h1 ti"><strong>Formulaire Carte consulaire</strong></p>
+                <blockquote class="blockquote">
+                    <p>@yield('note')</p>
+                    <p><span class="badge bg-primary">Note</span> tout les champs suivi
+                        par une étoile (<span class="red">*</span>)
+                        sont obligatoire</p>
+                </blockquote>
+
+            </div>
+
+
             <form method="POST" @yield('action')>
                 @csrf
-
-                <div class="row border-bottom">
-
-                    <p class="h1 ti"><strong>Formulaire Carte consulaire</strong></p>
-                    <blockquote class="blockquote">
-                        <p>@yield('note')</p>
-                        <p><span class="badge bg-primary">Note</span> tout les champs suivi
-                            par une étoile (<span class="red">*</span>)
-                            sont obligatoire</p>
-                    </blockquote>
-
-                </div>
 
                 <div class="mt-3">
                     @yield('content')
                 </div>
 
             </form>
+            @yield('another')
+
         </div>
     </div>
 
