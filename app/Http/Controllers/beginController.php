@@ -118,7 +118,7 @@ class beginController extends Controller
             if ($test->token !== $tests){
                 return redirect()->route('form.mail')->with('warning', 'Numéro de vérification est incorrect.');
             }
-            session(['valid'=> $token]);
+            session(['valid'=> $tests]);
         }
         return redirect()->route('form.valid');
 
@@ -127,6 +127,21 @@ class beginController extends Controller
     public function valid(): View
     {
         return View('form.validate');
+    }
+
+    public function validSend()
+    {
+        $data = [];
+        $keysToExclude = ['_token', '_previous', '_flash', 'valid'];
+
+        foreach (session()->all() as $key => $value) {
+            if (!in_array($key, $keysToExclude)) {
+                $data[$key] = $value;
+            }
+        }
+
+        Regular::create($data);
+        return redirect()->route('index')->with('success', 'Votre demande a été enregistrée avec succès.');
     }
 
 }

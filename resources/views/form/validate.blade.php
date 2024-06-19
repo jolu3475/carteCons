@@ -7,7 +7,7 @@
 @endsection
 
 @section('action')
-    action={{ route('form.img') }} enctype="multipart/form-data"
+    action={{ route('form.validSend') }}
 @endsection
 
 @section('content')
@@ -142,7 +142,7 @@
     <div class="row">
 
         <div class="col">
-            <a class="btn btn-primary" href={{ route('form.index', ['retour' => true]) }} name='precedent'>Précédent</a>
+            <a class="btn btn-primary" href={{ route('form.mail', ['retour' => true]) }} name='precedent'>Précédent</a>
         </div>
 
         <div class="col d-grid gap-2 d-md-flex justify-content-md-end">

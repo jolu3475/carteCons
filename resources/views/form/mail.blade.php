@@ -55,8 +55,13 @@
             <div class="row mb-3">
                 <label class='col-auto' for="inputToken">Nous vous avons envoyer et veuiller entrer le numero ici</label>
                 <div class="col-sm-2">
-                    <input type="number" min="1000" max='9999' class="form-control" id="inputToken" placeholder="0000"
-                        name="token">
+                    @session('valid')
+                        <input type="number" value="{{ session('valid') }}" class="form-control" readonly id="inputToken"
+                            name="token">
+                    @else
+                        <input type="number" min="1000" max='9999' class="form-control" id="inputToken" placeholder="0000"
+                            name="token">
+                    @endsession
                 </div>
             </div>
             @error('token')
