@@ -147,7 +147,7 @@
     <div class="row mb-3">
         <label for="inputTel" class="col-sm-2 col-form-label">Téléphone<span class="red">*</span></label>
         <div class="col-sm-5">
-            <div class="input-group mb-3 row">
+            <div class="input-group mb-3">
                 <select class="form-select col-sm-2" id="indicatif" name="indicatif">
                     @foreach ($indicatifs as $indicatif)
                         <option value="{{ $indicatif }}">{{ $indicatif }}</option>
