@@ -61,9 +61,9 @@
 
         <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
             @session('image')
-                <button class="btn btn-primary" type='submit' name='suivant'>Suivant</button>
+                <button class="btn btn-success" type='submit' name='suivant'>Suivant</button>
             @else
-                <button class="btn disabled" disabled type='submit' name='suivant'>Suivant</button>
+                <button class="btn disabled" disabled>Suivant</button>
             @endsession
         </div>
     </div>

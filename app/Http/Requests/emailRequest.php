@@ -23,7 +23,7 @@ class emailRequest extends FormRequest
     {
         return [
             'email' => ['email', 'unique:verif_emails,email'],
-            'token' => ['integer'],
+            'token' => ['integer', 'min:1000', 'max:9999'],
         ];
     }
 }
