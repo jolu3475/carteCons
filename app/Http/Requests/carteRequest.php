@@ -24,19 +24,19 @@ class carteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' => ['required', 'string'],
-            'prenom' => ['required', 'string'],
-            'dateNais' => ['required', 'date'],
+            'nom' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
+            'prenom' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
+            'dateNais' => ['required', 'date', 'before:today'],
             'lieuNais' => ['required', 'string'],
             'sitMat' => ['required', 'string'],
-            'proffession' => ['required', 'string'],
+            'proffession' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
             'nbEnf' => ['integer'],
             'adr' => ['required', 'string'],
             'pays' => ['required', 'string'],
-            'tel' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-            'numPass' => ['required', 'string'],
-            'expPass' => ['required', 'date'],
-            'arrExt' => ['required', 'date'],
+            'tel' => ['required', 'string', 'regex:/^[\d]{5,15}$/', ],
+            'numPass' => ['required', 'string', 'regex:/^(MG)[0-9]{7}$/', 'unique:regulars,numPass'],
+            'expPass' => ['required', 'date', 'after:today'],
+            'arrExt' => ['required', 'date', 'before:today'],
         ];
     }
 
