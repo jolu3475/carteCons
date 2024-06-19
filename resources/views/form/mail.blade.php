@@ -67,24 +67,21 @@
             @enderror
         @endsession
 
-        <button class="btn btn-primary mb-3" type="submit" name='verifier' value="verifier">Verifier</button>
-    </form>
-
-    <form action="" method="post">
-        @csrf
+        {{-- <button class="btn btn-primary mb-3" type="submit" name='verifier' value="verifier">Verifier</button> --}}
         <div class="row">
             <div class="col">
                 <a class="btn btn-primary" href={{ route('form.image', ['retour' => true]) }} name='precedent'>Précédent</a>
             </div>
 
             <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                @session('success')
-                    <button class="btn btn-success" type='submit' name='suivant' value='suivant'>Suivant</button>
+                @session('email')
+                    <button class="btn btn-success mb-3" type="submit" name='verifier' value="verifier">Verifier</button>
                 @else
                     <button class="btn disabled" disabled>Suivant</button>
                 @endsession
             </div>
         </div>
-
     </form>
+
+
 @endsection

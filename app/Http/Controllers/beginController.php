@@ -29,6 +29,9 @@ class beginController extends Controller
     public function index(Request $request): View
     {
         if(!($request->query('retour'))){
+            if (session('email') !== null){
+                VerifEmail::where('email', session('email'))->delete();
+            }
             $keysToKeep = ['_token', '_previous', '_flash'];
 
             foreach (Session::all() as $key => $value) {
@@ -109,14 +112,21 @@ class beginController extends Controller
 
     public function verifyMail( emailRequest $request)
     {
-
         $test = VerifEmail::where('email', session('email'))->first();
         $tests = intval($request->validated('token'));
-        if ($test->token !== $tests){
-            return redirect()->route('form.mail')->with('warning', 'Numéro de vérification incorrect.');
+        if (!session('valid')){
+            if ($test->token !== $tests){
+                return redirect()->route('form.mail')->with('warning', 'Numéro de vérification est incorrect.');
+            }
+            session(['valid'=> $token]);
         }
-        return redirect()->route('form.mail')->with('success', 'Adresse email vérifiée avec succès.');
+        return redirect()->route('form.valid');
 
+    }
+
+    public function valid(): View
+    {
+        return View('form.validate');
     }
 
 }

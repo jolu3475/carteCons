@@ -28,7 +28,7 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
     Route::get('/mail', 'mail')->name('mail');
     Route::post('/mail', 'submitMail')->name('submitMail');
     Route::post('/verifyMail', 'verifyMail')->name('verifyMail');
-    Route::post('/verifyNumber', 'verifyNumber')->name('verifyNumber');
+    Route::get('/valid', 'valid')->name('valid');
 
     Route::get('/format', 'format')->name('format');
 
