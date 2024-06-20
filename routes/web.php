@@ -36,7 +36,7 @@ Route::prefix('/form')->name('form.')->controller(beginController::class)->group
 
 Route::prefix('/login')->name('login.')->controller(AuthController::class)->group(function () {
     Route::get('/', 'login')->name('index')->middleware(['guest']);
-    Route::post('/', 'doLogin')->name('submit');
+    Route::post('/', 'doLogin')->name('submit')->middleware(['guest']);
     Route::delete('/logout', 'logout')->name('logout')->middleware(['auth']);
 });
 
