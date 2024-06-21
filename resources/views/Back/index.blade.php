@@ -13,16 +13,16 @@
 @section('content')
     <p class="p-5 h1 ">Graphique de donnée</p>
 
-    <div class=" rounded-3 p-4 shadow" style="background-color:#d5dadd">
+    <div class=" rounded-3 p-4 shadow bg-secondary-subtle">
         <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </div>
 
     <p class="p-5 h1">Mon Tableau de Bord</p>
-    <div class=" rounded-3 p-4 shadow" style="background-color:#d5dadd">
+    <div class=" rounded-3 p-5 shadow bg-secondary-subtle">
 
-        <div class="container">
+        <div class="container bg-dark-subtle rounded-3 p-3">
 
-            <table id="example" class="table table-striped nowrap" style="width:100%">
+            <table id="example" class="table table-striped nowrap p-3" style="width:100%">
                 <thead>
                     <tr>
                         <th>First name</th>
@@ -685,7 +685,7 @@
     <script src={{ asset('datatables/js/responsive.bootstrap5.js') }}></script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable({
+            var table = $('#example').DataTable({
                 "language": {
                     "url": "{{ asset('datatables/langue/fr_fr.json') }}",
                 },
@@ -700,6 +700,36 @@
                 "autoWidth": false,
                 "responsive": true
             });
+
+            // Fonction pour recréer DataTables sur redimensionnement
+            function resizeDataTable() {
+                if ($.fn.DataTable.isDataTable('#example')) {
+                    table.destroy(); // Détruit l'instance actuelle de DataTables
+                }
+                table = $('#example').DataTable({
+                    "language": {
+                        "url": "{{ asset('datatables/langue/fr_fr.json') }}",
+                    },
+                    "pageLength": 5,
+                    "lengthMenu": [5, 10, 25, 50, 100],
+                    "order": [
+                        [0, "asc"]
+                    ],
+                    "searching": true,
+                    "paging": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true
+                });
+            }
+
+            // Écouteur d'événement de redimensionnement de la fenêtre
+            $(window).resize(function() {
+                resizeDataTable();
+            });
+
+            // Assurez-vous d'initialiser DataTables au démarrage
+            resizeDataTable();
         });
     </script>
 
