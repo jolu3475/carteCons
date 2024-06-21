@@ -19,7 +19,8 @@ class Carte extends Model
         'regularId',
         'numero',
         'dateRemise',
-        'dateExpiration'
+        'dateExpiration',
+        'valide'
     ];
 
     public function captcha(): BelongsTo

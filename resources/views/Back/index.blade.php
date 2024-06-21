@@ -22,8 +22,9 @@
 
         <div class="container bg-dark-subtle rounded-3 p-3">
 
-            <table id="example" class="table table-striped nowrap p-3" style="width:100%">
-                <thead>
+            <table id="example" class="table table-striped nowrap p-3 caption-top" style="width:100%">
+                <caption>List of users</caption>
+                <thead class="table-dark">
                     <tr>
                         <th>First name</th>
                         <th>Last name</th>

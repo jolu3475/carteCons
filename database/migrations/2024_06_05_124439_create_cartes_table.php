@@ -15,8 +15,8 @@ return new class () extends Migration {
             $table->bigInteger('captchaId')->unsigned();
             $table->bigInteger('regularId')->unsigned();
             $table->string('numero')->unique();
-            $table->date('dateRemise');
-            $table->date('dateExpiration');
+            $table->date('dateRemise')->default(null);
+            $table->date('dateExpiration')->default(null);
             $table->timestamps();
 
             $table->foreign('regularId')->references('id')->on('regulars');

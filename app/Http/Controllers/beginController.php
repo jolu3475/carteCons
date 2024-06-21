@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carte;
+use App\Models\captcha;
 use App\Models\Regular;
 use Illuminate\View\View;
 use App\Models\VerifEmail;
@@ -13,22 +15,15 @@ use App\Http\Requests\carteRequest;
 use App\Http\Requests\emailRequest;
 use App\Http\Requests\photoRequest;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\captchaRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class beginController extends Controller
 {
-    /* verification des informations */
-    /*  $keysToKeep = ['_token', '_previous', '_flash', 'old'];
-
-     foreach (Session::all() as $key => $value) {
-         if (!in_array($key, $keysToKeep)) {
-             Session::forget($key);
-         }
-     } */
     public function index(Request $request): View
     {
-        if(!($request->query('retour'))){
+        if($request->all() === []){
             if (session('email') !== null){
                 VerifEmail::where('email', session('email'))->delete();
             }
@@ -129,8 +124,13 @@ class beginController extends Controller
         return View('form.validate');
     }
 
-    public function validSend()
+    public function validSend( captchaRequest $request)
     {
+        $clientIp = $_SERVER['REMOTE_ADDR'];
+        $captchaData['test'] = $request->validated('captcha');
+        $captchaData['ip_address'] = $clientIp;
+        captcha::create($captchaData);
+        $captchaId = captcha::where('ip_address', $clientIp)->first()->id;
         $data = [];
         $keysToExclude = ['_token', '_previous', '_flash', 'valid'];
 
@@ -141,6 +141,13 @@ class beginController extends Controller
         }
 
         Regular::create($data);
+        $regularId =Regular::where('slug', $data['slug'])->first()->id;
+
+        $carteData["captchaId"] = $captchaId;
+        $carteData["regularId"] = $regularId;
+        $carteData["numero"] = rand(1000000000,9999999999);
+        Carte::create($carteData);
+
         return redirect()->route('index')->with('success', 'Votre demande a été enregistrée avec succès.');
     }
 

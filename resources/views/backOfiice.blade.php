@@ -135,9 +135,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    Sign out
-                                </a>
+                                <form action={{ route('login.logout') }} method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="nav-link d-flex align-items-center gap-2" type="submit">Se
+                                        deconnecter</button>
+                                </form>
                             </li>
 
                         </ul>
