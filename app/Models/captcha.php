@@ -14,7 +14,7 @@ class captcha extends Model
     use HasFactory;
 
     protected $fillable = [
-        'captcha',
+        'test',
         'ip_address'
     ];
 

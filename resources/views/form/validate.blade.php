@@ -139,6 +139,21 @@
         </div>
     </div>
 
+    <div class="mb-3 row">
+        <div class="col-sm-2" style="--bs-aspect-ratio: 50%;">
+            <div>{!! captcha_img() !!}</div>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" name="captcha">
+        </div>
+    </div>
+    @error('captcha')
+        <div class="alert alert-warning" role="alert">
+            <i class="fas fa-solid fa-triangle-exclamation"></i>
+            {{ ' ' . $message }}
+        </div>
+    @enderror
+
     <div class="row">
 
         <div class="col">
