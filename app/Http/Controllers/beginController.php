@@ -23,8 +23,7 @@ class beginController extends Controller
 {
     public function index(Request $request): View
     {
-        if($request === []){
-            dd($request->all());
+        if($request->all() === []){
             if (session('email') !== null){
                 VerifEmail::where('email', session('email'))->delete();
             }
