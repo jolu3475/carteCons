@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="dark">
+<html lang="fr" data-bs-theme="auto">
 
 <head>
 
     <title>@yield('title')</title>
     <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.min.css') }}>
-    <script src={{ asset('bootstrap/js/bootstrap.min.js') }}></script>
+    <script src={{ asset('bootstrap/js/bootstrap.bundle.min.js') }}></script>
+    <script src={{ asset('js/color-modes.js') }}></script>
     <link rel="stylesheet" href={{ asset('css/app.css') }}>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href={{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}>
 
 </head>
 
-<body class='class="d-flex flex-column h-100"'>
+<body class='class="d-flex flex-column h-100 bg-secondary-subtle"'>
 
     <div class="container">
         <div class="row mt-2 lo">
@@ -68,7 +69,7 @@
 
 
     {{-- Footer of the page --}}
-    <div class="container">
+    <div class="container-fluid border-top shadow-lg">
         <footer class="pt-5">
             <div class="row">
                 <div class="col-6 col-md-2 mb-3">
@@ -124,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 border-top">
                 <p>&copy; 2024 Company, Inc. All rights reserved.</p>
                 <ul class="list-unstyled d-flex">
                     <li class="ms-3"> <a class="link-body-emphasis" href="#">
@@ -146,6 +147,8 @@
             </div>
         </footer>
     </div>
+
+    @include('dark')
 
 </body>
 
