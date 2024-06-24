@@ -31,9 +31,9 @@
     <script src={{ asset('js/color-modes.js') }}></script>
 </head>
 
-<body class="text-center">
+<body class="text-center bg-tertiary-subtle">
 
-    <main class="form-signin shadow p-3 bg-body rounded form">
+    <main class="form-signin shadow p-3 bg-body rounded form bg-info-subtle border-primary-subtle">
         <form method="POST">
 
             @csrf
