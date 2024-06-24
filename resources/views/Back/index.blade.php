@@ -13,23 +13,24 @@
 @section('content')
     <p class="p-5 h1 ">Graphique de donnée</p>
 
-    <div class=" rounded-3 p-4 shadow bg-secondary-subtle">
+    <div class=" rounded-3 p-4 shadow bg-info-subtle text-info-emphasis">
         <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </div>
 
     <p class="p-5 h1">Mon Tableau de Bord</p>
-    <div class=" rounded-3 p-5 shadow bg-secondary-subtle">
+    <div class=" rounded-3 p-5 shadow bg-info-subtle text-info-emphasis">
 
-        <div class="container bg-dark-subtle rounded-3 p-3">
+        <div class="container bg-transparent text-body border rounded-3 p-3">
 
             <table id="example" class="table table-striped nowrap p-3 caption-top" style="width:100%">
-                <caption>List of users</caption>
-                <thead class="table-dark">
+                <caption>Liste des cartes envoyer</caption>
+                <thead class=" bg-dark">
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Email</th>
                         <th>Valider</th>
+                        <th>Date d'envoye</th>
                         <th>Plus d'information</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@
                             <td>{{ $user->prenom }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->valider }}</td>
+                            <td>{{ $user->update_at }}</td>
                             <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">Voir</a></td>
                         </tr>
                     @endforeach --}}
