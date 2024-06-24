@@ -20,6 +20,10 @@
 
 </head>
 
+@php
+    $routeName = request()->route()->getName();
+@endphp
+
 <body style="overflow: hidden">
     {{-- The header of the page --}}
     <header class="navbar sticky-top bg-primary-subtle text-primary-emphasis flex-md-nowrap p-0">
@@ -63,14 +67,20 @@
                         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 px-3 overflow-y-auto">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active gap-2 my-2 rounded" disabled
-                                        aria-current="page">
+                                    <a href="#" @class([
+                                        'nav-link gap-2 my-2 rounded',
+                                        'active' => $routeName === 'back.index',
+                                        'not-active' => $routeName !== 'back.index',
+                                    ])>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2 not-active rounded"
-                                        href="#">
+                                    <a @class([
+                                        'nav-link gap-2 my-2 rounded',
+                                        'active' => $routeName === 'back.user',
+                                        'not-active' => $routeName !== 'back.user',
+                                    ]) href="#">
                                         Gestion d'utilisateur
                                     </a>
                                 </li>
@@ -80,8 +90,11 @@
 
                             <ul class="nav flex-column mb-auto mb-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2 not-active rounded"
-                                        href="#">
+                                    <a @class([
+                                        'nav-link gap-2 my-2 rounded',
+                                        'active' => $routeName === 'back.setting',
+                                        'not-active' => $routeName !== 'back.setting',
+                                    ]) href="#">
                                         Paramètre compte
                                     </a>
                                 </li>

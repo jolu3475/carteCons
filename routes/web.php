@@ -42,6 +42,7 @@ Route::prefix('/login')->name('login.')->controller(AuthController::class)->grou
 
 Route::prefix('/back')->name('back.')->controller(BackController::class)->middleware(['auth'])->group( function() {
     Route::get('/', 'index')->name('index');
-    Route::get('/userProfile', 'userProfile')->name('profile');
     Route::get('/userManag', 'userManag')->name('user');
+    Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
+    Route::get('/userManag/setting', 'setting')->name('setting');
 });
