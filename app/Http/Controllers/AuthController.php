@@ -19,6 +19,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($user)){
             $request->session()->regenerate();
+            /* $sessionData['userid'] = User::where();
+            Session::create(); */
             return redirect()->route('back.index');
         }
 

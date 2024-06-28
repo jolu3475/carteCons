@@ -23,7 +23,7 @@
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-3">
 
             <table id="example" class="table table-striped nowrap p-3 caption-top" style="width:100%">
-                <caption>Liste des cartes envoyer</caption>
+                <caption>Liste des cartes reçus</caption>
                 <thead class=" bg-dark">
                     <tr>
                         <th>Nom</th>

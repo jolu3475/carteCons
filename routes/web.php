@@ -44,5 +44,9 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
     Route::get('/', 'index')->name('index');
     Route::get('/userManag', 'userManag')->name('user');
     Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
-    Route::get('/setting', 'setting')->name('setting');
+    Route::prefix('/setting')->name('setting.')->group( function() {
+        Route::get('/', 'setting')->name('view');
+        Route::get('/edit', 'edit')->name('edit');
+        Route::get('/notif', 'notif')->name('notif');
+    });
 });

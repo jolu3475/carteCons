@@ -78,8 +78,8 @@
                                 <li class="nav-item">
                                     <a @class([
                                         'nav-link gap-2 my-2 rounded',
-                                        'active' => $routeName === 'back.user',
-                                        'not-active' => $routeName !== 'back.user',
+                                        'active' => Str::startsWith($routeName, 'back.user'),
+                                        'not-active' => !Str::startsWith($routeName, 'back.user'),
                                     ]) href={{ route('back.user') }}>
                                         Gestion d'utilisateur
                                     </a>
@@ -92,9 +92,9 @@
                                 <li class="nav-item">
                                     <a @class([
                                         'nav-link gap-2 my-2 rounded',
-                                        'active' => $routeName === 'back.setting',
-                                        'not-active' => $routeName !== 'back.setting',
-                                    ]) href={{ route('back.setting') }}>
+                                        'active' => Str::startsWith($routeName, 'back.setting'),
+                                        'not-active' => !Str::startsWith($routeName, 'back.setting'),
+                                    ]) href={{ route('back.setting.view') }}>
                                         Paramètre compte
                                     </a>
                                 </li>
