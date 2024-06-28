@@ -4,6 +4,6 @@
 
 @section('content')
 
-    <p class="p-5 h1">Profile d'utilisateur</p>
+    <p class="my-5 p-2 rounded h1 border border-primary-subtle">Profile d'utilisateur</p>
 
 @endsection

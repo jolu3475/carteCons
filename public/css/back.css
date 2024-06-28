@@ -83,3 +83,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* SideBar */
+
+.active{
+    border-left-width: 5px!important;
+    border-left-style: solid!important;
+}
+
+.not-active:hover{
+    animation-duration: 10s;
+    border-left-width: 5px!important;
+    border-left-style: solid!important;
+}

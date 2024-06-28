@@ -19,11 +19,12 @@ class AuthController extends Controller
 
         if (Auth::attempt($user)){
             $request->session()->regenerate();
+            /* $sessionData['userid'] = User::where();
+            Session::create(); */
             return redirect()->route('back.index');
         }
 
         return to_route('login.form')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
-        /* return redirect()->route('index'); */
     }
 
     public function logout()

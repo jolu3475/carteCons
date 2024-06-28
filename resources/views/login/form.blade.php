@@ -5,9 +5,8 @@
 
     <title>Se connecter</title>
 
-    <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.css') }}>
+    <link rel="stylesheet" href={{ asset('bootstrap/css/bootstrap.min.css') }}>
 
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -28,11 +27,13 @@
 
     <!-- Custom styles for this template -->
     <link href={{ asset('css/signin.css') }} rel="stylesheet">
+    <script src={{ asset('bootstrap/js/bootstrap.bundle.min.js') }}></script>
+    <script src={{ asset('js/color-modes.js') }}></script>
 </head>
 
-<body class="text-center">
+<body class="text-center bg-tertiary-subtle">
 
-    <main class="form-signin shadow p-3 bg-body rounded form">
+    <main class="form-signin shadow p-3 bg-body rounded form bg-info-subtle border-primary-subtle">
         <form method="POST">
 
             @csrf
@@ -70,6 +71,8 @@
             <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
         </form>
     </main>
+
+    @include('dark')
 
 </body>
 

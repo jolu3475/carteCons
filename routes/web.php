@@ -16,9 +16,9 @@ use App\Http\Controllers\beginController;
 |
 */
 
-Route::get('/', [beginController::class, 'index'])->name('index');
+Route::get('/', [beginController::class, 'index'])->name('index')->middleware(['guest']);
 
-Route::prefix('/form')->name('form.')->controller(beginController::class)->group(function () {
+Route::prefix('/form')->name('form.')->controller(beginController::class)->middleware(['guest'])->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/', 'submit')->name('submit');
 
@@ -42,6 +42,11 @@ Route::prefix('/login')->name('login.')->controller(AuthController::class)->grou
 
 Route::prefix('/back')->name('back.')->controller(BackController::class)->middleware(['auth'])->group( function() {
     Route::get('/', 'index')->name('index');
-    Route::get('/userProfile', 'userProfile')->name('profile');
     Route::get('/userManag', 'userManag')->name('user');
+    Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
+    Route::prefix('/setting')->name('setting.')->group( function() {
+        Route::get('/', 'setting')->name('view');
+        Route::get('/edit', 'edit')->name('edit');
+        Route::get('/notif', 'notif')->name('notif');
+    });
 });
