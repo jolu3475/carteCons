@@ -16,9 +16,9 @@ use App\Http\Controllers\beginController;
 |
 */
 
-Route::get('/', [beginController::class, 'index'])->name('index');
+Route::get('/', [beginController::class, 'index'])->name('index')->middleware(['guest']);
 
-Route::prefix('/form')->name('form.')->controller(beginController::class)->group(function () {
+Route::prefix('/form')->name('form.')->controller(beginController::class)->middleware(['guest'])->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/', 'submit')->name('submit');
 
