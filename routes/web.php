@@ -44,5 +44,5 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
     Route::get('/', 'index')->name('index');
     Route::get('/userManag', 'userManag')->name('user');
     Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
-    Route::get('/userManag/setting', 'setting')->name('setting');
+    Route::get('/setting', 'setting')->name('setting');
 });

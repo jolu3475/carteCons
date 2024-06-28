@@ -23,7 +23,6 @@ class AuthController extends Controller
         }
 
         return to_route('login.form')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
-        /* return redirect()->route('index'); */
     }
 
     public function logout()

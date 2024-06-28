@@ -67,7 +67,7 @@
                         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 px-3 overflow-y-auto">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a href="#" @class([
+                                    <a href="{{ route('back.index') }}" @class([
                                         'nav-link gap-2 my-2 rounded',
                                         'active' => $routeName === 'back.index',
                                         'not-active' => $routeName !== 'back.index',
@@ -80,7 +80,7 @@
                                         'nav-link gap-2 my-2 rounded',
                                         'active' => $routeName === 'back.user',
                                         'not-active' => $routeName !== 'back.user',
-                                    ]) href="#">
+                                    ]) href={{ route('back.user') }}>
                                         Gestion d'utilisateur
                                     </a>
                                 </li>
@@ -94,7 +94,7 @@
                                         'nav-link gap-2 my-2 rounded',
                                         'active' => $routeName === 'back.setting',
                                         'not-active' => $routeName !== 'back.setting',
-                                    ]) href="#">
+                                    ]) href={{ route('back.setting') }}>
                                         Paramètre compte
                                     </a>
                                 </li>
@@ -116,10 +116,12 @@
 
             {{-- The main content of the page --}}
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="overflow-y: auto!important; height:100%">
-                @yield('content')
+                <div class="">
+                    @yield('content')
+                </div>
 
                 {{-- Footer of the page --}}
-                <div class="container mt-5">
+                <div class="container mt-auto">
                     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
                         <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
 

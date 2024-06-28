@@ -22,4 +22,9 @@ class BackController extends Controller
     {
         return view('back.user');
     }
+
+    public function setting(): View
+    {
+        return view('back.setting');
+    }
 }
