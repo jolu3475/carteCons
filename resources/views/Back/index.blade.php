@@ -26,25 +26,32 @@
                 <caption>Liste des cartes reçus</caption>
                 <thead class=" bg-dark">
                     <tr>
+                        <th>Numero Carte</th>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Email</th>
                         <th>Valider</th>
                         <th>Date d'envoye</th>
                         <th>Plus d'information</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($users as $user)
+                    @foreach ($data as $user)
                         <tr>
-                            <td>{{ $user->nom }}</td>
-                            <td>{{ $user->prenom }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->valider }}</td>
-                            <td>{{ $user->update_at }}</td>
-                            <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">Voir</a></td>
+                            <td>{{ $user->numero }}</td>
+                            <td>{{ $user->regular()->get('nom')->first()->nom }}</td>
+                            <td>{{ $user->regular()->get('prenom')->first()->prenom }}</td>
+                            <td>
+                                @if ($user->valide == 1)
+                                    <span class="badge bg-success">Valider</span>
+                                @else
+                                    <span class="badge bg-danger">Non Valider</span>
+                                @endif
+                            </td>
+                            <td>{{ $user->updated_at }}</td>
+                            <td><a href="{{ route('back.show', ['carte' => $user->id, 'user' => $user->regularId]) }}"
+                                    class="btn btn-primary">Voir</a></td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
 

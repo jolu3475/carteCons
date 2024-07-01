@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Carte;
+use App\Models\Regular;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +13,17 @@ class BackController extends Controller
 {
     public function index(): View
     {
-        return view('back.index');
+        $users = Carte::all();
+        foreach ($users as $user) {
+            $nom[] = Regular::where('id', $user->regularId)->get('nom');
+            $prenom[] = Regular::where('id', $user->regularId)->get('prenom');
+        }
+        return view('back.index', ['data' => $users, 'nom' => $nom, 'prenom' => $prenom]);
+    }
+
+    public function show(Carte $carte ,Regular $user): View
+    {
+        return view('back.show', ['carte' => $carte ,'data' => $user]);
     }
 
     public function userProfile(): View

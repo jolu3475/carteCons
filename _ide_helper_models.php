@@ -15,14 +15,16 @@ namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperCarte
  * @property int $id
  * @property int $captchaId
  * @property int $regularId
  * @property string $numero
- * @property string $dateRemise
- * @property string $dateExpiration
+ * @property string|null $dateRemise
+ * @property string|null $dateExpiration
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $valide
  * @property-read \App\Models\captcha $captcha
  * @property-read \App\Models\Notification|null $notification
  * @property-read \App\Models\Regular $regular
@@ -37,16 +39,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Carte whereNumero($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Carte whereRegularId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Carte whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|Carte whereValide($value)
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperCarte {}
+	class Carte extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperJuridiction
  * @property int $id
  * @property int $repexId
  * @property string $codePays
@@ -62,16 +64,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Juridiction whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Juridiction whereRepexId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Juridiction whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperJuridiction {}
+	class Juridiction extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperNotification
  * @property int $id
  * @property int $carteId
  * @property string $message
@@ -88,16 +89,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereVu($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperNotification {}
+	class Notification extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperPays
  * @property string $code
  * @property string $nom
  * @property string $indicatif
@@ -114,16 +114,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Pays whereIndicatif($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pays whereNom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pays whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperPays {}
+	class Pays extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperRegular
  * @property int $id
  * @property string $codePays
  * @property string $nom
@@ -133,7 +132,7 @@ namespace App\Models{
  * @property string $lieuNais
  * @property string $sitMat
  * @property string $proffession
- * @property int $nbEnf
+ * @property int|null $nbEnf
  * @property string $adr
  * @property string $tel
  * @property string $numPass
@@ -167,16 +166,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Regular whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Regular whereTel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Regular whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperRegular {}
+	class Regular extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperRepex
  * @property int $id
  * @property string $codePays
  * @property string $label
@@ -196,16 +194,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Repex whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Repex whereLabel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Repex whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperRepex {}
+	class Repex extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperSession
  * @property int $id
  * @property int $userid
  * @property string $user_agent
@@ -222,16 +219,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereUserAgent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereUserid($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperSession {}
+	class Session extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @mixin IdeHelperUser
  * @property int $id
  * @property string $name
  * @property string $email
@@ -262,16 +258,36 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelperUser {}
+	class User extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string $email
+ * @property int $token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerifEmail whereUpdatedAt($value)
+ */
+	class VerifEmail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @mixin IdeHelpercaptcha
  * @property int $id
  * @property string $test
  * @property string $ip_address
@@ -286,9 +302,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|captcha whereIpAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|captcha whereTest($value)
  * @method static \Illuminate\Database\Eloquent\Builder|captcha whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-	#[\AllowDynamicProperties]
-	class IdeHelpercaptcha {}
+	class captcha extends \Eloquent {}
 }
 
