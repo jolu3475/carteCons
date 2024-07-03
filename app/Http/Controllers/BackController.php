@@ -26,6 +26,11 @@ class BackController extends Controller
         return view('back.show', ['carte' => $carte ,'data' => $user]);
     }
 
+    public function valid()
+    {
+
+    }
+
     public function userProfile(): View
     {
         return view('back.profile');
@@ -33,7 +38,8 @@ class BackController extends Controller
 
     public function userManag(): View
     {
-        return view('back.user');
+        $user = User::all();
+        return view('back.user', ['data' => $user]);
     }
 
     public function setting(): View

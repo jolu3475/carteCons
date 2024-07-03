@@ -43,6 +43,7 @@ Route::prefix('/login')->name('login.')->controller(AuthController::class)->grou
 Route::prefix('/back')->name('back.')->controller(BackController::class)->middleware(['auth'])->group( function() {
     Route::get('/', 'index')->name('index');
     Route::get('/show/{carte}-{user}', 'show')->name('show')->where(['carte' => '[0-9]+', 'user' => '[0-9]+']);
+    Route::post('/show', 'valid')->name('valid');
     Route::get('/userManag', 'userManag')->name('user');
     Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
     Route::prefix('/setting')->name('setting.')->group( function() {

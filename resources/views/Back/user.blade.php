@@ -2,6 +2,14 @@
 
 @section('title', 'Gestion utilisateur')
 
+@section('css')
+
+    {{-- css pour datatables --}}
+    <link rel="stylesheet" href="{{ asset('datatables/css/dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('datatables/css/responsive.bootstrap5.css') }}">
+
+@endsection
+
 @section('content')
 
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Gestion d'utilisateur</p>
@@ -17,20 +25,23 @@
                         <th>Username</th>
                         <th>email</th>
                         <th>sudo</th>
-                        <th>Editer</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($users as $user)
+                    @foreach ($data as $user)
                         <tr>
-                            <td>{{ $user->nom }}</td>
-                            <td>{{ $user->prenom }}</td>
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->valider }}</td>
-                            <td>{{ $user->update_at }}</td>
-                            <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">Voir</a></td>
+                            <td>
+                                @if ($user->role === 1)
+                                    <span class="badge bg-success">Super Administrateur</span>
+                                @else
+                                    <span class="badge bg-danger">Administrateur</span>
+                                @endif
+                            </td>
+                            </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
 
@@ -38,17 +49,29 @@
 
     </div>
 
+    <p class="my-5 p-2 rounded h1 border border-primary-subtle">Ajouter des utilisateur</p>
+
+    <div class=" rounded-3 p-5 shadow bg-info-subtle text-info-emphasis">
+
+        <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-3">
+
+
+
+        </div>
+
+    </div>
+
     {{-- call of the js --}}
-    <script src={{ asset('jquery/jquery-3.7.1.min.js') }}></script>
-    <script src={{ asset('datatables/js/dataTables.js') }}></script>
-    <script src={{ asset('datatables/js/dataTables.bootstrap5.js') }}></script>
-    <script src={{ asset('datatables/js/dataTables.responsive.js') }}></script>
-    <script src={{ asset('datatables/js/responsive.bootstrap5.js') }}></script>
+    <script src="{{ asset('jquery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('datatables/js/responsive.bootstrap5.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable({
+            $('#example').DataTable({
                 "language": {
-                    "url": "{{ asset('datatables/langue/fr_fr.json') }}",
+                    "url": "{{ asset('datatables/langue/fr_fr.json') }}"
                 },
                 "pageLength": 5,
                 "lengthMenu": [5, 10, 25, 50, 100],
@@ -61,36 +84,6 @@
                 "autoWidth": false,
                 "responsive": true
             });
-
-            // Fonction pour recréer DataTables sur redimensionnement
-            function resizeDataTable() {
-                if ($.fn.DataTable.isDataTable('#example')) {
-                    table.destroy(); // Détruit l'instance actuelle de DataTables
-                }
-                table = $('#example').DataTable({
-                    "language": {
-                        "url": "{{ asset('datatables/langue/fr_fr.json') }}",
-                    },
-                    "pageLength": 5,
-                    "lengthMenu": [5, 10, 25, 50, 100],
-                    "order": [
-                        [0, "asc"]
-                    ],
-                    "searching": true,
-                    "paging": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true
-                });
-            }
-
-            // Écouteur d'événement de redimensionnement de la fenêtre
-            $(window).resize(function() {
-                resizeDataTable();
-            });
-
-            // Assurez-vous d'initialiser DataTables au démarrage
-            resizeDataTable();
         });
     </script>
 
