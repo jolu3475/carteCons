@@ -18,6 +18,11 @@
 
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-3">
 
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <p class="me-md-2 py-auto" type="button">Créer un nouvelle utilisateur</p>
+                <a class="btn btn-primary" type="button" href="{{ route('back.create') }}">Créer</a>
+            </div>
+
             <table id="example" class="table table-striped nowrap p-3 caption-top" style="width:100%">
                 <caption>Liste des Administrateur</caption>
                 <thead class=" bg-dark">
@@ -44,18 +49,6 @@
                     @endforeach
                 </tbody>
             </table>
-
-        </div>
-
-    </div>
-
-    <p class="my-5 p-2 rounded h1 border border-primary-subtle">Ajouter des utilisateur</p>
-
-    <div class=" rounded-3 p-5 shadow bg-info-subtle text-info-emphasis">
-
-        <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-3">
-
-
 
         </div>
 

@@ -41,6 +41,8 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Valider</th>
+                        <th>Pays</th>
+                        <th>Verifier</th>
                         <th>Date d'envoye</th>
                         <th>Plus d'information</th>
                     </tr>
@@ -56,6 +58,21 @@
                                     <span class="badge bg-success">Valider</span>
                                 @else
                                     <span class="badge bg-danger">Non Valider</span>
+                                @endif
+                            </td>
+                            <td>
+                                @foreach ($dataPays as $p)
+                                    @if ($p['code'] === $user->regular()->get('codePays')->first()->codePays)
+                                        {{ $p['nom'] }}
+                                    @endif
+                                @endforeach
+
+                            </td>
+                            <td>
+                                @if ($user->verifie === 1)
+                                    <span class="badge bg-danger">Non Verifier</span>
+                                @else
+                                    <span class="badge bg-success">Verifier</span>
                                 @endif
                             </td>
                             <td>{{ $user->updated_at }}</td>

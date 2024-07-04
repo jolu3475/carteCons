@@ -12,7 +12,8 @@
 
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-5">
 
-            <form action="" method="post">
+            <form action="{{ route('back.valid') }}" method="post">
+                @csrf
 
                 <div class="mb-3 row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nom</label>
@@ -149,7 +150,9 @@
                     </div>
 
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-success" type='submit' name='suivant'>Valider</button>
+                        <button type="submit" class=" btn btn-danger" name="refuser"
+                            value="{{ $carte->id }}">Refuser</button>
+                        <button class="btn btn-success" type='submit' name='valider'>Valider</button>
                     </div>
                 </div>
             </form>

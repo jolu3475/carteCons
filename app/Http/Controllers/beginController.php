@@ -148,6 +148,12 @@ class beginController extends Controller
         $carteData["numero"] = rand(1000000000,9999999999);
         Carte::create($carteData);
 
+        $notifData['carteId'] = Carte::where('regularId', $regularId)->first()->id;
+        $notifData['message'] = 'Creation de carte';
+        $notifData['vu'] = 0;
+
+        Notification::create($notifData);
+
         return redirect()->route('index')->with('success', 'Votre demande a été enregistrée avec succès.');
     }
 
