@@ -69,53 +69,48 @@
 
 
     {{-- Footer of the page --}}
-    <div class="container-fluid border-top shadow-lg">
-        <footer class="pt-5">
-            <div class="row">
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
+    <div class="container-fluid shadow-lg p-0 overflow-hidden">
+        <footer class="">
+            <div class=" m-5 mx-5 row border-top pt-4">
+                <div class="col-6 col-md-2 mb-3 mx-5">
+                    <h5>Contact</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+                        <li class="nav-item mb-2">Adresse:
+                            B.P 836, Rue Andriamifidy, Anosy 101 Antananarivo - Madagascar
                         </li>
-                        <li class="nav-item mb-2"><a href="#"
-                                class="nav-link p-0 text-body-secondary">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                        <li class="nav-item mb-2">Email:<br>info-web@diplomatie.gov.mg</li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Politique étrangère</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Expansion
+                                économique</a>
                         </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Intégration
+                                régionale</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Diaspora
+                                Malagasy</a>
                         </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Partenariat
+                                pour le Développement</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
+                    <h5>Services</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Services
+                                consulaires</a>
                         </li>
-                        <li class="nav-item mb-2"><a href="#"
-                                class="nav-link p-0 text-body-secondary">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
-                        </li>
-                    </ul>
-                </div>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Affaires
+                                générales</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"> Bourses et
+                                Formations
 
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#"
-                                class="nav-link p-0 text-body-secondary">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -125,25 +120,34 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 border-top">
-                <p>&copy; 2024 Company, Inc. All rights reserved.</p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3"> <a class="link-body-emphasis" href="#">
-                            <svg class="bi" width="24" height="24">
-                                <use xlink:href="#twitter" />
-                            </svg>
-                        </a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#">
-                            <svg class="bi" width="24" height="24">
-                                <use xlink:href="#instagram" />
-                            </svg>
-                        </a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#">
-                            <svg class="bi" width="24" height="24">
-                                <use xlink:href="#facebook" />
-                            </svg>
-                        </a></li>
-                </ul>
+            <div class="d-flex bg-danger flex-column flex-sm-row justify-content-between border-top">
+                <div class="mt-3 mx-5 border-top w-100">
+                    <p>Copyright <span>&copy;</span> 2024 Ministère des Affaires Etrangères - Tous
+                        droits réservés.</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3">
+                            <a class="link-body-emphasis" href="#">
+                                <svg class="bi" width="24" height="24">
+                                    <use xlink:href="#twitter" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="ms-3">
+                            <a class="link-body-emphasis" href="#">
+                                <svg class="bi" width="24" height="24">
+                                    <use xlink:href="#instagram" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="ms-3">
+                            <a class="link-body-emphasis" href="#">
+                                <svg class="bi" width="24" height="24">
+                                    <use xlink:href="#facebook" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </footer>
     </div>
