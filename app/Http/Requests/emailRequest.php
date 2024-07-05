@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class emailRequest extends FormRequest
@@ -22,7 +23,7 @@ class emailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['email', 'unique:regulars'],
+            'email' => ['email', Rule::unique('regulars')->ignore(session('slug'), 'slug')],
             'token' => ['integer', 'min:1000', 'max:9999'],
         ];
     }

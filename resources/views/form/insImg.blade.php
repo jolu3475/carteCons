@@ -21,8 +21,8 @@
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                @session('image')
-                    <img src='/storage/{{ session('image') }}' class="img-fluid rounded m-2" style="width: 555px"
+                @session('img')
+                    <img src='/storage/{{ session('img') }}' class="img-fluid rounded m-2" style="width: 555px"
                         alt="Votre photo">
                 @else
                     <img src={{ asset('image/person.gif') }} class="img-fluid rounded m-2" style="width: 555px"
@@ -60,7 +60,7 @@
         </div>
 
         <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-            @session('image')
+            @session('img')
                 <button class="btn btn-success" type='submit' name='suivant'>Suivant</button>
             @else
                 <button class="btn disabled" disabled>Suivant</button>

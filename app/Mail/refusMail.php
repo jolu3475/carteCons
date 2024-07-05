@@ -16,14 +16,16 @@ class refusMail extends Mailable
 
     public $contenu;
     public $subject;
+    public $link;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($contenu, $subject)
+    public function __construct($contenu, $subject, $link)
     {
         $this->contenu = $contenu;
         $this->subject = $subject;
+        $this->link = $link;
     }
 
     /**

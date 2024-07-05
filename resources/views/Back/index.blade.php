@@ -70,9 +70,9 @@
                             </td>
                             <td>
                                 @if ($user->verifie === 1)
-                                    <span class="badge bg-danger">Non Verifier</span>
-                                @else
                                     <span class="badge bg-success">Verifier</span>
+                                @else
+                                    <span class="badge bg-danger">Non Verifier</span>
                                 @endif
                             </td>
                             <td>{{ $user->updated_at }}</td>

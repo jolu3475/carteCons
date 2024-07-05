@@ -23,6 +23,23 @@ class beginController extends Controller
 {
     public function index(Request $request): View
     {
+        if($request->has('slug')) {
+            $data = Regular::where('slug', $request->input('slug'))->first();
+            $datas = $data->toArray();
+            $keysToKeep = ['created_at', 'updated_at', 'pays'];
+            foreach ($datas as $key => $value) {
+                if (!in_array($key, $keysToKeep)) {
+                    if($key === 'pays'){
+                        session(['codePays' => $value]);
+                    }
+                    else{
+                        session([$key => $value]);
+                    }
+                }
+            }
+            session(['update' => true]);
+        }
+
         if($request->all() === []){
             if (session('email') !== null){
                 VerifEmail::where('email', session('email'))->delete();
@@ -35,6 +52,7 @@ class beginController extends Controller
                 }
             }
         }
+
         $pays = DB::table('pays')->pluck('nom', 'code');
         $indicatifs = DB::table('pays')->pluck('indicatif', 'code');
         return View('form.carteCons', compact('pays', 'indicatifs'));
@@ -63,6 +81,9 @@ class beginController extends Controller
             return redirect()->route('form.image');
         }
         if ($request->has('suivant')){
+            if (session()->has('update')){
+                return redirect()->route('form.valid');
+            }
             return redirect()->route('form.mail');
         }
     }
@@ -94,6 +115,7 @@ class beginController extends Controller
             VerifEmail::where('email', session('email'))->delete();
             session()->forget('email');
         }
+
         $toEmail = $request->validated('email');
         $contenu = 'Bonjour, ';
         $numVer = rand(1000, 9999);
@@ -132,7 +154,7 @@ class beginController extends Controller
         captcha::create($captchaData);
         $captchaId = captcha::where('ip_address', $clientIp)->first()->id;
         $data = [];
-        $keysToExclude = ['_token', '_previous', '_flash', 'valid'];
+        $keysToExclude = ['_token', '_previous', '_flash', 'valid','update', 'id'];
 
         foreach (session()->all() as $key => $value) {
             if (!in_array($key, $keysToExclude)) {
@@ -140,19 +162,24 @@ class beginController extends Controller
             }
         }
 
-        Regular::create($data);
-        $regularId =Regular::where('slug', $data['slug'])->first()->id;
+        if(session()->has('update')){
+            Regular::where('id', session('id'))->update($data);
+            Carte::where('regularId', session('id'))->update(['captchaId' => $captchaId], ['vu', false]);
+        }else{
+            Regular::create($data);
+            $regularId =Regular::where('slug', $data['slug'])->first()->id;
 
-        $carteData["captchaId"] = $captchaId;
-        $carteData["regularId"] = $regularId;
-        $carteData["numero"] = rand(1000000000,9999999999);
-        Carte::create($carteData);
+            $carteData["captchaId"] = $captchaId;
+            $carteData["regularId"] = $regularId;
+            $carteData["numero"] = rand(1000000000,9999999999);
+            Carte::create($carteData);
+        }
 
-        $notifData['carteId'] = Carte::where('regularId', $regularId)->first()->id;
+        /* $notifData['carteId'] = Carte::where('regularId', $regularId)->first()->id;
         $notifData['message'] = 'Creation de carte';
         $notifData['vu'] = 0;
 
-        Notification::create($notifData);
+        Notification::create($notifData); */
 
         return redirect()->route('index')->with('success', 'Votre demande a été enregistrée avec succès.');
     }

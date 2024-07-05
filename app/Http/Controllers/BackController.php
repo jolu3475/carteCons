@@ -52,7 +52,9 @@ class BackController extends Controller
         $id = Carte::where('id', '=', $request->valider)->first()->regular()->get('id')->first()->id;
         $subject = 'Refus de votre carte';
         $contenu = $request->validated();
-        Mail::to($toEmail)->send(new refusMail($contenu['Raison'], $subject));
+        $slug = Carte::where('id', '=', $request->valider)->first()->regular()->get('slug')->first()->slug;
+        $link = route('form.index', ['slug' => $slug]);
+        Mail::to($toEmail)->send(new refusMail($contenu['Raison'], $subject, $link));
         Erreur::create(['carteId' => $request->valider, 'regularId' => $id ,'contenu' => $contenu['Raison']]);
         Carte::where('id', '=', $request->valider)->update(['vu' => 1]);
         return redirect()->route('back.index');

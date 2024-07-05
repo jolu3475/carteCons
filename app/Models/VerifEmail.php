@@ -11,8 +11,4 @@ class VerifEmail extends Model
 
     protected $fillable = ['email', 'token'];
 
-    public function regular():HasOne
-    {
-        
-    }
 }

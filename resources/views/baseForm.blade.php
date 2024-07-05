@@ -120,30 +120,19 @@
                 </div>
             </div>
 
-            <div class="d-flex bg-danger flex-column flex-sm-row justify-content-between border-top">
-                <div class="mt-3 mx-5 border-top w-100">
+            <div class="d-flex bg-danger flex-column flex-sm-row justify-content-center border-top mb-auto">
+                <div class="mt-3 mx-5 border-top pt-3">
                     <p>Copyright <span>&copy;</span> 2024 Ministère des Affaires Etrangères - Tous
                         droits réservés.</p>
-                    <ul class="list-unstyled d-flex">
+                    <ul class="list-unstyled d-flex justify-content-center">
                         <li class="ms-3">
                             <a class="link-body-emphasis" href="#">
-                                <svg class="bi" width="24" height="24">
-                                    <use xlink:href="#twitter" />
-                                </svg>
+                                <i class="fas fa-brands fa-x-twitter"></i>
                             </a>
                         </li>
                         <li class="ms-3">
                             <a class="link-body-emphasis" href="#">
-                                <svg class="bi" width="24" height="24">
-                                    <use xlink:href="#instagram" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="ms-3">
-                            <a class="link-body-emphasis" href="#">
-                                <svg class="bi" width="24" height="24">
-                                    <use xlink:href="#facebook" />
-                                </svg>
+                                <i class="fas fa-brands fa-facebook"></i>
                             </a>
                         </li>
                     </ul>
