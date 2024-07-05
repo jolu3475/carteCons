@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +21,15 @@ class AuthController extends Controller
 
         if (Auth::attempt($user)){
             $request->session()->regenerate();
-            /* $sessionData['userid'] = User::where();
-            Session::create(); */
+            $id = User::where('email' , '=', $user['email'])->first()->id;
+            $sessionData['userid'] = $id;
+            $sessionData['ip_address'] = $request->ip();
+            $sessionData['user_agent'] = $request->header('User-Agent');
+            Session::create($sessionData);
             return redirect()->route('back.index');
         }
 
-        return to_route('login.form')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
+        return to_route('login.index')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
     }
 
     public function logout()

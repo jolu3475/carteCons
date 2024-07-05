@@ -111,7 +111,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="d-flex">
-                    <img src="/storage/{{ session('image') }}" class="img-fluid rounded m-2" style="width: 555px;"
+                    <img src="/storage/{{ session('img') }}" class="img-fluid rounded m-2" style="width: 555px;"
                         alt="Votre photo">
                 </div>
             </div>

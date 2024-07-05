@@ -56,4 +56,9 @@ class User extends Authenticatable
         return $this->hasMany(Session::class, 'userid');
     }
 
+    public function erreurs(): HasMany
+    {
+        return $this->hasMany(Erreur::class, 'userId');
+    }
+
 }

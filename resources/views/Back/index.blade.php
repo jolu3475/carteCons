@@ -5,8 +5,19 @@
 
 @section('css')
     {{-- css pour datatables --}}
-    <link rel="stylesheet" href={{ asset('datatables/css/dataTables.bootstrap5.css') }}>
-    <link rel="stylesheet" href={{ asset('datatables/css/responsive.bootstrap5.css') }}>
+    <link rel="stylesheet" href="{{ asset('datatables/css/dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('datatables/css/responsive.bootstrap5.css') }}">
+
+    {{-- call of the js --}}
+    <script src="{{ asset('jquery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.buttons.js') }}"></script>
+    <script src="{{ asset('datatables/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('datatables/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('datatables/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('datatables/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('datatables/js/buttons.html5.min.js') }}"></script>
 @endsection
 
 
@@ -26,25 +37,49 @@
                 <caption>Liste des cartes reçus</caption>
                 <thead class=" bg-dark">
                     <tr>
+                        <th>Numero Carte</th>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Email</th>
                         <th>Valider</th>
+                        <th>Pays</th>
+                        <th>Verifier</th>
                         <th>Date d'envoye</th>
                         <th>Plus d'information</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($users as $user)
+                    @foreach ($data as $user)
                         <tr>
-                            <td>{{ $user->nom }}</td>
-                            <td>{{ $user->prenom }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->valider }}</td>
-                            <td>{{ $user->update_at }}</td>
-                            <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">Voir</a></td>
+                            <td>{{ $user->numero }}</td>
+                            <td>{{ $user->regular()->get('nom')->first()->nom }}</td>
+                            <td>{{ $user->regular()->get('prenom')->first()->prenom }}</td>
+                            <td>
+                                @if ($user->valide == 1)
+                                    <span class="badge bg-success">Valider</span>
+                                @else
+                                    <span class="badge bg-danger">Non Valider</span>
+                                @endif
+                            </td>
+                            <td>
+                                @foreach ($dataPays as $p)
+                                    @if ($p['code'] === $user->regular()->get('codePays')->first()->codePays)
+                                        {{ $p['nom'] }}
+                                    @endif
+                                @endforeach
+
+                            </td>
+                            <td>
+                                @if ($user->verifie === 1)
+                                    <span class="badge bg-success">Verifier</span>
+                                @else
+                                    <span class="badge bg-danger">Non Verifier</span>
+                                @endif
+                            </td>
+                            <td>{{ $user->updated_at }}</td>
+                            <td><a href="{{ route('back.show', ['carte' => $user->id, 'user' => $user->regularId]) }}"
+                                    class="btn btn-primary">Voir</a></td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
 
@@ -53,22 +88,21 @@
     </div>
 
     {{-- Le graphique --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
+    <script src="{{ asset('Chart/chart.umd.js') }}"
         integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous">
     </script>
     <script src={{ asset('js/dashboard.js') }}></script>
 
-    {{-- call of the js --}}
-    <script src={{ asset('jquery/jquery-3.7.1.min.js') }}></script>
-    <script src={{ asset('datatables/js/dataTables.js') }}></script>
-    <script src={{ asset('datatables/js/dataTables.bootstrap5.js') }}></script>
-    <script src={{ asset('datatables/js/dataTables.responsive.js') }}></script>
-    <script src={{ asset('datatables/js/responsive.bootstrap5.js') }}></script>
+
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable({
+            $('#example').DataTable({
+                dom: 'Blfrtip', // Configurez ici selon vos besoins
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                 "language": {
-                    "url": "{{ asset('datatables/langue/fr_fr.json') }}",
+                    "url": "{{ asset('datatables/langue/fr_fr.json') }}"
                 },
                 "pageLength": 5,
                 "lengthMenu": [5, 10, 25, 50, 100],
@@ -79,38 +113,15 @@
                 "paging": true,
                 "info": true,
                 "autoWidth": false,
-                "responsive": true
-            });
-
-            // Fonction pour recréer DataTables sur redimensionnement
-            function resizeDataTable() {
-                if ($.fn.DataTable.isDataTable('#example')) {
-                    table.destroy(); // Détruit l'instance actuelle de DataTables
+                "responsive": true,
+                "buttons": {
+                    "dom": {
+                        "button": {
+                            "className": 'btn btn-outline-secondary my-2' // Ajoutez la classe Bootstrap aux boutons
+                        }
+                    }
                 }
-                table = $('#example').DataTable({
-                    "language": {
-                        "url": "{{ asset('datatables/langue/fr_fr.json') }}",
-                    },
-                    "pageLength": 5,
-                    "lengthMenu": [5, 10, 25, 50, 100],
-                    "order": [
-                        [0, "asc"]
-                    ],
-                    "searching": true,
-                    "paging": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true
-                });
-            }
-
-            // Écouteur d'événement de redimensionnement de la fenêtre
-            $(window).resize(function() {
-                resizeDataTable();
             });
-
-            // Assurez-vous d'initialiser DataTables au démarrage
-            resizeDataTable();
         });
     </script>
 

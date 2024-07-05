@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,9 +33,9 @@ class carteRequest extends FormRequest
             'proffession' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
             'nbEnf' => ['integer'],
             'adr' => ['required', 'string'],
-            'pays' => ['required', 'string'],
+            'codePays' => ['required', 'string'],
             'tel' => ['required', 'string', 'regex:/^[\d]{5,15}$/', ],
-            'numPass' => ['required', 'string', 'regex:/^(MG)[0-9]{7}$/', 'unique:regulars,numPass'],
+            'numPass' => ['required', 'string', 'regex:/^(MG)[0-9]{7}$/', Rule::unique('regulars')->ignore(session('slug'), 'slug')],
             'expPass' => ['required', 'date', 'after:today'],
             'arrExt' => ['required', 'date', 'before:today'],
         ];

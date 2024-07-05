@@ -10,22 +10,22 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class verificationMail extends Mailable
+class refusMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $contenu;
     public $subject;
-    public $numVer;
+    public $link;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($contenu, $subject, $numVer)
+    public function __construct($contenu, $subject, $link)
     {
         $this->contenu = $contenu;
         $this->subject = $subject;
-        $this->numVer = $numVer;
+        $this->link = $link;
     }
 
     /**
@@ -48,7 +48,7 @@ class verificationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mailEnvoye.verifiEmail',
+            view: 'mailEnvoye.refusMail',
         );
     }
 

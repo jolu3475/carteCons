@@ -17,6 +17,7 @@ return new class () extends Migration {
             $table->string('numero')->unique();
             $table->date('dateRemise')->default(null);
             $table->date('dateExpiration')->default(null);
+            $table->boolean('vu')->default(false);
             $table->timestamps();
 
             $table->foreign('regularId')->references('id')->on('regulars');

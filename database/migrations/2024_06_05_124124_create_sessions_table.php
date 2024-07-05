@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->unsignedBigInteger('userid'); // userid
             $table->string('user_agent'); // user_agent
-            $table->string('ip_address'); // ip_address
+            $table->ipAddress('ip_address'); // ip_address
             $table->timestamps();
 
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');

@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class emailRequest extends FormRequest
+class refusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +22,7 @@ class emailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['email', Rule::unique('regulars')->ignore(session('slug'), 'slug')],
-            'token' => ['integer', 'min:1000', 'max:9999'],
+            'Raison' => ['required', 'string', 'max:255']
         ];
     }
 }

@@ -129,9 +129,12 @@
     <div class="row mb-3">
         <label for="inputPa" class="col-sm-2 col-form-label">Pays actuelle<span class="red">*</span></label>
         <div class="col-sm-2">
-            <select id="country" class='form-select' name="pays" value={{ old('pays', session('pays')) }}>
+            <select id="country" class='form-select' name="codePays"
+                selected={{ old('codePays', session('codePays')) }}>
                 @foreach ($pays as $code => $name)
-                    <option value="{{ $code }}">{{ $name }}</option>
+                    <option value="{{ $code }}" @session('codePays')
+                        @if (session('codePays') == $code) selected @endif @endsession>
+                        {{ $name }}</option>
                 @endforeach
             </select>
         </div>
