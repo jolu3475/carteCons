@@ -72,7 +72,7 @@
                                         'active' => $routeName === 'back.index',
                                         'not-active' => $routeName !== 'back.index',
                                     ])>
-                                        Dashboard
+                                        Gestion des cartes
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -81,7 +81,7 @@
                                         'active' => Str::startsWith($routeName, 'back.user'),
                                         'not-active' => !Str::startsWith($routeName, 'back.user'),
                                     ]) href={{ route('back.user') }}>
-                                        Gestion d'utilisateur
+                                        Gestion des utilisateurs
                                     </a>
                                 </li>
                             </ul>

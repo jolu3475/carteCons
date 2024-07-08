@@ -69,7 +69,7 @@
 
                             </td>
                             <td>
-                                @if ($user->verifie === 1)
+                                @if ($user->vu === 1)
                                     <span class="badge bg-success">Verifier</span>
                                 @else
                                     <span class="badge bg-danger">Non Verifier</span>
