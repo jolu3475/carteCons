@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class=" mx-4 p-5 mb-4 rounded-3 bg-info bg-gradient" style="margin-top: -50px">
+    <div class=" mx-4 p-5 mb-4 rounded-3 bg-primary-subtle" style="margin-top: -50px;">
         <ul class="nav justify-content-end">
             <div class="rounded border border-secondary-subtle inline-flex bg-dark-subtle">
                 <ul class="nav">
