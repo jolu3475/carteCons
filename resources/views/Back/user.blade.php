@@ -18,10 +18,12 @@
 
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-3">
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <p class="me-md-2 py-auto" type="button">Créer un nouvelle utilisateur</p>
-                <a class="btn btn-primary" type="button" href="{{ route('back.create') }}">Créer</a>
-            </div>
+            @if ($user->role === 1)
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <p class="me-md-2 py-auto" type="button">Créer un nouvelle utilisateur</p>
+                    <a class="btn btn-primary" type="button" href="{{ route('back.create') }}">Créer</a>
+                </div>
+            @endif
 
             <table id="example" class="table table-striped nowrap p-3 caption-top" style="width:100%">
                 <caption>Liste des Administrateur</caption>
@@ -29,22 +31,31 @@
                     <tr>
                         <th>Username</th>
                         <th>email</th>
-                        <th>sudo</th>
+                        <th>Activer</th>
+                        @if ($user->role === 1)
+                            <th>Suprimer</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $user)
+                    @foreach ($data as $dat)
                         <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $dat->name }}</td>
+                            <td>{{ $dat->email }}</td>
                             <td>
-                                @if ($user->role === 1)
-                                    <span class="badge bg-success">Super Administrateur</span>
+                                @if ($dat->email_verified_at !== null)
+                                    <span class="badge bg-success">Activer</span>
                                 @else
-                                    <span class="badge bg-danger">Administrateur</span>
+                                    <span class="badge bg-danger">Pas encore</span>
                                 @endif
                             </td>
-                            </td>
+                            @if ($user->role === 1)
+                                <td>
+                                    <form action="" method="post">
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

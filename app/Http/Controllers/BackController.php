@@ -88,7 +88,8 @@ class BackController extends Controller
     public function userManag(): View
     {
         $user = User::where('id', '<>', Auth::id())->where('id', '<>', 1)->get();
-        return view('back.user', ['data' => $user]);
+        $us = User::where('id', '=', Auth::id())->get()->first();
+        return view('back.user', ['data' => $user, 'user' => $us]);
     }
 
     public function setting(): View
