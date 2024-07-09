@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\validUser;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,22 @@ class AuthController extends Controller
     {
         Auth::logout();
         return to_route('index');
+    }
+
+    public function create($slug)
+    {
+        $user = User::where('slug', '=', $slug)->first();
+        return view('login.create', ['slug'=> $slug]);
+    }
+
+    public function createUsr(validUser $request)
+    {
+        $slug = $request->all();
+        $data = $request->validated();
+        $data['password'] =  bcrypt($data['password']);
+        $data['email_verified_at'] = now();
+        User::where('slug', '=', $slug['slug'])->update($data);
+        return to_route('form.index')->with('success', 'user created');
     }
 
 }

@@ -11,6 +11,21 @@
 @endsection
 
 @section('content')
+
+    @session('success')
+        <div class="toast bg-success-subtle text-success-emphasis" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endsession
+
     <div class="row mb-3">
         <label for="inputName" class="col-sm-2 col-form-label">Nom<span class="red">*</span></label>
         <div class="col-sm-10">
@@ -115,8 +130,8 @@
     <div class="row mb-3">
         <label for="inputAdr" class="col-sm-2 col-form-label">Adresse actuelle<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAdr" placeholder="Votre adresse actuelle" name="adr"
-                value={{ old('adr', session('adr')) }}>
+            <input type="text" class="form-control" id="inputAdr" placeholder="Votre adresse actuelle"
+                name="adr" value={{ old('adr', session('adr')) }}>
         </div>
     </div>
     @error('adr')

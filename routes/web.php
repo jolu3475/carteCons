@@ -38,6 +38,8 @@ Route::prefix('/login')->name('login.')->controller(AuthController::class)->grou
     Route::get('/', 'login')->name('index')->middleware(['guest']);
     Route::post('/', 'doLogin')->name('submit')->middleware(['guest']);
     Route::delete('/logout', 'logout')->name('logout')->middleware(['auth']);
+    Route::get('/create/{slug}', 'create')->name('create')->middleware(['guest']);
+    Route::post('/create/{slug}', 'createUsr')->middleware(['guest']);
 });
 
 Route::prefix('/back')->name('back.')->controller(BackController::class)->middleware(['auth'])->group( function() {
@@ -51,6 +53,7 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
 
     Route::get('/userManag', 'userManag')->name('user');
     Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'createUrs');
 
     Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
 

@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Pays;
 use App\Models\User;
 use App\Models\Carte;
+use App\Mail\userMail;
 use App\Models\Erreur;
 use App\Mail\refusMail;
 use App\Models\Regular;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Http\Requests\createUsr;
 use App\Http\Requests\refusRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -62,7 +64,20 @@ class BackController extends Controller
 
     public function create(): View
     {
-        return view('back.create');
+        return view('Back.user.create');
+    }
+
+    public function createUrs(createUsr $request)
+    {
+        $data = $request->validated();
+        $data['name'] = $request->input('name');
+        $data['role'] = $request->input('role');
+        $data['slug'] = $request->input('slug');
+
+        User::create($data);
+        Mail::to($data['email'])->send(new userMail('Bonjour', 'Création de compte', route('login.create', ['slug' => $data['slug']])));
+
+        return redirect()->route('back.user');
     }
 
     public function userProfile(): View
