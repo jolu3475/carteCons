@@ -150,9 +150,11 @@
                     </div>
 
                     <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class=" btn btn-danger" name="refuser"
-                            value="{{ $carte->id }}">Refuser</button>
-                        <button class="btn btn-success" type='submit' name='valider'>Valider</button>
+                        @if ($carte->vu === false)
+                            <button type="submit" class=" btn btn-danger" name="refuser"
+                                value="{{ $carte->id }}">Refuser</button>
+                            <button class="btn btn-success" type='submit' name='valider'>Valider</button>
+                        @endif
                     </div>
                 </div>
             </form>
