@@ -12,6 +12,18 @@
 
 @section('content')
 
+    {{-- @session('success') --}}
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    {{-- @endsession --}}
+
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Gestion d'utilisateur</p>
 
     <div class=" rounded-3 p-5 shadow bg-info-subtle text-info-emphasis">
@@ -31,7 +43,9 @@
                     <tr>
                         <th>Username</th>
                         <th>email</th>
+                        <th>Date de creation</th>
                         <th>Activer</th>
+                        <th>Date d'activation</th>
                         @if ($user->role === 1)
                             <th>Suprimer</th>
                         @endif
@@ -42,6 +56,7 @@
                         <tr>
                             <td>{{ $dat->name }}</td>
                             <td>{{ $dat->email }}</td>
+                            <td>{{ $dat->created_at }}</td>
                             <td>
                                 @if ($dat->email_verified_at !== null)
                                     <span class="badge bg-success">Activer</span>
@@ -49,10 +64,19 @@
                                     <span class="badge bg-danger">Pas encore</span>
                                 @endif
                             </td>
+                            <td>
+                                @if ($dat->email_verified_at !== null)
+                                    {{ $dat->email_verified_at }}
+                                @else
+                                    Pas encore activer
+                                @endif
+                            </td>
                             @if ($user->role === 1)
                                 <td>
                                     <form action="" method="post">
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger" value='{{ $dat->id }}'
+                                            name="id">Supprimer</button>
                                     </form>
                                 </td>
                             @endif

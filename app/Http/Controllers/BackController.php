@@ -84,6 +84,13 @@ class BackController extends Controller
         return view('back.profile');
     }
 
+    public function userDelete(Request $request)
+    {
+        $id = $request->id;
+        User::where('id', '=', $id)->delete();
+        return to_route('back.user')->with('success', 'Utilisateur supprimé avec succès');
+    }
+
     public function userManag(): View
     {
         $user = User::where('id', '<>', Auth::id())->where('id', '<>', 1)->get();

@@ -72,6 +72,7 @@
                                         'active' => $routeName === 'back.index',
                                         'not-active' => $routeName !== 'back.index',
                                     ])>
+                                        <i class="fas fa-solid fa-address-card"></i>
                                         Gestion des cartes
                                     </a>
                                 </li>
@@ -81,6 +82,7 @@
                                         'active' => Str::startsWith($routeName, 'back.user'),
                                         'not-active' => !Str::startsWith($routeName, 'back.user'),
                                     ]) href={{ route('back.user') }}>
+                                        <i class="fas fa-solid fa-users-gear"></i>
                                         Gestion des utilisateurs
                                     </a>
                                 </li>
@@ -95,6 +97,7 @@
                                         'active' => Str::startsWith($routeName, 'back.setting'),
                                         'not-active' => !Str::startsWith($routeName, 'back.setting'),
                                     ]) href={{ route('back.setting.view') }}>
+                                        <i class="fas fa-solid fa-user-gear"></i>
                                         Paramètre compte
                                     </a>
                                 </li>
@@ -103,8 +106,10 @@
                                         @csrf
                                         @method('delete')
                                         <button class="nav-link d-flex align-items-center gap-2 not-active rounded"
-                                            type="submit">Se
-                                            deconnecter</button>
+                                            type="submit">
+                                            <i class="fas fa-solid fa-arrow-right-from-bracket"></i>
+                                            Se deconnecter
+                                        </button>
                                     </form>
                                 </li>
 
