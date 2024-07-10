@@ -22,6 +22,13 @@
 
 
 @section('content')
+
+    @session('success')
+        <div class='alert alert-info my-4'>
+            {{ session('success') }}
+        </div>
+    @endsession
+
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Graphique de donnée</p>
 
     <div class=" rounded-3 p-4 shadow bg-info-subtle text-info-emphasis">

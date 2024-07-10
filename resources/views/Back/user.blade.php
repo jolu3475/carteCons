@@ -12,17 +12,11 @@
 
 @section('content')
 
-    {{-- @session('success') --}}
-    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-
-                {{ session('success') }}
-            </div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    @session('success')
+        <div class='alert alert-info my-5'>
+            {{ session('success') }}
         </div>
-    </div>
-    {{-- @endsession --}}
+    @endsession
 
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Gestion d'utilisateur</p>
 
@@ -73,11 +67,34 @@
                             </td>
                             @if ($user->role === 1)
                                 <td>
-                                    <form action="" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger" value='{{ $dat->id }}'
-                                            name="id">Supprimer</button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle='modal'
+                                        data-bs-target="#modal">Supprimer</button>
+                                    <div class="modal fade" id="modal"data-bs-backdrop="static" data-bs-keyboard="false"
+                                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer
+                                                        {{ $dat->name }}</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Vouller-vous vraiment le supprimer ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Annuler</button>
+                                                    <form action="" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger"
+                                                            value='{{ $dat->id }}' name="id">Supprimer</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </td>
                             @endif
                         </tr>
@@ -114,5 +131,6 @@
             });
         });
     </script>
+
 
 @endsection

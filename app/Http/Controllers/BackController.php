@@ -76,7 +76,7 @@ class BackController extends Controller
         User::create($data);
         Mail::to($data['email'])->send(new userMail('Bonjour', 'Création de compte', route('login.create', ['slug' => $data['slug']])));
 
-        return redirect()->route('back.user');
+        return to_route('back.user')->with('success', 'Utilisateur créé avec succès');
     }
 
     public function userProfile(): View
