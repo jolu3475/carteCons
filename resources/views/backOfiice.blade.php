@@ -24,7 +24,7 @@
     $routeName = request()->route()->getName();
 @endphp
 
-<body style="overflow: hidden">
+<body style="overflow: hidden" class=" bg-body-tertiary text-light-emphasis">
     {{-- The header of the page --}}
     <header class="navbar sticky-top bg-primary-subtle text-primary-emphasis flex-md-nowrap p-0">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Ministère des Affaires Etrangère</a>
@@ -51,7 +51,7 @@
     </header>
 
     {{-- Content of the page --}}
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row" style="height: calc(100vh - 35px)">
 
             {{-- The sidebar of the page --}}
