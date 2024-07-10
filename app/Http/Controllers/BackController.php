@@ -20,9 +20,8 @@ class BackController extends Controller
 {
     public function index(): View
     {
-        $users = Carte::all();
-        $pays = Pays::all();
-        return view('back.index', ['data' => $users, 'dataPays' => $pays]);
+        $users = Regular::all();
+        return view('back.index', ['data' => $users]);
     }
 
     public function show(Carte $carte ,Regular $user): View
