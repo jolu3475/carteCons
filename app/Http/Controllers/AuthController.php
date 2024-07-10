@@ -36,7 +36,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return to_route('index');
+        return to_route('index')->with('success', 'logout success');
     }
 
     public function create($slug)
@@ -52,7 +52,18 @@ class AuthController extends Controller
         $data['password'] =  bcrypt($data['password']);
         $data['email_verified_at'] = now();
         User::where('slug', '=', $slug['slug'])->update($data);
-        return to_route('form.index')->with('success', 'user created');
+        $user = User::where('slug', '=', $slug['slug'])->first()->toArray();
+        $us['email'] = $user['email'];
+        $us['password'] = $slug['password'];
+        if (Auth::attempt($us)){
+            $us->session()->regenerate();
+            $sessionData['userid'] = $user['id'];
+            $sessionData['ip_address'] = $request->ip();
+            $sessionData['user_agent'] = $request->header('User-Agent');
+            Session::create($sessionData);
+            return redirect()->route('back.index');
+        }
+        return to_route('login.index')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
     }
 
 }

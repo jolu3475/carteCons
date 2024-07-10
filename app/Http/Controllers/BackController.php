@@ -58,7 +58,7 @@ class BackController extends Controller
         Mail::to($toEmail)->send(new refusMail($contenu['Raison'], $subject, $link));
         Erreur::create(['carteId' => $request->valider, 'regularId' => $id ,'contenu' => $contenu['Raison']]);
         Carte::where('id', '=', $request->valider)->update(['vu' => true]);
-        return redirect()->route('back.index');
+        return to_route('back.index')->with('success', 'Valeur verifier avec succès');
     }
 
     public function create(): View
