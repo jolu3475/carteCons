@@ -50,7 +50,7 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
 
     Route::get('/refuser/{id}', 'refuser')->name('refuser');
     Route::post('/refuser', 'refuserSend')->name('refuserSend');
-
+/*  */
     Route::get('/userManag', 'userManag')->name('user');
     Route::post('/userManag', 'userDelete');
     Route::get('/create', 'create')->name('create');
