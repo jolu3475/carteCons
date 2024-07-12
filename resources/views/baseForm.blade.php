@@ -8,7 +8,7 @@
     <script src={{ asset('bootstrap/js/bootstrap.bundle.min.js') }}></script>
     <script src={{ asset('js/color-modes.js') }}></script>
     <link rel="stylesheet" href={{ asset('css/app.css') }}>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('jquery/jquery-3.7.1.min.js') }}"></script>
     <link rel="stylesheet" href={{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}>
 
 </head>

@@ -11,6 +11,7 @@ use App\Mail\refusMail;
 use App\Models\Regular;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\createUsr;
 use App\Http\Requests\refusRequest;
 use Illuminate\Support\Facades\Auth;
@@ -29,18 +30,39 @@ class BackController extends Controller
         return view('back.show', ['carte' => $carte ,'data' => $user]);
     }
 
+    public function pdfGenerator(Regular $data){
+        $dataArray = $data->toArray();
+        // Générez le PDF avec DomPDF
+        $test = ['data' => $dataArray];
+        $pdf = Pdf::loadView('pdf.sortie', ['img' => $dataArray['img'], 'data' => $dataArray]);
+
+        $pdf->setPaper('A5', 'landscape');
+
+        // Obtenez le contenu du PDF sous forme de chaîne de caractères
+        $pdfContent = $pdf->output();
+
+        // Définissez le nom du fichier et le chemin où il sera sauvegardé
+        $numero = $data->carte()->get('numero')->first()->numero;
+        $filename = "{$numero}.pdf";
+        $path = public_path('pdf/');
+
+        // Enregistrez le PDF sur le serveur
+        $pdf->save($path.$filename);
+
+        return $pdf->stream($filename);
+    }
+
     public function valid( Request $request)
     {
         if ($request->has('refuser')){
             return redirect()->route('back.refuser', ['id' => $request['refuser']]);
         }
         if ($request->has('valider')){
-            $carte = Carte::find(request('valid'));
-            $carte->update(['valide' => 1]);
-
+            $slug = $request->valider;
+            return redirect()->route('back.pdfGenerator', ['slug' => $slug], 303);
         }
-
     }
+
 
     public function refuser(Carte $id): View
     {

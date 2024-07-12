@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Regular;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackController;
@@ -46,11 +47,12 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
     Route::get('/', 'index')->name('index');
 
     Route::get('/show/{carte}-{user}', 'show')->name('show')->where(['carte' => '[0-9]+', 'user' => '[0-9]+']);
+    Route::post('/createpdf/{data}', 'pdfGenerator')->name('pdfGenerator');
     Route::post('/show', 'valid')->name('valid');
 
     Route::get('/refuser/{id}', 'refuser')->name('refuser');
     Route::post('/refuser', 'refuserSend')->name('refuserSend');
-/*  */
+
     Route::get('/userManag', 'userManag')->name('user');
     Route::post('/userManag', 'userDelete');
     Route::get('/create', 'create')->name('create');
@@ -63,4 +65,9 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
         Route::get('/edit', 'edit')->name('edit');
         Route::get('/notif', 'notif')->name('notif');
     });
+});
+
+Route::get('/testPdf', function () {
+    $data = Regular::find(5);
+    return view('pdf.sortie', compact('data'));
 });
