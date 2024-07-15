@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Pays;
 use App\Models\User;
 use App\Models\Carte;
+use App\Models\Repex;
 use App\Mail\userMail;
 use App\Models\Erreur;
 use App\Mail\refusMail;
 use App\Models\Regular;
 use Illuminate\View\View;
+use App\Models\Juridiction;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\createUsr;
@@ -32,9 +34,9 @@ class BackController extends Controller
 
     public function pdfGenerator(Regular $data){
         $dataArray = $data->toArray();
-        // Générez le PDF avec DomPDF
-        $test = ['data' => $dataArray];
-        $pdf = Pdf::loadView('pdf.sortie', ['img' => $dataArray['img'], 'data' => $dataArray]);
+        $repex = Juridiction::where('codePays', '=', $dataArray['codePays'])->first();
+       /*  dd($data->carte()->get()->first()->toArray()); */
+        $pdf = Pdf::loadView('pdf.sortie', ['repex' => $repex->repex()->get()->first()->toArray(), 'data' => $dataArray, 'carte' => $data->carte()->get()->first()->toArray()]);
 
         $pdf->setPaper('A5', 'landscape');
 
