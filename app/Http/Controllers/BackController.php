@@ -65,12 +65,6 @@ class BackController extends Controller
         }
     }
 
-
-    public function refuser(Carte $id): View
-    {
-        return view('back.refuser', ['data' => $id]);
-    }
-
     public function refuserSend(refusRequest $request)
     {
         $toEmail = Carte::where('id', '=', $request->valider)->first()->regular()->get('email')->first()->email;
