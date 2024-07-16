@@ -16,12 +16,13 @@
             height: 148mm !important;
             overflow: hidden;
             box-sizing: border-box;
+            padding-top: 20px !important;
+            overflow: hidden;
         }
 
         .center-logo {
             width: 100% !important;
             text-align: center;
-            margin-top: 20px !important;
         }
 
         .i-text {
@@ -101,7 +102,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <div style="width: fit-content; padding:0 40px!important">
+                        <div style="width: 125mm; padding:0 40px!important">
                             <div style="margin: 40px 0!important; color:red;font-weight:normal">
                                 <h2>
                                     N° {{ $carte['numero'] }}
@@ -119,7 +120,9 @@
                         </div>
                     </td>
                     <td style="width: 100%">
-
+                        <div>
+                            {!! DNS2D::getBarcodeHTML($data['slug'], 'QRCODE', 5, 5) !!}
+                        </div>
                     </td>
                 </tr>
             </tbody>

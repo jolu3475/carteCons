@@ -12,7 +12,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "mews/captcha": "^3.3"
+        "mews/captcha": "^3.3",
+        "milon/barcode": "^11.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
