@@ -49,9 +49,7 @@
         </div>
         <h1
             style="color: rgba(8, 113, 8, 0.744); font-size:30px!important; text-align:center;margin-bottom:20px!important">
-            <strong>Ambasade
-                de
-                Madagascar en France</strong>
+            <strong>{{ $repex['label'] }}</strong>
         </h1>
         <table>
             <tbody>
