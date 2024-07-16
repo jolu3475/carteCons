@@ -119,7 +119,7 @@
                     </td>
                     <td style="width: 100%">
                         <div>
-                            {!! DNS2D::getBarcodeHTML($data['slug'], 'QRCODE', 5, 5) !!}
+                            {!! DNS2D::getBarcodeHTML(route('verifCarte', $data['slug']), 'QRCODE', 5, 5) !!}
                         </div>
                     </td>
                 </tr>

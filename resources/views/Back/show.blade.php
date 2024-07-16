@@ -210,12 +210,12 @@
                 </div>
 
                 <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                    @if ($carte->vu === 0)
+                    {{-- @if ($carte->vu === 0) --}}
                         <button class="btn btn-danger" type='button' name='valider' data-bs-toggle="modal"
                             data-bs-target="#staticBack">Refuser</button>
                         <button class="btn btn-success" type='button' name='valider' data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">Valider</button>
-                    @endif
+                    {{-- @endif --}}
                 </div>
             </div>
 

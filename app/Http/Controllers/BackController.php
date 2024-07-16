@@ -10,6 +10,7 @@ use App\Mail\userMail;
 use App\Models\Erreur;
 use App\Mail\refusMail;
 use App\Models\Regular;
+use App\Mail\ValidCarte;
 use Illuminate\View\View;
 use App\Models\Juridiction;
 use Illuminate\Http\Request;
@@ -35,7 +36,8 @@ class BackController extends Controller
     public function pdfGenerator(Regular $data){
         $dataArray = $data->toArray();
         $repex = Juridiction::where('codePays', '=', $dataArray['codePays'])->first();
-       /*  dd($data->carte()->get()->first()->toArray()); */
+        $data->carte()->get()->first()->update(['dateRemise' => date('Y-m-d'), 'dateExpiration' => date('Y-m-d', strtotime('+2 year')), 'valide' => true, 'vu'=>true]);
+        /* dd($data->carte()->get()->first()->toArray()); */
         $pdf = Pdf::loadView('pdf.sortie', ['repex' => $repex->repex()->get()->first()->toArray(), 'data' => $dataArray, 'carte' => $data->carte()->get()->first()->toArray()]);
 
         $pdf->setPaper('A5', 'landscape');
@@ -51,18 +53,9 @@ class BackController extends Controller
         // Enregistrez le PDF sur le serveur
         $pdf->save($path.$filename);
 
-        return $pdf->stream($filename);
-    }
+        Mail::to($data->email)->send(new ValidCarte('Bonjour', 'validation de la carte', $data->carte('numero')->get()->first()->numero));
 
-    public function valid( Request $request)
-    {
-        if ($request->has('refuser')){
-            return redirect()->route('back.refuser', ['id' => $request['refuser']]);
-        }
-        if ($request->has('valider')){
-            $slug = $request->valider;
-            return redirect()->route('back.pdfGenerator', ['slug' => $slug], 303);
-        }
+        return to_route('back.index')->with('success', 'La carte a été valider avec success');
     }
 
     public function refuserSend(refusRequest $request)

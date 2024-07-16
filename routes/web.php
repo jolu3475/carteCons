@@ -67,7 +67,4 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
     });
 });
 
-Route::get('/testPdf', function () {
-    $data = Regular::find(5);
-    return view('pdf.sortie', compact('data'));
-});
+Route::get('/verifCarte/{slug}', [AuthController::class, 'verifCarte'])->name('verifCarte');
