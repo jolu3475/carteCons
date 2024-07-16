@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Regular;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\validUser;
@@ -64,6 +65,11 @@ class AuthController extends Controller
             return redirect()->route('back.index');
         }
         return to_route('login.index')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
+    }
+
+    public function verifCarte ($slug) {
+        $regular = Regular::where('slug', '=', $slug)->first();
+        return view('verifCarte', compact('regular'));
     }
 
 }
