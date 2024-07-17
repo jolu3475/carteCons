@@ -56,7 +56,7 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
     Route::get('/userManag', 'userManag')->name('user');
     Route::post('/userManag', 'userDelete');
     Route::get('/create', 'create')->name('create');
-    Route::post('/create', 'createUrs');
+    Route::post('/create', 'createUrs')->name('createUsr');
 
     Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
 

@@ -19,6 +19,11 @@
 
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-5">
 
+            <div style="height: max-content; margin:0 0 20px 0!important;width:100%">
+                <img src="/storage/{{ $data->img }}"
+                    style="height: 75mm!important;margin:auto auto 40px auto!important;display:flex;border-radius:5px!important;justify-content:center;align-items:center;"
+                    alt="Votre photo">
+            </div>
 
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Nom</label>
@@ -129,16 +134,7 @@
                 </div>
             </div>
 
-            <div class="card mb-3" style="width: 557px;">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="d-flex">
-                            <img src="/storage/{{ $data->img }}" class="img-fluid rounded m-2" style="width: 555px;"
-                                alt="Votre photo">
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Envoyer le </label>
@@ -210,12 +206,12 @@
                 </div>
 
                 <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                    {{-- @if ($carte->vu === 0) --}}
-                        <button class="btn btn-danger" type='button' name='valider' data-bs-toggle="modal"
+                    @if ($carte->vu === 0)
+                        <button class="btn btn-danger" type='button' name='refuser' data-bs-toggle="modal"
                             data-bs-target="#staticBack">Refuser</button>
                         <button class="btn btn-success" type='button' name='valider' data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">Valider</button>
-                    {{-- @endif --}}
+                    @endif
                 </div>
             </div>
 

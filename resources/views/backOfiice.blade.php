@@ -120,7 +120,7 @@
             </div>
 
             {{-- The main content of the page --}}
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="overflow-y: auto!important; height:100%">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 h-100" style="overflow-y: auto!important; height:100%">
                 <div class="">
                     @yield('content')
                 </div>
@@ -128,27 +128,15 @@
                 {{-- Footer of the page --}}
                 <div class="container mt-auto">
                     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
-                        <p class="col-md-4 mb-0 text-body-secondary">Copyright <span>&copy;</span> 2024 Ministère des
+                        <p class="col-md-6 mb-0 text-body-secondary">Copyright <span>&copy;</span> 2024 Ministère des
                             Affaires Etrangères - Tous
                             droits réservés.</p>
 
-                        <a href="/"
-                            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                            Ministère des Affaires Etrangère
-                        </a>
-
-                        <ul class="nav col-md-4 justify-content-end">
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-                            </li>
-                            <li class="nav-item"><a href="#"
-                                    class="nav-link px-2 text-body-secondary">Features</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
-                            </li>
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-                            </li>
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a>
-                            </li>
-                        </ul>
+                        <div class="col-md-4 justify-content-end align-items-end">
+                            <a href="/" class="mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                                Ministère des Affaires Etrangère
+                            </a>
+                        </div>
                     </footer>
                 </div>
             </main>

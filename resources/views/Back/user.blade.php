@@ -17,17 +17,66 @@
             {{ session('success') }}
         </div>
     @endsession
+    @session('error')
+        <div class='alert alert-danger my-5'>
+            {{ session('error') }}
+        </div>
+    @endsession
 
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Gestion d'utilisateur</p>
 
     <div class=" rounded-3 p-5 shadow bg-info-subtle text-info-emphasis">
-
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-3">
+
+            <div class="modal fade modal-lg" id="staticBack" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Creer un nouvelle utilisateur</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="{{ route('back.createUsr') }}" method="post">
+                            <div class="modal-body">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Adresse email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputName" placeholder="email"
+                                            name="email" value={{ old('email', session('email')) }}>
+                                    </div>
+                                </div>
+                                @session('status')
+                                @endsession
+                                <div class="row mb-3">
+                                    <label for="inputPa" class="col-sm-2 col-form-label">Pays actuelle</label>
+                                    <div class="col-sm-8">
+                                        <select id="country" class='form-select' name="repex_id"
+                                            selected={{ old('codePays', session('codePays')) }}>
+                                            @foreach ($pays as $code)
+                                                <option value="{{ $code->id }}">
+                                                    {{ $code->label }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button class="btn btn-primary" type='submit' name='valider'>Créer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             @if ($user->role === 1)
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <p class="me-md-2 py-auto" type="button">Créer un nouvelle utilisateur</p>
-                    <a class="btn btn-primary" type="button" href="{{ route('back.create') }}">Créer</a>
+                    <button class="btn btn-primary" type='button' name='refuser' data-bs-toggle="modal"
+                        data-bs-target="#staticBack">Creer</button>
                 </div>
             @endif
 
@@ -36,6 +85,7 @@
                 <thead class=" bg-dark">
                     <tr>
                         <th>Username</th>
+                        <th>Repex</th>
                         <th>email</th>
                         <th>Date de creation</th>
                         <th>Activer</th>
@@ -49,6 +99,7 @@
                     @foreach ($data as $dat)
                         <tr>
                             <td>{{ $dat->name }}</td>
+                            <td>{{ $dat->repex_id }}</td>
                             <td>{{ $dat->email }}</td>
                             <td>{{ $dat->created_at }}</td>
                             <td>
@@ -132,5 +183,19 @@
         });
     </script>
 
+    {{--  <script>
+        var indicatifs = @json($indicatifs); // Convertit le tableau PHP en objet JavaScript
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#country').change(function() {
+                var selectedCountryCode = $(this).val();
+                var selectedCountryIndicatif = indicatifs[
+                    selectedCountryCode]; // Accède à l'indicatif via l'objet JavaScript
+                $('#indicatif').val(selectedCountryIndicatif);
+            });
+        });
+    </script> --}}
 
 @endsection

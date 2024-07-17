@@ -25,6 +25,7 @@ class createUsr extends FormRequest
     {
         return [
             'email' => ['required', 'email', 'unique:users'],
+            'repex_id' => ['required', 'exists:repexes,id', 'integer'],
         ];
     }
 
