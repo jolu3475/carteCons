@@ -4,7 +4,9 @@ use App\Models\Regular;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\PaysController;
 use App\Http\Controllers\beginController;
+use App\Http\Controllers\RepexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +66,15 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
         Route::get('/', 'setting')->name('view');
         Route::get('/edit', 'edit')->name('edit');
         Route::get('/notif', 'notif')->name('notif');
+    });
+});
+
+Route::prefix('/back/settingBack')->name('settingBack.')->middleware('auth')->group( function() {
+    Route::resource('/repex', RepexController::class)->except(['show', 'create']);
+    Route::resource('/pays', PaysController::class)->except(['show', 'create']);
+    Route::prefix('/juridiction')->name('juridiction')->controller(RepexController::class)->group(function(){
+        Route::delete('/remove', 'removeJurid')->name('remove');
+        Route::post('/add', 'addJurid')->name('add');
     });
 });
 

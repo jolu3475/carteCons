@@ -54,16 +54,7 @@ class AuthController extends Controller
         $data['email_verified_at'] = now();
         User::where('slug', '=', $slug['slug'])->update($data);
         $user = User::where('slug', '=', $slug['slug'])->first()->toArray();
-        $us['email'] = $user['email'];
-        $us['password'] = $slug['password'];
-        if (Auth::attempt($us)){
-            $us->session()->regenerate();
-            $sessionData['userid'] = $user['id'];
-            $sessionData['ip_address'] = $request->ip();
-            $sessionData['user_agent'] = $request->header('User-Agent');
-            Session::create($sessionData);
-            return redirect()->route('back.index');
-        }
+        $this->doLogin($user);
         return to_route('login.index')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
     }
 

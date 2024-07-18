@@ -183,19 +183,4 @@
         });
     </script>
 
-    {{--  <script>
-        var indicatifs = @json($indicatifs); // Convertit le tableau PHP en objet JavaScript
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#country').change(function() {
-                var selectedCountryCode = $(this).val();
-                var selectedCountryIndicatif = indicatifs[
-                    selectedCountryCode]; // Accède à l'indicatif via l'objet JavaScript
-                $('#indicatif').val(selectedCountryIndicatif);
-            });
-        });
-    </script> --}}
-
 @endsection

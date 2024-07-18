@@ -124,4 +124,18 @@ class BackController extends Controller
     {
         return view('back.setting.notif');
     }
+
+    public function param() :View
+    {
+        $repex = Repex::with('pays')->get();
+        $us = User::where('id', '=', Auth::id())->get()->first();
+        return view('Back.params.params', compact('repex', 'us'));
+    }
+
+    public function pays():View
+    {
+        $pays = Pays::all();
+        $us = User::where('id', '=', Auth::id())->get()->first();
+        return view('back.params.pays', compact('pays','us'));
+    }
 }

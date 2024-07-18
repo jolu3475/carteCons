@@ -27,9 +27,9 @@ class Repex extends Model
         return $this->belongsTo(Pays::class, 'codePays', 'code');
     }
 
-    public function juridiction(): HasOne
+    public function juridiction(): HasMany
     {
-        return $this->hasOne(Juridiction::class, 'repexId');
+        return $this->hasMany(Juridiction::class, 'repexId');
     }
 
 }

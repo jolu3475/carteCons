@@ -94,11 +94,23 @@
                                 <li class="nav-item">
                                     <a @class([
                                         'nav-link gap-2 my-2 rounded',
-                                        'active' => Str::startsWith($routeName, 'back.setting'),
+                                        'active' =>
+                                            Str::startsWith($routeName, 'back.setting') &&
+                                            !Str::startsWith($routeName, 'back.settingBack'),
                                         'not-active' => !Str::startsWith($routeName, 'back.setting'),
                                     ]) href={{ route('back.setting.view') }}>
                                         <i class="fas fa-solid fa-user-gear"></i>
                                         Paramètre compte
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a @class([
+                                        'nav-link gap-2 my-2 rounded',
+                                        'active' => Str::startsWith($routeName, 'settingBack'),
+                                        'not-active' => !Str::startsWith($routeName, 'settingBack'),
+                                    ]) href={{ route('settingBack.repex.index') }}>
+                                        <i class="fas fa-solid fa-gear"></i>
+                                        Paramètre
                                     </a>
                                 </li>
                                 <li class="nav-item">
