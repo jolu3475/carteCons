@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\RepexRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\juridictionRequest;
 
 class RepexController extends Controller
 {
@@ -67,7 +68,7 @@ class RepexController extends Controller
     public function update(RepexRequest $request, $id)
     {
         $repex = Repex::where('id' , $id)->first()->update($request->all());
-        return redirect()->route('settingBack.pays.index')->with('success', 'Modification effectuée avec succès');
+        return redirect()->route('settingBack.repex.index')->with('success', 'Modification effectuée avec succès');
     }
 
     /**
@@ -76,18 +77,27 @@ class RepexController extends Controller
     public function destroy(string $id)
     {
         $repex = Repex::where('id', $id)->first()->delete();
-        return redirect()->route('settingBack.pays.index')->with('success', 'Suppression effectuée avec succès');
-    }
-
-    public function removeJurid(Request $request)
-    {
-
         return redirect()->route('settingBack.repex.index')->with('success', 'Suppression effectuée avec succès');
     }
 
-    public function addJurid(Request $request)
+    public function removeJurid(juridictionRequest $request, $id)
     {
-        $jurid = Juridiction::create($request->all());
+        $pays = $request->validated();
+        foreach($pays['pays'] as $p){
+            Juridiction::where('codePays', $p)->where('repexId', $id)->delete();
+        }
+        return redirect()->route('settingBack.repex.index')->with('success', 'Suppression effectuée avec succès');
+    }
+
+    public function addJurid(juridictionRequest $request, $id)
+    {
+        $pays = $request->validated();
+        foreach($pays['pays'] as $p){
+            Juridiction::create([
+                'codePays' => $p,
+                'repexId' => $id
+            ]);
+        }
         return redirect()->route('settingBack.repex.index')->with('success', 'Ajout effectué avec succès');
     }
 }

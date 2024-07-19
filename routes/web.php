@@ -72,9 +72,9 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
 Route::prefix('/back/settingBack')->name('settingBack.')->middleware('auth')->group( function() {
     Route::resource('/repex', RepexController::class)->except(['show', 'create']);
     Route::resource('/pays', PaysController::class)->except(['show', 'create']);
-    Route::prefix('/juridiction')->name('juridiction')->controller(RepexController::class)->group(function(){
-        Route::delete('/remove', 'removeJurid')->name('remove');
-        Route::post('/add', 'addJurid')->name('add');
+    Route::prefix('/juridiction')->name('juridiction.')->controller(RepexController::class)->group(function(){
+        Route::delete('/remove/{id}', 'removeJurid')->name('remove');
+        Route::post('/add/{id}', 'addJurid')->name('add');
     });
 });
 

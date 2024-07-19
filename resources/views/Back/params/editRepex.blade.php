@@ -8,8 +8,25 @@
 
 @endsection
 
+{{-- @dd($repex->juridiction->first()) --}}
+
 @section('user')
 
+    @error('label')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
+    @error('adr')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
+    @error('email')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
+    @error('codePays')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
+    @error('pays')
+        <div class="alert alert-warning">{{ $message }} </div>
+    @enderror
     <div class="container-fluid">
         <form action="{{ route('settingBack.repex.update', $repex->id) }}" method="post">
             @csrf
@@ -96,6 +113,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                             <form action="{{ route('settingBack.repex.destroy', $repex->id) }}" method="post">
                                 @csrf
+                                @method('delete')
                                 <div class="col d-grid gap-2 d-md-flex justify-content-md-+end">
                                     <button class="btn btn-danger" type='submit' name='valider'>Supprimer</button>
                                 </div>
@@ -110,7 +128,7 @@
     <div class="container-fluid border border-primary-subtle rounded">
         <div class="row d-flex justify-content-between my-2">
             <div class="col-sm-10 d-flex align-items-center">
-                <p>Ajouter un Pays a sa juridiction</p>
+                <p>Ajouter un/des Pays a sa juridiction</p>
             </div>
             <div class="col-sm-2" style="width: fit-content">
                 <button type="button" class="btn btn-primary text-end" data-bs-toggle="modal"
@@ -135,7 +153,7 @@
                                     style="height: 150px">
                                     @foreach ($paysLib as $item)
                                         <div style="width:100%!important" class="m-1">
-                                            <input type="checkbox" name="pays" id="{{ $item->code }}"
+                                            <input type="checkbox" name="pays[]" id="{{ $item->code }}"
                                                 value="{{ $item->code }}">
                                             <label for="{{ $item->code }}">{{ $item->nom }}</label>
                                         </div>
@@ -145,7 +163,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                                 <div class="col justify-content-md-end">
-                                    <button class="btn btn-danger" type='submit' name='valider'>Ajouter</button>
+                                    <button class="btn btn-success" type='submit' name='valider'>Ajouter</button>
                                 </div>
                             </div>
                         </form>
@@ -169,12 +187,14 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
-                            <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Ajouter</h1>
+                            <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Supprimer des pays de la
+                                juridiction de {{ $repex->label }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <form action="{{ route('settingBack.juridiction.remove', $repex->id) }}" method="post">
                             @csrf
+                            @method('delete')
                             <div class="modal-body">
                                 <div class="row mb-3 mx-3">
                                     <label for="pays">Les Pays</label>
@@ -188,9 +208,9 @@
                                     @endif
                                     @foreach ($repex->juridiction as $item)
                                         <div style="width:100%!important" class="m-1">
-                                            <input type="checkbox" name="pays" id="{{ $item->code }}"
-                                                value="{{ $item->code }}">
-                                            <label for="{{ $item->code }}">{{ $item->nom }}</label>
+                                            <input type="checkbox" name="pays[]" id="{{ $item->codePays }}"
+                                                value="{{ $item->codePays }}">
+                                            <label for="{{ $item->codePays }}">{{ $item->pays?->nom }}</label>
                                         </div>
                                     @endforeach
                                 </div>
@@ -198,7 +218,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                                 <div class="col justify-content-md-end">
-                                    <button class="btn btn-danger" type='submit' name='valider'>Ajouter</button>
+                                    <button class="btn btn-danger" type='submit' name='valider'>Supprimer</button>
                                 </div>
                             </div>
                         </form>
