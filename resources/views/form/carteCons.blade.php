@@ -11,6 +11,13 @@
 @endsection
 
 @section('content')
+
+    @session('success')
+        <div class='alert alert-info my-4'>
+            {{ session('success') }}
+        </div>
+    @endsession
+
     <div class="row mb-3">
         <label for="inputName" class="col-sm-2 col-form-label">Nom<span class="red">*</span></label>
         <div class="col-sm-10">
@@ -115,8 +122,8 @@
     <div class="row mb-3">
         <label for="inputAdr" class="col-sm-2 col-form-label">Adresse actuelle<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAdr" placeholder="Votre adresse actuelle" name="adr"
-                value={{ old('adr', session('adr')) }}>
+            <input type="text" class="form-control" id="inputAdr" placeholder="Votre adresse actuelle"
+                name="adr" value={{ old('adr', session('adr')) }}>
         </div>
     </div>
     @error('adr')

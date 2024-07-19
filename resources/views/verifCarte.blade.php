@@ -41,28 +41,14 @@
     <div class="container">
         <div class="shadow p-5 mb-5 bg-body rounded form">
 
-            <div class="row border-bottom">
+            <h1 class="border border-secondary-subtle rounded p-2">Ceci est la carte N° <span
+                    class=" text-danger">{{ $regular->carte()->get('numero')->first()->numero }}</span> </h1>
 
-                <p class="h1 ti"><strong>Formulaire Carte consulaire</strong></p>
-                <blockquote class="blockquote">
-                    <p>@yield('note')</p>
-                    <p><span class="badge bg-primary">Note</span> tout les champs suivi
-                        par une étoile (<span class="red">*</span>)
-                        sont obligatoire</p>
-                </blockquote>
-
-            </div>
-
-
-            <form method="POST" @yield('action')>
-                @csrf
-
-                <div class="mt-3">
-                    @yield('content')
-                </div>
-
-            </form>
-            @yield('another')
+            <blockquote class="blockquote">
+                <p>Il appartient a {{ $regular->nom }} {{ $regular->prenom }} </p>
+                <p>Il a été devrirer le {{ $regular->carte()->get('dateRemise')->first()->dateRemise }}</p>
+                <p>Et il expire le {{ $regular->carte()->get('dateExpiration')->first()->dateExpiration }}</p>
+            </blockquote>
 
         </div>
     </div>

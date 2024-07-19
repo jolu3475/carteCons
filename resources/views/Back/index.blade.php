@@ -22,6 +22,13 @@
 
 
 @section('content')
+
+    @session('success')
+        <div class='alert alert-info my-4'>
+            {{ session('success') }}
+        </div>
+    @endsession
+
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Graphique de donnée</p>
 
     <div class=" rounded-3 p-4 shadow bg-info-subtle text-info-emphasis">
@@ -50,33 +57,29 @@
                 <tbody>
                     @foreach ($data as $user)
                         <tr>
-                            <td>{{ $user->numero }}</td>
-                            <td>{{ $user->regular()->get('nom')->first()->nom }}</td>
-                            <td>{{ $user->regular()->get('prenom')->first()->prenom }}</td>
+                            <td>{{ $user->carte()->get('numero')->first()->numero }}</td>
+                            <td>{{ $user->nom }}</td>
+                            <td>{{ $user->prenom }}</td>
                             <td>
-                                @if ($user->valide == 1)
+                                @if ($user->carte()->get('valide')->first()->valide == 1)
                                     <span class="badge bg-success">Valider</span>
                                 @else
                                     <span class="badge bg-danger">Non Valider</span>
                                 @endif
                             </td>
                             <td>
-                                @foreach ($dataPays as $p)
-                                    @if ($p['code'] === $user->regular()->get('codePays')->first()->codePays)
-                                        {{ $p['nom'] }}
-                                    @endif
-                                @endforeach
+                                {{ $user->pays()->get('nom')->first()->nom }}
 
                             </td>
                             <td>
-                                @if ($user->verifie === 1)
+                                @if ($user->carte()->get('vu')->first()->vu === 1)
                                     <span class="badge bg-success">Verifier</span>
                                 @else
                                     <span class="badge bg-danger">Non Verifier</span>
                                 @endif
                             </td>
                             <td>{{ $user->updated_at }}</td>
-                            <td><a href="{{ route('back.show', ['carte' => $user->id, 'user' => $user->regularId]) }}"
+                            <td><a href="{{ route('back.show', ['carte' => $user->carte()->get('id')->first()->id, 'user' => $user->id]) }}"
                                     class="btn btn-primary">Voir</a></td>
                         </tr>
                     @endforeach

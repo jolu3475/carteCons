@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('mail')
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ $subject }}</title>
-</head>
+@section('title', $subject)
 
-<body>
-
+@section('content')
     <h1> Bonjour </h1>
     <p>Votre demande a été refuse pour la raison suivante: <br>{{ $contenu }} </p>
     Veuiller clicker sur le boutton <a class="btn btn-primary" href="{{ $link }}">Modifier</a>
     <p>Cordialement,</p>
-
-</body>
-
-</html>
+@endsection

@@ -8,14 +8,14 @@
 
 @section('content')
 
-    <div class=" mt-3 p-5 rounded-3 bg-info-subtle ">
+    <div class=" mt-3 p-5 rounded-3 bg-info-subtle shadow">
         <div class="py-5">
             <p class="p-2 rounded h1 border border-primary-subtle">
                 Paramètre de votre compte </p>
         </div>
     </div>
 
-    <div class=" mx-4 p-5 mb-4 rounded-3 bg-info bg-gradient" style="margin-top: -50px">
+    <div class=" mx-4 p-5 mb-4 rounded-3 bg-body-secondary bg-gradient shadow" style="margin-top: -50px;">
         <ul class="nav justify-content-end">
             <div class="rounded border border-secondary-subtle inline-flex bg-dark-subtle">
                 <ul class="nav">

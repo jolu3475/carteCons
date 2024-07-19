@@ -24,7 +24,7 @@
     $routeName = request()->route()->getName();
 @endphp
 
-<body style="overflow: hidden">
+<body style="overflow: hidden" class=" bg-body-tertiary text-light-emphasis">
     {{-- The header of the page --}}
     <header class="navbar sticky-top bg-primary-subtle text-primary-emphasis flex-md-nowrap p-0">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Ministère des Affaires Etrangère</a>
@@ -51,7 +51,7 @@
     </header>
 
     {{-- Content of the page --}}
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row" style="height: calc(100vh - 35px)">
 
             {{-- The sidebar of the page --}}
@@ -72,7 +72,8 @@
                                         'active' => $routeName === 'back.index',
                                         'not-active' => $routeName !== 'back.index',
                                     ])>
-                                        Dashboard
+                                        <i class="fas fa-solid fa-address-card"></i>
+                                        Gestion des cartes
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -81,7 +82,8 @@
                                         'active' => Str::startsWith($routeName, 'back.user'),
                                         'not-active' => !Str::startsWith($routeName, 'back.user'),
                                     ]) href={{ route('back.user') }}>
-                                        Gestion d'utilisateur
+                                        <i class="fas fa-solid fa-users-gear"></i>
+                                        Gestion des utilisateurs
                                     </a>
                                 </li>
                             </ul>
@@ -92,10 +94,23 @@
                                 <li class="nav-item">
                                     <a @class([
                                         'nav-link gap-2 my-2 rounded',
-                                        'active' => Str::startsWith($routeName, 'back.setting'),
+                                        'active' =>
+                                            Str::startsWith($routeName, 'back.setting') &&
+                                            !Str::startsWith($routeName, 'back.settingBack'),
                                         'not-active' => !Str::startsWith($routeName, 'back.setting'),
                                     ]) href={{ route('back.setting.view') }}>
+                                        <i class="fas fa-solid fa-user-gear"></i>
                                         Paramètre compte
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a @class([
+                                        'nav-link gap-2 my-2 rounded',
+                                        'active' => Str::startsWith($routeName, 'settingBack'),
+                                        'not-active' => !Str::startsWith($routeName, 'settingBack'),
+                                    ]) href={{ route('settingBack.repex.index') }}>
+                                        <i class="fas fa-solid fa-gear"></i>
+                                        Paramètre
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -103,8 +118,10 @@
                                         @csrf
                                         @method('delete')
                                         <button class="nav-link d-flex align-items-center gap-2 not-active rounded"
-                                            type="submit">Se
-                                            deconnecter</button>
+                                            type="submit">
+                                            <i class="fas fa-solid fa-arrow-right-from-bracket"></i>
+                                            Se deconnecter
+                                        </button>
                                     </form>
                                 </li>
 
@@ -115,7 +132,7 @@
             </div>
 
             {{-- The main content of the page --}}
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="overflow-y: auto!important; height:100%">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 h-100" style="overflow-y: auto!important; height:100%">
                 <div class="">
                     @yield('content')
                 </div>
@@ -123,27 +140,15 @@
                 {{-- Footer of the page --}}
                 <div class="container mt-auto">
                     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
-                        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+                        <p class="col-md-6 mb-0 text-body-secondary">Copyright <span>&copy;</span> 2024 Ministère des
+                            Affaires Etrangères - Tous
+                            droits réservés.</p>
 
-                        <a href="/"
-                            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                            <svg class="bi me-2" width="40" height="32">
-                                <use xlink:href="#bootstrap" />
-                            </svg>
-                        </a>
-
-                        <ul class="nav col-md-4 justify-content-end">
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-                            </li>
-                            <li class="nav-item"><a href="#"
-                                    class="nav-link px-2 text-body-secondary">Features</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
-                            </li>
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-                            </li>
-                            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a>
-                            </li>
-                        </ul>
+                        <div class="col-md-4 justify-content-end align-items-end">
+                            <a href="/" class="mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                                Ministère des Affaires Etrangère
+                            </a>
+                        </div>
                     </footer>
                 </div>
             </main>

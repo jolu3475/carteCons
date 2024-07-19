@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Regular;
 use App\Models\Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\validUser;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +37,30 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return to_route('index');
+        return to_route('index')->with('success', 'logout success');
+    }
+
+    public function create($slug)
+    {
+        $user = User::where('slug', '=', $slug)->first();
+        return view('login.create', ['slug'=> $slug]);
+    }
+
+    public function createUsr(validUser $request)
+    {
+        $slug = $request->all();
+        $data = $request->validated();
+        $data['password'] =  bcrypt($data['password']);
+        $data['email_verified_at'] = now();
+        User::where('slug', '=', $slug['slug'])->update($data);
+        $user = User::where('slug', '=', $slug['slug'])->first()->toArray();
+        $this->doLogin($user);
+        return to_route('login.index')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
+    }
+
+    public function verifCarte ($slug) {
+        $regular = Regular::where('slug', '=', $slug)->first();
+        return view('verifCarte', compact('regular'));
     }
 
 }

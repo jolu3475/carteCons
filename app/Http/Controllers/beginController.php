@@ -164,7 +164,7 @@ class beginController extends Controller
 
         if(session()->has('update')){
             Regular::where('id', session('id'))->update($data);
-            Carte::where('regularId', session('id'))->update(['captchaId' => $captchaId], ['vu', false]);
+            Carte::where('regularId', session('id'))->update(['captchaId' => $captchaId, 'vu'=> false]);
         }else{
             Regular::create($data);
             $regularId =Regular::where('slug', $data['slug'])->first()->id;

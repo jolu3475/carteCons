@@ -1,9 +1,12 @@
 <?php
 
+use App\Models\Regular;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\PaysController;
 use App\Http\Controllers\beginController;
+use App\Http\Controllers\RepexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,19 +41,24 @@ Route::prefix('/login')->name('login.')->controller(AuthController::class)->grou
     Route::get('/', 'login')->name('index')->middleware(['guest']);
     Route::post('/', 'doLogin')->name('submit')->middleware(['guest']);
     Route::delete('/logout', 'logout')->name('logout')->middleware(['auth']);
+    Route::get('/create/{slug}', 'create')->name('create')->middleware(['guest']);
+    Route::post('/create/{slug}', 'createUsr')->middleware(['guest']);
 });
 
 Route::prefix('/back')->name('back.')->controller(BackController::class)->middleware(['auth'])->group( function() {
     Route::get('/', 'index')->name('index');
 
     Route::get('/show/{carte}-{user}', 'show')->name('show')->where(['carte' => '[0-9]+', 'user' => '[0-9]+']);
+    Route::post('/createpdf/{data}', 'pdfGenerator')->name('pdfGenerator');
     Route::post('/show', 'valid')->name('valid');
 
     Route::get('/refuser/{id}', 'refuser')->name('refuser');
     Route::post('/refuser', 'refuserSend')->name('refuserSend');
 
     Route::get('/userManag', 'userManag')->name('user');
+    Route::post('/userManag', 'userDelete');
     Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'createUrs')->name('createUsr');
 
     Route::get('/userManag/view/{email}', 'userProfile')->name('profile');
 
@@ -60,3 +68,14 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
         Route::get('/notif', 'notif')->name('notif');
     });
 });
+
+Route::prefix('/back/settingBack')->name('settingBack.')->middleware('auth')->group( function() {
+    Route::resource('/repex', RepexController::class)->except(['show', 'create']);
+    Route::resource('/pays', PaysController::class)->except(['show', 'create']);
+    Route::prefix('/juridiction')->name('juridiction.')->controller(RepexController::class)->group(function(){
+        Route::delete('/remove/{id}', 'removeJurid')->name('remove');
+        Route::post('/add/{id}', 'addJurid')->name('add');
+    });
+});
+
+Route::get('/verifCarte/{slug}', [AuthController::class, 'verifCarte'])->name('verifCarte');

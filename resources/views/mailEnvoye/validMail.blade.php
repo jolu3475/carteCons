@@ -5,7 +5,7 @@
 @section('content')
 
     <h1> {{ $contenu }} </h1>
-    <p>Voici votre numero de verification de mail: {{ $numVer }} </p>
+    <p>Voici votre carte consulaire en pièce jointe.</p>
     <p>Cordialement,</p>
 
 @endsection
