@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-/* use Illuminate\Validation\Rule; */
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RepexRequest extends FormRequest
+class PaysRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,9 @@ class RepexRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'label' => ['required', 'string', 'max:255', Rule::unique('repex')->ignore($this->repex)],
-                'codePays' => ['required', 'string' , 'max:2', Rule::unique('repex')->ignore($this->repex)],
-                'adr' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255'],
+            'code' => ['required', 'string', 'max:2', Rule::unique('pays')->ignore($this->code, 'code'),'uppercase'],
+            'nom' => ['required', 'string', 'max:255', Rule::unique('pays')->ignore( $this->code, 'code')],
+            'indicatif' => ['required', 'string', 'max:4', 'min:4'],
         ];
     }
 }

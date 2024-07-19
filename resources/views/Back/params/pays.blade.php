@@ -41,7 +41,74 @@
 
 @endsection
 
+{{-- @dd($pays->first()) --}}
+
 @section('user')
+
+    @session('success')
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endsession
+    @error('code')
+        <div class="alert alert-warning">{{ $message }} </div>
+    @enderror
+    @error('nom')
+        <div class="alert alert-warning">{{ $message }} </div>
+    @enderror
+    @error('indicatif')
+        <div class="alert alert-warning">{{ $message }} </div>
+    @enderror
+
+    @if ($us->role === 1)
+        <div class="row">
+            <p class="col">Créer un nouveau Pays</p>
+            <div class="col d-flex justify-content-end">
+                <button type="button" class="btn btn-primary text-end" data-bs-toggle="modal"
+                    data-bs-target="#modalDel">Créer</button>
+            </div>
+        </div>
+        <div class="modal fade" id="modalDel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Créer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('settingBack.pays.store') }}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row mb-3">Créer un nouveau Pays</div>
+                            <div class="row mb-3">
+                                <label for="label" class="col-sm-2 col-form-label">Code du Pays</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="code" name="code"
+                                        value="{{ old('code') }}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="adr" class="col-sm-2 col-form-label">Nom</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nom" name="nom"
+                                        value="{{ old('nom') }}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-2 col-form-label">Indicatif</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="indicatif" name="indicatif"
+                                        value="{{ old('indicatif') }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Créer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <table id="example" class="table table-striped nowrap p-3 caption-top" style="width:100%">
         <caption>Liste des Pays dans le database</caption>
@@ -62,36 +129,24 @@
                     <td>{{ $dat->code }}</td>
                     <td>{{ $dat->nom }}</td>
                     <td>{{ $dat->indicatif }}</td>
-                    <td>{{ $dat->juridiction?->repex_id }}</td>
+                    @php
+                        $test = 0;
+                    @endphp
+                    @foreach ($juridictions as $juri)
+                        @if ($juri->codePays === $dat->code)
+                            @php
+                                $test = 1;
+                            @endphp
+                            <td>{{ $juri->repex?->label }}</td>
+                        @endif
+                        @if ($juridictions->last() === $juri && $test === 0)
+                            <td>Aucune Juridictions</td>
+                        @endif
+                    @endforeach
                     @if ($us->role === 1)
                         <td>
-                            <button type="button" class="btn btn-danger" data-bs-toggle='modal'
-                                data-bs-target="#modal">Supprimer</button>
-                            <div class="modal fade" id="modal"data-bs-backdrop="static" data-bs-keyboard="false"
-                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer
-                                                {{ $dat->name }}</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Vouller-vous vraiment supprimer {{ $dat->nom }} ?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Annuler</button>
-                                            <form action="" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger" value='{{ $dat->id }}'
-                                                    name="id">Supprimer</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a type="submit" class="btn btn-primary"
+                                href="{{ route('settingBack.pays.edit', $dat->code) }}">Modifier</a>
 
                         </td>
                     @endif
