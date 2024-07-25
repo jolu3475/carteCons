@@ -35,7 +35,7 @@ class carteRequest extends FormRequest
             'adr' => ['required', 'string'],
             'codePays' => ['required', 'string'],
             'tel' => ['required', 'string', 'regex:/^[\d]{5,15}$/', ],
-            'numPass' => ['required', 'string', 'regex:/^(MG)[0-9]{7}$/', Rule::unique('regulars')->ignore(session('slug'), 'slug')],
+            'numPass' => ['required', 'string', 'regex:/^(MG)[0-9]{7}$/', Rule::unique('regulars')->ignore(session('id'), 'id')],
             'expPass' => ['required', 'date', 'after:today'],
             'arrExt' => ['required', 'date', 'before:today'],
         ];

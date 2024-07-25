@@ -72,12 +72,12 @@ class beginController extends Controller
     {
         if ($request->has('verifier')){
             /** @var UploadedFile $image */
-            if (session('image')!== null){
-                Storage::disk('public')->delete(session('image'));
+            if (session('img')!== null){
+                Storage::disk('public')->delete(session('img'));
             }
             $image=$request->validated('image');
             $imagePath = $image->store('photo', 'public');
-            session(['image' => $imagePath]);
+            session(['img' => $imagePath]);
             return redirect()->route('form.image');
         }
         if ($request->has('suivant')){

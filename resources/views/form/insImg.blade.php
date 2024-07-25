@@ -15,7 +15,7 @@
         <button class="btn btn-outline-secondary" id="inputGroupFileAddon03" type="submit" name='verifier'>Verifier<span
                 class="red">*</span></button>
         <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
-            aria-label="Envoye" name="image" value{{ old('image', session('image')) }}>
+            aria-label="Envoye" name="image" value{{ old('img', session('img')) }}>
     </div>
 
     <div class="card mb-3" style="max-width: 540px;">

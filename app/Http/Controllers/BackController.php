@@ -46,7 +46,7 @@ class BackController extends Controller
         $pdfContent = $pdf->output();
 
         // Définissez le nom du fichier et le chemin où il sera sauvegardé
-        $numero = $data->carte()->get('numero')->first()->numero;
+        $numero = $data->carte?->numero;
         $filename = "{$numero}.pdf";
         $path = public_path('pdf/');
 
@@ -60,15 +60,16 @@ class BackController extends Controller
 
     public function refuserSend(refusRequest $request)
     {
-        $toEmail = Carte::where('id', '=', $request->valider)->first()->regular()->get('email')->first()->email;
-        $id = Carte::where('id', '=', $request->valider)->first()->regular()->get('id')->first()->id;
+        $test = Carte::where('regularId', $request->valider)->first()->id;
+        $toEmail = Carte::where('regularId', '=', $request->valider)->first()->regular?->email;
+        $id = Carte::where('regularId', $request->valider)->first()->regular?->id;
         $subject = 'Refus de votre carte';
         $contenu = $request->validated();
-        $slug = Carte::where('id', '=', $request->valider)->first()->regular()->get('slug')->first()->slug;
+        $slug = Carte::where('regularId', '=', $request->valider)->first()->regular?->slug;
         $link = route('form.index', ['slug' => $slug]);
         Mail::to($toEmail)->send(new refusMail($contenu['Raison'], $subject, $link));
-        Erreur::create(['carteId' => $request->valider, 'regularId' => $id ,'contenu' => $contenu['Raison']]);
-        Carte::where('id', '=', $request->valider)->update(['vu' => true]);
+        Erreur::create(['carteId' => $test, 'regularId' => $id ,'contenu' => $contenu['Raison']]);
+        Carte::where('id', $test)->update(['vu' => true]);
         return to_route('back.index')->with('success', 'Valeur verifier avec succès');
     }
 
