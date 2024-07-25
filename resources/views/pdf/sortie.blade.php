@@ -6,14 +6,14 @@
     <title>@yield('title')</title>
     <style>
         * {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Lato', sans-serif;
             margin: 0 !important;
             padding: 0 !important;
         }
 
         .contenu-a5 {
             max-width: 210mm !important;
-            height: 148mm !important;
+            height: 140mm !important;
             overflow: hidden;
             box-sizing: border-box;
             padding-top: 20px !important;
@@ -58,7 +58,7 @@
                         <div style="width: fit-content; padding:0 40px!important">
                             <div style="height: max-content; margin:0 0 20px 0!important;width:fit-content">
                                 @php
-                                    $path = asset('/storage' . $data['img']);
+                                    $path = asset('/storage/' . $data['img']);
                                 @endphp
                                 <img src="{{ $path }}"
                                     style="height: 50mm!important;margin:auto 0!important;display:flex;border-radius:5px!important;border:2px solid black;justify-content:center;align-items:center;"
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </td>
-                    <td style="width: 100%">
+                    <td style="width: 100%; z-index:1">
                         <h3 style="font-size: 20px;margin-bottom:10px;color:red">Carte Consulaire /
                             Consular Card
                         </h3>
@@ -88,6 +88,12 @@
                         <p class="i-text">Adresse / Address</p>
                         <p class="b-text">{{ $data['adr'] }}</p>
                     </td>
+                    <div style="position:absolute!important;z-index:-1; right:20px">
+                        <img src="{{ asset('image/carte.png') }}" alt=""
+                            style="width:75mm!important;z-index:-1;">
+                        {{-- <img src="{{ asset('image/gov-card-filigram copy.svg') }}" alt=""
+                            style="width:75mm!important;z-index:-1;"> --}}
+                    </div>
                 </tr>
             </tbody>
         </table>
@@ -117,9 +123,12 @@
                             <p class="b-text">{{ $repex['email'] }}</p>
                         </div>
                     </td>
-                    <td style="width: 100%">
+                    <td style="width: 100%;">
                         <div>
                             {!! DNS2D::getBarcodeHTML(route('verifCarte', $data['slug']), 'QRCODE', 5, 5) !!}
+                        </div>
+                        <div style="position: absolute;bottom: 10mm;">
+                            <p class="b-text">{{ $repex['email'] }}</p>
                         </div>
                     </td>
                 </tr>
