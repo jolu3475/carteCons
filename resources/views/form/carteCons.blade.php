@@ -21,8 +21,8 @@
     <div class="row mb-3">
         <label for="inputName" class="col-sm-2 col-form-label">Nom<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" placeholder="Votre Nom" name="nom"
-                value={{ old('nom', session('nom')) }}>
+            <input type="text" class="form-control @error('nom') is-invalid @enderror " id="inputName"
+                placeholder="Votre Nom" name="nom" value={{ old('nom', session('nom')) }}>
         </div>
     </div>
     @error('nom')
@@ -35,8 +35,8 @@
     <div class="row mb-3">
         <label for="inputPrenom" class="col-sm-2 col-form-label">Prénom<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPrenom" placeholder="Votre Prénom" name="prenom"
-                value={{ old('prenom', session('prenom')) }}>
+            <input type="text" class="form-control @error('prenom') is-invalid @enderror" id="inputPrenom"
+                placeholder="Votre Prénom" name="prenom" value={{ old('prenom', session('prenom')) }}>
         </div>
     </div>
     @error('prenom')
@@ -49,8 +49,8 @@
     <div class="row mb-3">
         <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance<span class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="inputDate" name="dateNais" max="{{ today()->toDateString() }}"
-                value={{ old('dateNais', session('dateNais')) }}>
+            <input type="date" class="form-control @error('dateNais') is-invalid @enderror" id="inputDate"
+                name="dateNais" max="{{ today()->toDateString() }}" value={{ old('dateNais', session('dateNais')) }}>
         </div>
     </div>
     @error('dateNais')
@@ -63,8 +63,8 @@
     <div class="row mb-3">
         <label for="inputLieu" class="col-sm-2 col-form-label">Lieu de naissance<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputLieu" name="lieuNais" placeholder="Votre Lieu de naissance"
-                value={{ old('lieuNais', session('lieuNais')) }}>
+            <input type="text" class="form-control @error('lieuNais') is-invalid @enderror" id="inputLieu"
+                name="lieuNais" placeholder="Votre Lieu de naissance" value={{ old('lieuNais', session('lieuNais')) }}>
         </div>
     </div>
     @error('lieuNais')
@@ -84,18 +84,12 @@
             </select>
         </div>
     </div>
-    @error('sitMat')
-        <div class="alert alert-warning" role="alert">
-            <i class="fas fa-solid fa-triangle-exclamation"></i>
-            {{ ' ' . $message }}
-        </div>
-    @enderror
 
     <div class="row mb-3">
         <label for="inputProf" class="col-sm-2 col-form-label">Profession<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputProf" placeholder="Votre Profession" name="proffession"
-                value={{ old('proffession', session('proffession')) }}>
+            <input type="text" class="form-control @error('proffession') is-invalid @enderror" id="inputProf"
+                placeholder="Votre Profession" name="proffession" value={{ old('proffession', session('proffession')) }}>
         </div>
     </div>
     @error('proffession')
@@ -108,7 +102,7 @@
     <div class="row mb-3">
         <label for="inputEnf" class="col-sm-2 col-form-label">Nombre d'enfants</label>
         <div class="col-sm-2">
-            <input type="number" class="form-control" id="inputEnf" name="nbEnf"
+            <input type="number" class="form-control @error('nbEnf') is-invalid @enderror" id="inputEnf" name="nbEnf"
                 value={{ old('nbEnf', session('nbEnf')) }} min="0">
         </div>
     </div>
@@ -122,8 +116,8 @@
     <div class="row mb-3">
         <label for="inputAdr" class="col-sm-2 col-form-label">Adresse actuelle<span class="red">*</span></label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAdr" placeholder="Votre adresse actuelle"
-                name="adr" value={{ old('adr', session('adr')) }}>
+            <input type="text" class="form-control @error('adr') is-invalid @enderror" id="inputAdr"
+                placeholder="Votre adresse actuelle" name="adr" value={{ old('adr', session('adr')) }}>
         </div>
     </div>
     @error('adr')
@@ -162,8 +156,9 @@
                         <option value="{{ $indicatif }}">{{ $indicatif }}</option>
                     @endforeach
                 </select>
-                <input type="tel" class="form-control" placeholder="Votre Numéro de téléphone" name="tel"
-                    pattern="^[0-9]+$" value="{{ old('tel', session('tel')) }}">
+                <input type="tel" class="form-control @error('tel') is-invalid @enderror"
+                    placeholder="Votre Numéro de téléphone" name="tel" pattern="^[0-9]+$"
+                    value="{{ old('tel', session('tel')) }}">
             </div>
         </div>
     </div>
@@ -177,8 +172,9 @@
     <div class="row mb-3">
         <label for="inputPass" class="col-sm-2 col-form-label">Numéro passeport<span class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="numerique" class="form-control" id="inputPass" placeholder="Votre Numéro passport"
-                name="numPass" value='{{ strtoupper(old('numPass', session('numPass'))) }}'
+            <input type="numerique" class="form-control @error('numPass') is-invalid @enderror" id="inputPass"
+                placeholder="Votre Numéro passport" name="numPass"
+                value='{{ strtoupper(old('numPass', session('numPass'))) }}'
                 oninput="this.value = this.value.toUpperCase()">
         </div>
     </div>
@@ -193,8 +189,8 @@
         <label for="inputExpPass" class="col-sm-2 col-form-label">Date d'expiration passport<span
                 class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="inputExpPass" name="expPass"
-                value={{ old('expPass', session('expPass')) }}>
+            <input type="date" class="form-control @error('expPass') is-invalid @enderror" id="inputExpPass"
+                name="expPass" value={{ old('expPass', session('expPass')) }}>
         </div>
     </div>
     @error('expPass')
@@ -208,8 +204,8 @@
         <label for="inputDateArr" class="col-sm-2 col-form-label">Date d'arrivée à l'étranger<span
                 class="red">*</span></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="inputDateArr" name="arrExt"
-                value='{{ old('arrExt', session('arrExt')) }}' max="{{ today()->toDateString() }}">
+            <input type="date" class="form-control @error('arrExt') is-invalid @enderror" id="inputDateArr"
+                name="arrExt" value='{{ old('arrExt', session('arrExt')) }}' max="{{ today()->toDateString() }}">
         </div>
     </div>
     @error('arrExt')

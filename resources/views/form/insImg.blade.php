@@ -22,7 +22,7 @@
         <div class="row g-0">
             <div class="col-md-4">
                 @session('img')
-                    <img src='/storage/{{ session('img') }}' class="img-fluid rounded m-2" style="width: 555px"
+                    <img src={{ asset('/storage/' . session('img')) }} class="img-fluid rounded m-2" style="width: 555px"
                         alt="Votre photo">
                 @else
                     <img src={{ asset('image/person.gif') }} class="img-fluid rounded m-2" style="width: 555px"
