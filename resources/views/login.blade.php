@@ -32,7 +32,7 @@
 <body class="text-center bg-tertiary-subtle">
 
     <main class="form-signin shadow p-3 bg-body rounded form bg-info-subtle border-primary-subtle">
-        <form method="POST">
+        <form method="POST" action="@yield('action')">
 
             @csrf
 

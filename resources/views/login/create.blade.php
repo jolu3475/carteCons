@@ -4,10 +4,9 @@
 
 @section('name', 'Créer un compte')
 
+@section('action', route('login.createUsr', ['user' => $id]))
+
 @section('content')
-
-    <input type="hidden" name="slug" value="{{ $slug }}">
-
 
     <div class="form-floating">
         <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name"

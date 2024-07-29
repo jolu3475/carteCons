@@ -118,7 +118,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($dat->email_verified_at !== null)
+                                @if ($dat->name !== null)
                                     {{ $dat->email_verified_at }}
                                 @else
                                     Pas encore activer

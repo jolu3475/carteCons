@@ -3,8 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Repex;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,6 +62,11 @@ class User extends Authenticatable
     public function erreurs(): HasMany
     {
         return $this->hasMany(Erreur::class, 'userId');
+    }
+
+    public function repex (): HasOne
+    {
+        return $this->hasOne(Repex::class, 'id', 'repex_id');
     }
 
 }

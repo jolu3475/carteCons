@@ -42,20 +42,20 @@ class AuthController extends Controller
 
     public function create($slug)
     {
-        $user = User::where('slug', '=', $slug)->first();
-        return view('login.create', ['slug'=> $slug]);
+        $user = User::where('slug',  $slug)->first();
+        return view('login.create', ['id'=> $user->id]);
     }
 
-    public function createUsr(validUser $request)
+    public function createUsr(validUser $request, User $user)
     {
-        $slug = $request->all();
+        $id = $user->id;
         $data = $request->validated();
         $data['password'] =  bcrypt($data['password']);
-        $data['email_verified_at'] = now();
-        User::where('slug', '=', $slug['slug'])->update($data);
-        $user = User::where('slug', '=', $slug['slug'])->first()->toArray();
-        $this->doLogin($user);
-        return to_route('login.index')->withErrors(['loginFailed' => 'information error'])->onlyInput('email');
+        $data['email_verified_at'] = today()->toDateString() ;
+
+        $user->update($data);
+
+        return to_route('login.index');
     }
 
     public function verifCarte ($slug) {
