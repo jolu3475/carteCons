@@ -6,12 +6,21 @@
 @section('css')
     {{-- css pour datatables --}}
     <link rel="stylesheet" href="{{ asset('datatables/css/dataTables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('datatables/css/responsive.bootstrap5.css') }}">
+    <style>
+        table.dataTable tbody td {
+            white-space: normal !important;
+            /* Permet au texte de passer à la ligne suivante */
+            vertical-align: top !important;
+            /* Alignement vertical au top pour une meilleure lisibilité */
+        }
+    </style>
 
     {{-- call of the js --}}
     <script src="{{ asset('jquery/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('datatables/js/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('datatables/js/responsive.bootstrap5.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.buttons.js') }}"></script>
     <script src="{{ asset('datatables/js/jszip.min.js') }}"></script>
     <script src="{{ asset('datatables/js/pdfmake.min.js') }}"></script>
@@ -57,30 +66,30 @@
                 <tbody>
                     @foreach ($data as $user)
                         <tr>
-                            <td>{{ $user->carte()->get('numero')->first()->numero }}</td>
+                            <td>{{ $user->carte?->numero }}</td>
                             <td>{{ $user->nom }}</td>
                             <td>{{ $user->prenom }}</td>
                             <td>
-                                @if ($user->carte()->get('valide')->first()->valide == 1)
+                                @if ($user->carte?->valide == 1)
                                     <span class="badge bg-success">Valider</span>
                                 @else
                                     <span class="badge bg-danger">Non Valider</span>
                                 @endif
                             </td>
                             <td>
-                                {{ $user->pays()->get('nom')->first()->nom }}
+                                {{ $user->pays?->nom }}
 
                             </td>
                             <td>
-                                @if ($user->carte()->get('vu')->first()->vu === 1)
+                                @if ($user->carte?->vu === 1)
                                     <span class="badge bg-success">Verifier</span>
                                 @else
                                     <span class="badge bg-danger">Non Verifier</span>
                                 @endif
                             </td>
                             <td>{{ $user->updated_at }}</td>
-                            <td><a href="{{ route('back.show', ['carte' => $user->carte()->get('id')->first()->id, 'user' => $user->id]) }}"
-                                    class="btn btn-primary">Voir</a></td>
+                            <td><a href="{{ route('back.show', ['user' => $user->id]) }}" class="btn btn-primary">Voir</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -115,7 +124,6 @@
                 "searching": true,
                 "paging": true,
                 "info": true,
-                "autoWidth": false,
                 "responsive": true,
                 "buttons": {
                     "dom": {

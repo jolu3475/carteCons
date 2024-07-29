@@ -6,7 +6,7 @@
 
     {{-- @dd($carte) --}}
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Le numero de la carte est <span
-            class=" text-danger">{{ $data->carte()->get('numero')->first()->numero }}</span></p>
+            class=" text-danger">{{ $data->carte?->numero }}</span></p>
 
     @error('Raison')
         <div class="alert alert-warning" role="alert">
@@ -20,7 +20,7 @@
         <div class="container bg-transparent text-body border border-primary-subtle rounded-3 p-5">
 
             <div style="height: max-content; margin:0 0 20px 0!important;width:100%">
-                <img src="/storage/{{ $data->img }}"
+                <img src={{ asset('/storage/' . $data->img) }}
                     style="height: 75mm!important;margin:auto auto 40px auto!important;display:flex;border-radius:5px!important;justify-content:center;align-items:center;"
                     alt="Votre photo">
             </div>
@@ -140,7 +140,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Envoyer le </label>
                 <div class="col-sm-10 border border-primary-subtle rounded-3">
                     <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                        value={{ $carte->created_at }}>
+                        value={{ $data->carte?->created_at }}>
                 </div>
             </div>
 
@@ -150,7 +150,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Valider la carte numero
-                                {{ $data->carte()->get('numero')->first()->numero }}</h1>
+                                {{ $data->carte?->numero }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -175,7 +175,7 @@
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Pourquoi voullez-vous refuser la carte
                                 numero
-                                {{ $data->carte()->get('numero')->first()->numero }}</h1>
+                                {{ $data->carte?->numero }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -206,7 +206,7 @@
                 </div>
 
                 <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-                    @if ($carte->vu === 0)
+                    @if ($data->carte?->vu === 0)
                         <button class="btn btn-danger" type='button' name='refuser' data-bs-toggle="modal"
                             data-bs-target="#staticBack">Refuser</button>
                         <button class="btn btn-success" type='button' name='valider' data-bs-toggle="modal"
