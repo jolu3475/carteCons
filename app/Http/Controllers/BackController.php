@@ -83,7 +83,11 @@ class BackController extends Controller
         $data = $request->validated();
         $data['name'] = $request->input('name');
         $data['role'] = $request->input('role');
-        $data['slug'] = $request->input('slug');
+
+        $secret = 'CléSecret';
+        $slug = $request->input('slug');
+        $hmac = hash_hmac('sha256', $slug, $secret);
+        $data['slug'] = rtrim(strtr(base64_encode($hmac), '+/', '-_'), '=');
 
         User::create($data);
         Mail::to($data['email'])->send(new userMail('Bonjour', 'Création de compte', route('login.create', ['slug' => $data['slug']])));
