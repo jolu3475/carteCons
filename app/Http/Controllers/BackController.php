@@ -28,9 +28,9 @@ class BackController extends Controller
         return view('back.index', ['data' => $users]);
     }
 
-    public function show(Carte $carte ,Regular $user): View
+    public function show(Regular $user): View
     {
-        return view('back.show', ['carte' => $carte ,'data' => $user]);
+        return view('back.show', ['data' => $user]);
     }
 
     public function pdfGenerator(Regular $data){

@@ -7,6 +7,14 @@
     {{-- css pour datatables --}}
     <link rel="stylesheet" href="{{ asset('datatables/css/dataTables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('datatables/css/responsive.bootstrap5.css') }}">
+    <style>
+        table.dataTable tbody td {
+            white-space: normal !important;
+            /* Permet au texte de passer à la ligne suivante */
+            vertical-align: top !important;
+            /* Alignement vertical au top pour une meilleure lisibilité */
+        }
+    </style>
 
 @endsection
 
@@ -177,7 +185,6 @@
                 "searching": true,
                 "paging": true,
                 "info": true,
-                "autoWidth": false,
                 "responsive": true
             });
         });
