@@ -26,7 +26,7 @@
 
 <body style="overflow: hidden" class=" bg-body-tertiary text-light-emphasis">
     {{-- The header of the page --}}
-    <header class="navbar sticky-top bg-primary text-primary-emphasis flex-md-nowrap p-0">
+    <header class="navbar sticky-top bg-primary-subtle text-primary-emphasis flex-md-nowrap p-0">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Ministère des Affaires Etrangère</a>
 
         <ul class="navbar-nav flex-row d-md-none">
@@ -56,7 +56,7 @@
 
             {{-- The sidebar of the page --}}
             <div class="sidebar col-md-3 col-lg-2 p-0 p-3">
-                <div class=" bg-emerald-300 h-100 rounded bg-primary text-light">
+                <div class=" bg-emerald-300 h-100 rounded bg-primary-subtle text-light">
                     <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu"
                         aria-labelledby="sidebarMenuLabel">
                         <div class="offcanvas-header">
