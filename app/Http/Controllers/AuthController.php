@@ -51,7 +51,7 @@ class AuthController extends Controller
         $id = $user->id;
         $data = $request->validated();
         $data['password'] =  bcrypt($data['password']);
-        $data['email_verified_at'] = today()->toDateString() ;
+        $data['email_verified_at'] = now()->toDateTimeString() ;
 
         $user->update($data);
 
