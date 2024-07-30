@@ -26,7 +26,7 @@
 
 <body style="overflow: hidden" class=" bg-body-tertiary text-light-emphasis">
     {{-- The header of the page --}}
-    <header class="navbar sticky-top bg-primary-subtle text-primary-emphasis flex-md-nowrap p-0">
+    <header class="navbar sticky-top bg-primary text-primary-emphasis flex-md-nowrap p-0">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Ministère des Affaires Etrangère</a>
 
         <ul class="navbar-nav flex-row d-md-none">
@@ -56,11 +56,12 @@
 
             {{-- The sidebar of the page --}}
             <div class="sidebar col-md-3 col-lg-2 p-0 p-3">
-                <div class=" bg-emerald-300 h-100 rounded bg-primary-subtle text-primary-emphasis">
+                <div class=" bg-emerald-300 h-100 rounded bg-primary text-light">
                     <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu"
                         aria-labelledby="sidebarMenuLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="sidebarMenuLabel">Ministère des Affaires Etrangère</h5>
+                            <h5 class="offcanvas-title" id="sidebarMenuLabel" class="text-light">Ministère des Affaires
+                                Etrangère</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                 data-bs-target="#sidebarMenu" aria-label="Close"></button>
                         </div>
@@ -68,7 +69,7 @@
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a href="{{ route('back.index') }}" @class([
-                                        'nav-link gap-2 my-2 rounded',
+                                        'nav-link gap-2 my-2 rounded text-body',
                                         'active' => $routeName === 'back.index',
                                         'not-active' => $routeName !== 'back.index',
                                     ])>
@@ -78,7 +79,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a @class([
-                                        'nav-link gap-2 my-2 rounded',
+                                        'nav-link gap-2 my-2 rounded text-body',
                                         'active' => Str::startsWith($routeName, 'back.user'),
                                         'not-active' => !Str::startsWith($routeName, 'back.user'),
                                     ]) href={{ route('back.user') }}>
@@ -93,7 +94,7 @@
                             <ul class="nav flex-column mb-auto mb-auto">
                                 <li class="nav-item">
                                     <a @class([
-                                        'nav-link gap-2 my-2 rounded',
+                                        'nav-link gap-2 my-2 rounded text-body',
                                         'active' =>
                                             Str::startsWith($routeName, 'back.setting') &&
                                             !Str::startsWith($routeName, 'back.settingBack'),
@@ -105,7 +106,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a @class([
-                                        'nav-link gap-2 my-2 rounded',
+                                        'nav-link gap-2 my-2 rounded text-body',
                                         'active' => Str::startsWith($routeName, 'settingBack'),
                                         'not-active' => !Str::startsWith($routeName, 'settingBack'),
                                     ]) href={{ route('settingBack.repex.index') }}>
@@ -117,7 +118,8 @@
                                     <form action={{ route('login.logout') }} method="post">
                                         @csrf
                                         @method('delete')
-                                        <button class="nav-link d-flex align-items-center gap-2 not-active rounded"
+                                        <button
+                                            class="nav-link d-flex align-items-center gap-2 not-active rounded text-body"
                                             type="submit">
                                             <i class="fas fa-solid fa-arrow-right-from-bracket"></i>
                                             Se deconnecter
