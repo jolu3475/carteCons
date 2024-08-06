@@ -20,7 +20,7 @@ class RepexController extends Controller
     public function index()
     {
         $repex = Repex::with('pays')->get();
-        $paysNonUtilises = $repex->pluck('codePays');
+        $paysNonUtilises = $repex->pluck('paysId');
         $pays = Pays::whereNotIn('code', $paysNonUtilises)->orderBy('nom', 'asc')->get();
         $us = User::where('id', '=', Auth::id())->get()->first();
         return view('Back.params.params', compact('repex', 'us', 'pays'));
@@ -57,7 +57,7 @@ class RepexController extends Controller
     public function edit(Repex $repex)
     {
         $pays = Pays::orderBy('nom','asc')->get();
-        $paysNonUtilises = Juridiction::pluck('codePays');
+        $paysNonUtilises = Juridiction::pluck('paysId');
         $paysLib = Pays::whereNotIn('code', $paysNonUtilises)->orderBy('nom', 'asc')->get();
         return view('Back.params.editRepex', compact('repex', 'pays', 'paysLib'));
     }
@@ -84,7 +84,7 @@ class RepexController extends Controller
     {
         $pays = $request->validated();
         foreach($pays['pays'] as $p){
-            Juridiction::where('codePays', $p)->where('repexId', $id)->delete();
+            Juridiction::where('paysId', $p)->where('repexId', $id)->delete();
         }
         return redirect()->route('settingBack.repex.index')->with('success', 'Suppression effectuée avec succès');
     }
@@ -94,7 +94,7 @@ class RepexController extends Controller
         $pays = $request->validated();
         foreach($pays['pays'] as $p){
             Juridiction::create([
-                'codePays' => $p,
+                'paysId' => $p,
                 'repexId' => $id
             ]);
         }

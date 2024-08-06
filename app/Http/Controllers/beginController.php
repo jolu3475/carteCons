@@ -30,7 +30,7 @@ class beginController extends Controller
             foreach ($datas as $key => $value) {
                 if (!in_array($key, $keysToKeep)) {
                     if($key === 'pays'){
-                        session(['codePays' => $value]);
+                        session(['paysId' => $value]);
                     }
                     else{
                         session([$key => $value]);
@@ -53,16 +53,18 @@ class beginController extends Controller
             }
         }
 
-        $pays = DB::table('pays')->pluck('nom', 'code');
-        $indicatifs = DB::table('pays')->pluck('indicatif', 'code');
+        $pays = DB::table('pays')->pluck('nom', 'id');
+        $indicatifs = DB::table('pays')->pluck('indicatif', 'id');
         return View('form.carteCons', compact('pays', 'indicatifs'));
     }
 
     public function submit( carteRequest $request)
     {
         $slug = $request->input('slug');
+        $secret = 'CléSecret';
+        $hmac = hash_hmac('sha256', $slug, $secret);
         $data = $request->validated();
-        $data['slug'] = $slug;
+        $data['slug'] = rtrim(strtr(base64_encode($hmac), '+/', '-_'), '=');
         session($data);
         return redirect()->route('form.image');
     }

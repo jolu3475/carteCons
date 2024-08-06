@@ -12,7 +12,8 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('pays', function (Blueprint $table) {
-            $table->string('code')->primary();
+            $table->id();
+            $table->string('code');
             $table->string('nom')->unique();
             $table->string('indicatif');
             $table->timestamps();

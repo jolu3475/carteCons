@@ -65,6 +65,7 @@ Route::prefix('/back')->name('back.')->controller(BackController::class)->middle
     Route::prefix('/setting')->name('setting.')->group( function() {
         Route::get('/', 'setting')->name('view');
         Route::get('/edit', 'edit')->name('edit');
+        Route::post('/edit', 'edi');
         Route::get('/notif', 'notif')->name('notif');
     });
 });

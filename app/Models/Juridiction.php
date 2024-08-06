@@ -15,7 +15,7 @@ class Juridiction extends Model
 
     public $fillable = [
         'repexId',
-        'codePays'
+        'paysId'
     ];
 
     public function repex(): BelongsTo
@@ -25,6 +25,6 @@ class Juridiction extends Model
 
     public function pays(): BelongsTo
     {
-        return $this->belongsTo(Pays::class, 'codePays', 'code');
+        return $this->belongsTo(Pays::class, 'paysId');
     }
 }
