@@ -13,11 +13,11 @@ return new class () extends Migration {
         Schema::create('juridictions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('repexId');
-            $table->string('codePays');
+            $table->bigInteger('paysId')->unsigned();
             $table->timestamps();
 
             $table->foreign('repexId')->references('id')->on('repexes');
-            $table->foreign('codePays')->references('code')->on('pays');
+            $table->foreign('paysId')->references('id')->on('pays');
         });
     }
 

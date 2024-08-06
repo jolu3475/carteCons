@@ -9,4 +9,5 @@
         <p>Repex: {{ Auth::user()->repex?->label }} </p>
     @endif
     <p>Date de creation: {{ Auth::user()->created_at }}</p>
+    <p>Dernière mise a jour: {{ Auth::user()->updated_at }}</p>
 @endsection

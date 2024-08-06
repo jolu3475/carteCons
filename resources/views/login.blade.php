@@ -31,7 +31,7 @@
 
 <body class="text-center bg-tertiary-subtle">
 
-    <main class="form-signin shadow p-3 bg-body rounded form bg-info-subtle border-primary-subtle">
+    <main class="form-signin shadow p-3 bg-body rounded form bg-body-tertiary border-primary-subtle">
         <form method="POST" action="@yield('action')">
 
             @csrf

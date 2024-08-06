@@ -77,7 +77,8 @@
                     data-bs-target="#modalDel">Créer</button>
             </div>
         </div>
-        <div class="modal fade" id="modalDel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        {{-- Creation d'un repex --}}
+        <div class="modal modal-lg fade" id="modalDel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -142,6 +143,7 @@
                 <th>label</th>
                 <th>Adresse</th>
                 <th>email</th>
+                <th>Site Web</th>
                 <th>Juridication</th>
                 @if ($us->role === 1)
                     <th>Modifier</th>
@@ -154,7 +156,8 @@
                     <td>{{ $dat->pays?->nom }}</td>
                     <td>{{ $dat->label }}</td>
                     <td> {{ $dat->adr }} </td>
-                    <td>{{ $dat->email }}</td>
+                    <td>{{ $dat->email !== null || $dat->email === ' ' ? $dat->email : `Pas encore d'adresse mail` }}</td>
+                    <td> {{ $dat->site !== null ? $dat->site : 'Pas encore de site' }} </td>
                     <th>
                         <p>
                             @foreach ($dat->juridiction as $pa)

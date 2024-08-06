@@ -69,7 +69,7 @@
                 <div class="col-sm-10">
                     <select class="form-select" id="pays" name="codePays">
                         @foreach ($pays as $dat)
-                            <option value="{{ $dat->code }}" @if ($dat->code === $repex->codePays) selected @endif>
+                            <option value="{{ $dat->code }}" @if ($dat->id === $repex->paysId) selected @endif>
                                 {{ $dat->nom }}
                             </option>
                         @endforeach
@@ -77,6 +77,16 @@
                 </div>
             </div>
             @error('codePays')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <div class="row mb-3">
+                <label for="email" class="col-sm-2 col-form-label">Site de l'embasse </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="site" name="site"
+                        value="{{ old('site', $repex->site) }}">
+                </div>
+            </div>
+            @error('site')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <div class='d-flex justify-content-end'>
