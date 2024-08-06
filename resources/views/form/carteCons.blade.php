@@ -108,8 +108,8 @@
     <div class="row mb-3">
         <label for="inputEnf" class="col-sm-2 col-form-label">Nombre d'enfants</label>
         <div class="col-sm-2">
-            <input type="number" class="form-control" id="inputEnf" name="nbEnf"
-                value={{ old('nbEnf', session('nbEnf')) }} min="0">
+            <input type="number" class="form-control" id="inputEnf" name="nbEnf" min="0"
+                value={{ old('nbEnf', session('nbEnf')) }}>
         </div>
     </div>
     @error('ndEnf')
@@ -194,7 +194,7 @@
                 class="red">*</span></label>
         <div class="col-sm-2">
             <input type="date" class="form-control" id="inputExpPass" name="expPass"
-                value={{ old('expPass', session('expPass')) }}>
+                min="{{ today()->toDateString() }}" value={{ old('expPass', session('expPass')) }}>
         </div>
     </div>
     @error('expPass')
