@@ -19,6 +19,7 @@ use App\Http\Requests\createUsr;
 use App\Http\Requests\refusRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class BackController extends Controller
 {
@@ -119,6 +120,24 @@ class BackController extends Controller
     public function edit(): View
     {
         return view('back.setting.edit');
+    }
+
+    public function edi(Request $request)
+    {
+        $data = Validator::make($request->all(), [
+            'name' => 'required',
+            'password' => 'required',
+            'password1' => 'required'
+        ]);
+        $dat = $data->validated();
+
+        if(password_verify($dat['password1'], Auth::user()->password) )
+        {
+            User::where('slug', Auth::user()->slug)->update(['name'=>$dat['name'], 'password'=>bcrypt($dat['password'])]);
+            return to_route('back.setting.edit')->with('success', 'Votre compte a bien été modifier');
+        }
+        return to_route('back.setting.edit')->with('error', 'Il y a une erreur sur le mot de passe');
+
     }
 
     public function notif(): View

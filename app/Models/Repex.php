@@ -16,15 +16,16 @@ class Repex extends Model
     use HasFactory;
 
     protected $fillable = [
-        'codePays',
+        'paysId',
         'label',
         'adr',
-        'email'
+        'email',
+        'site'
     ];
 
     public function pays(): BelongsTo
     {
-        return $this->belongsTo(Pays::class, 'codePays', 'code');
+        return $this->belongsTo(Pays::class, 'paysId');
     }
 
     public function juridiction(): HasMany

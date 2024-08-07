@@ -21,7 +21,7 @@
     @error('email')
         <div class="alert alert-warning">{{ $message }}</div>
     @enderror
-    @error('codePays')
+    @error('paysId')
         <div class="alert alert-warning">{{ $message }}</div>
     @enderror
     @error('pays')
@@ -67,16 +67,26 @@
             <div class="row mb-3">
                 <label for="pays" class="col-sm-2 col-form-label">Pays</label>
                 <div class="col-sm-10">
-                    <select class="form-select" id="pays" name="codePays">
+                    <select class="form-select" id="pays" name="paysId">
                         @foreach ($pays as $dat)
-                            <option value="{{ $dat->code }}" @if ($dat->code === $repex->codePays) selected @endif>
+                            <option value="{{ $dat->id }}" @if ($dat->id === $repex->paysId) selected @endif>
                                 {{ $dat->nom }}
                             </option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            @error('codePays')
+            @error('paysId')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <div class="row mb-3">
+                <label for="site" class="col-sm-2 col-form-label">Site de l'embasse </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="site" name="site"
+                        value="{{ old('site', $repex->site) }}">
+                </div>
+            </div>
+            @error('site')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <div class='d-flex justify-content-end'>
@@ -208,9 +218,9 @@
                                     @endif
                                     @foreach ($repex->juridiction as $item)
                                         <div style="width:100%!important" class="m-1">
-                                            <input type="checkbox" name="pays[]" id="{{ $item->codePays }}"
-                                                value="{{ $item->codePays }}">
-                                            <label for="{{ $item->codePays }}">{{ $item->pays?->nom }}</label>
+                                            <input type="checkbox" name="pays[]" id="{{ $item->paysId }}"
+                                                value="{{ $item->paysId }}">
+                                            <label for="{{ $item->paysId }}">{{ $item->pays?->nom }}</label>
                                         </div>
                                     @endforeach
                                 </div>

@@ -13,7 +13,7 @@ return new class () extends Migration {
     {
         Schema::create('regulars', function (Blueprint $table) {
             $table->id();
-            $table->string('codePays');
+            $table->bigInteger('paysId')->unsigned();
             $table->string('nom');
             $table->string('prenom');
             $table->string('email')->unique();
@@ -31,7 +31,7 @@ return new class () extends Migration {
             $table->string('slug')->unique();
             $table->timestamps();
 
-            $table->foreign('codePays')->references('code')->on('pays');
+            $table->foreign('paysId')->references('id')->on('pays');
         });
     }
 

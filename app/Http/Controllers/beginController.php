@@ -30,7 +30,7 @@ class beginController extends Controller
             foreach ($datas as $key => $value) {
                 if (!in_array($key, $keysToKeep)) {
                     if($key === 'pays'){
-                        session(['codePays' => $value]);
+                        session(['paysId' => $value]);
                     }
                     else{
                         session([$key => $value]);
@@ -44,7 +44,7 @@ class beginController extends Controller
             if (session('email') !== null){
                 VerifEmail::where('email', session('email'))->delete();
             }
-            $keysToKeep = ['_token', '_previous', '_flash'];
+            $keysToKeep = ['_token', '_previous', '_flash','update', '_old_input'];
 
             foreach (Session::all() as $key => $value) {
                 if (!in_array($key, $keysToKeep)) {
@@ -53,8 +53,8 @@ class beginController extends Controller
             }
         }
 
-        $pays = DB::table('pays')->pluck('nom', 'code');
-        $indicatifs = DB::table('pays')->pluck('indicatif', 'code');
+        $pays = DB::table('pays')->pluck('nom', 'id');
+        $indicatifs = DB::table('pays')->pluck('indicatif', 'id');
         return View('form.carteCons', compact('pays', 'indicatifs'));
     }
 
@@ -62,7 +62,9 @@ class beginController extends Controller
     {
         $slug = $request->input('slug');
         $data = $request->validated();
-        $data['slug'] = $slug;
+        $secret = 'CléSecret';
+        $hmac = hash_hmac('sha256', $slug, $secret);
+        $data['slug'] = rtrim(strtr(base64_encode($hmac), '+/', '-_'), '=');
         session($data);
         return redirect()->route('form.image');
     }

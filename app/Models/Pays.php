@@ -21,17 +21,17 @@ class Pays extends Model
 
     public function juridictions(): HasOne
     {
-        return $this->hasOne(Juridiction::class, 'codePays', 'code');
+        return $this->hasOne(Juridiction::class, 'paysId');
     }
 
     public function repexs(): HasOne
     {
-        return $this->hasOne(Repex::class, 'codePays', 'code');
+        return $this->hasOne(Repex::class, 'paysId');
     }
 
     public function carte(): HasOne
     {
-        return $this->hasOne(Carte::class, 'codePays', 'code');
+        return $this->hasOne(Carte::class, 'paysId');
     }
 
 }

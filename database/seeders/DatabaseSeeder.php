@@ -19,13 +19,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $secret = 'CléSecret';
+        $slug = Hash::make(Str::slug('John-Doe'));
+        $hmac = hash_hmac('sha256', $slug, $secret);
+        $slugCry = rtrim(strtr(base64_encode($hmac), '+/', '-_'), '=');
         $user = [
             'name' => 'John',
             'email' => 'John@Doe.com',
             'password' => bcrypt('admin987'),
             'email_verified_at' => now(),
             'role' => true,
-            'slug' => Hash::make(Str::slug('John-Doe')),
+            'slug' => $slugCry,
         ];
 
         User::create($user);
