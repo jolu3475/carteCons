@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Regular;
+use App\Http\Controllers\chartJS;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackController;
@@ -80,3 +81,6 @@ Route::prefix('/back/settingBack')->name('settingBack.')->middleware('auth')->gr
 });
 
 Route::get('/verifCarte/{slug}', [AuthController::class, 'verifCarte'])->name('verifCarte');
+
+// /* Chart JS */
+// Route::get('/chart', [chartJS::class, 'index'])->name('chart');

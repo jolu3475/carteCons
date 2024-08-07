@@ -4,6 +4,8 @@
 @section('title', 'Dashboard')
 
 @section('css')
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- css pour datatables --}}
     <link rel="stylesheet" href="{{ asset('datatables/css/dataTables.bootstrap5.css') }}">
     <style>
@@ -41,6 +43,7 @@
     <p class="my-5 p-2 rounded h1 border border-primary-subtle">Graphique de donnée</p>
 
     <div class=" rounded-3 p-4 shadow bg-info-subtle text-info-emphasis">
+        <x-filtrer />
         <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </div>
 
