@@ -35,8 +35,9 @@ class BackController extends Controller
 
     public function pdfGenerator(Regular $data){
         $dataArray = $data->toArray();
-        $repex = Juridiction::where('codePays', '=', $dataArray['codePays'])->first();
-        $data->carte()->get()->first()->update(['dateRemise' => date('Y-m-d'), 'dateExpiration' => date('Y-m-d', strtotime('+2 year')), 'valide' => true, 'vu'=>true]);
+        $repex = Juridiction::where('paysId', '=', $dataArray['paysId'])->first();
+        // dd($dataArray['paysId']);
+        $data->carte()->get()->first()->update(['dateRemise' => date('Y-m-d'), 'dateExpiration' => date('Y-m-d', strtotime('+3 year')), 'valide' => true, 'vu'=>true]);
         /* dd($data->carte()->get()->first()->toArray()); */
         $pdf = Pdf::loadView('pdf.sortie', ['repex' => $repex->repex()->get()->first()->toArray(), 'data' => $dataArray, 'carte' => $data->carte()->get()->first()->toArray()]);
 
