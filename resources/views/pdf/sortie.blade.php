@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     <style>
         * {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Europa', sans-serif;
             margin: 0 !important;
             padding: 0 !important;
         }
