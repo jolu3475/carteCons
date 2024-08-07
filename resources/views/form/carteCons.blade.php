@@ -104,10 +104,6 @@
         <div class="col-sm-2">
             <input type="number" class="form-control @error('nbEnf') is-invalid @enderror" id="inputEnf" name="nbEnf"
                 value={{ old('nbEnf', session('nbEnf')) }} min="0">
-=======
-            <input type="number" class="form-control" id="inputEnf" name="nbEnf" min="0"
-                value={{ old('nbEnf', session('nbEnf')) }}>
->>>>>>> parent of de9885a (Merge branch 'master' into dev)
         </div>
     </div>
     @error('ndEnf')
