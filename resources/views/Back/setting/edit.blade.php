@@ -42,15 +42,14 @@
                 </div>
             </div>
             <div class="input-group mb-3 w-25">
-                    <input class="form-check-input mt-0" type="checkbox" id="see"
-                <div class="input-group-text">
-                        aria-label="Checkbox for following text input">
-                </div>
+                <input class="form-check-input mt-0" type="checkbox" id="see" <div class="input-group-text">
+                aria-label="Checkbox for following text input">
             </div>
-                <label for="see" class="form-control"> Voir le mot de passe</label>
-            <div class="row d-flex justify-content-end">
-                <button id="sub" type="submit" class="btn btn-primary">Modifier</button>
-            </div>
+        </div>
+        <label for="see" class="form-control"> Voir le mot de passe</label>
+        <div class="row d-flex justify-content-end">
+            <button id="sub" type="submit" class="btn btn-primary">Modifier</button>
+        </div>
 
         </div>
     </form>
