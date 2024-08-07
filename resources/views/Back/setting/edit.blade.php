@@ -2,11 +2,25 @@
 
 @section('user')
     <form action="" method="post">
+        @csrf
+        @session('error')
+            <div class="alert bg-warning">
+                <i class="fas fa-solid fa-warning"></i>
+                {{ session('error') }}
+            </div>
+        @endsession
+        @session('success')
+            <div class="alert bg-success">
+                <i class="fas fa-solid fa-check"></i>
+                {{ session('success') }}
+            </div>
+        @endsession
         <div class="container-fluid">
             <div class="row mb-3">
                 <label for="name" class="col-sm-3">Votre nom d'utilisateur : </label>
                 <div class="col-sm-7">
-                    <input type="text" name="name" id="name" value="{{ Auth::user()->name }}" class="form-control">
+                    <input type="text" name="name" id="name" value="{{ Auth::user()->name }}"
+                        class="form-control">
                 </div>
             </div>
             <div class="row mb-3">
@@ -28,12 +42,12 @@
                 </div>
             </div>
             <div class="input-group mb-3 w-25">
-                <div class="input-group-text">
                     <input class="form-check-input mt-0" type="checkbox" id="see"
+                <div class="input-group-text">
                         aria-label="Checkbox for following text input">
                 </div>
-                <label for="see" class="form-control"> Voir le mot de passe</label>
             </div>
+                <label for="see" class="form-control"> Voir le mot de passe</label>
             <div class="row d-flex justify-content-end">
                 <button id="sub" type="submit" class="btn btn-primary">Modifier</button>
             </div>
