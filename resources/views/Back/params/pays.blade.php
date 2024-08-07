@@ -66,7 +66,7 @@
                     data-bs-target="#modalDel">Créer</button>
             </div>
         </div>
-        <div class="modal fade" id="modalDel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal modal-lg fade" id="modalDel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">

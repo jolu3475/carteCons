@@ -13,13 +13,14 @@ return new class () extends Migration {
     {
         Schema::create('repexes', function (Blueprint $table) {
             $table->id();
-            $table->string('codePays');
+            $table->bigInteger('paysId')->unsigned();
             $table->string('label')->uniaue();
             $table->string('adr');
             $table->string('email');
+            $table->string('site')->nullable()->default(null);
             $table->timestamps();
 
-            $table->foreign('codePays')->references('code')->on('pays');
+            $table->foreign('paysId')->references('id')->on('pays');
         });
     }
 

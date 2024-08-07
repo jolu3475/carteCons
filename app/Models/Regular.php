@@ -15,7 +15,7 @@ class Regular extends Model
     use HasFactory;
 
     protected $fillable = [
-        'codePays',
+        'paysId',
         'nom',
         'prenom',
         'email',
@@ -35,7 +35,7 @@ class Regular extends Model
 
     public function pays(): BelongsTo
     {
-        return $this->belongsTo(Pays::class, 'codePays', 'code');
+        return $this->belongsTo(Pays::class, 'paysId', 'code');
     }
 
     public function carte(): HasOne
