@@ -11,9 +11,10 @@
 @endsection
 
 @section('content')
+    <div id="alert" hidden>
+        <p id="valid"></p>
+    </div>
     <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary" id="inputGroupFileAddon03" type="submit" name='verifier'>Verifier<span
-                class="red">*</span></button>
         <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
             aria-label="Envoye" name="image" value{{ old('img', session('img')) }}>
     </div>
@@ -21,13 +22,8 @@
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                @session('img')
-                    <img src={{ asset('/storage/' . session('img')) }} class="img-fluid rounded m-2" style="width: 555px"
-                        alt="Votre photo">
-                @else
-                    <img src={{ asset('image/person.gif') }} class="img-fluid rounded m-2" style="width: 555px"
-                        alt="Exemple photo">
-                @endsession
+                <img src="{{ asset('image/person.gif') }}" class="img-fluid rounded m-2" style="width: 555px"
+                    alt="Exemple photo" id='img'>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -60,11 +56,42 @@
         </div>
 
         <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-            @session('img')
-                <button class="btn btn-success" type='submit' name='suivant'>Suivant</button>
-            @else
-                <button class="btn disabled" disabled>Suivant</button>
-            @endsession
+            <button class="btn disabled" disabled id="btn">Suivant</button>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#inputGroupFile03').change(function() {
+                var formData = new FormData();
+                formData.append('image', $('#inputGroupFile03')[0].files[0]);
+                $.ajax({
+                    url: "/api/registerImg",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === 200) {
+                            var im = '/storage/' + response.path;
+                            $('#img').attr('src', im);
+                            $('#btn').attr('class', 'btn btn-success');
+                            $('#btn').attr('disabled', false);
+                            $('#inputGroupFile03').attr('class', 'form-control is-valid');
+                        } else {
+                            console.log(response.message);
+                        };
+                    },
+                    error: function(jqXHR, status, error) {
+                        $('#img').attr('src', '');
+                        $("#img").attr('src', `{{ asset('image/person.gif') }}`);
+                        $('#btn').attr('class', 'btn disabled');
+                        $('#btn').attr('disabled', true);
+                        $('#inputGroupFile03').attr('class', 'form-control is-invalid');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
