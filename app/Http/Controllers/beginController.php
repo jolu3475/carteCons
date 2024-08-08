@@ -70,24 +70,12 @@ class beginController extends Controller
     }
 
     /* Verification de l'image */
-    public function verifImg( photoRequest $request)
+    public function verifImg()
     {
-        if ($request->has('verifier')){
-            /** @var UploadedFile $image */
-            if (session('img')!== null){
-                Storage::disk('public')->delete(session('img'));
-            }
-            $image=$request->validated('image');
-            $imagePath = $image->store('photo', 'public');
-            session(['img' => $imagePath]);
-            return redirect()->route('form.image');
-        }
-        if ($request->has('suivant')){
             if (session()->has('update')){
                 return redirect()->route('form.valid');
             }
             return redirect()->route('form.mail');
-        }
     }
 
     public function insImg(): View

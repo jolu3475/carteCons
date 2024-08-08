@@ -12,7 +12,7 @@
 
 @section('content')
     <div id="alert" hidden>
-        <p id="valid"></p>
+        <input id="valid">
     </div>
     <div class="input-group mb-3">
         <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
@@ -79,6 +79,9 @@
                             $('#btn').attr('class', 'btn btn-success');
                             $('#btn').attr('disabled', false);
                             $('#inputGroupFile03').attr('class', 'form-control is-valid');
+                            $('#valid').attr('value', 'image valide');
+                            $('#alert').attr('hidden', false);
+                            $('#valid').attr('class', 'form-control is-valid mb-3');
                         } else {
                             console.log(response.message);
                         };
@@ -89,6 +92,9 @@
                         $('#btn').attr('class', 'btn disabled');
                         $('#btn').attr('disabled', true);
                         $('#inputGroupFile03').attr('class', 'form-control is-invalid');
+                        $('#valid').attr('value', 'image invalide');
+                        $('#alert').attr('hidden', false);
+                        $('#valid').attr('class', 'form-control is-invalid mb-3');
                     }
                 });
             });
