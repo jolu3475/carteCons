@@ -22,4 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Dans routes/api.php
 Route::get('/chart', [chartJS::class, 'index']);
 
-Route::post('/registerImg', [chartJS::class, 'registerImg']);
+Route::middleware(['web'])->post('/registerImg', [chartJS::class, 'registerImg']);
+
+Route::middleware(['web'])->post('/email', [chartJS::class, 'email']);
+
+Route::middleware(['web'])->post('/verify', [chartJS::class, 'verify']);
